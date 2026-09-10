@@ -1,0 +1,9 @@
+{
+  "brand": "AppleSupport",
+  "total_candidate_pairs": 106646,
+  "total_unreplied_inbound": 19490,
+  "usable_examples_count": 106646,
+  "excluded_examples_count": 19490,
+  "multipart_aggregated_count": 1929,
+  "multipart_rate_pct": 1.81
+}

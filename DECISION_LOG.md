@@ -4,8 +4,9 @@ This document records the foundational architectural, analytical, and problem-fr
 
 ---
 
-## Decision 1: Target Brand Selection (`AppleSupport`)
+# Phase 1 Decisions (Dataset Audit & Brand Discovery)
 
+## Decision 1: Target Brand Selection (`AppleSupport`)
 - **Decision**: Select `AppleSupport` as the single target brand for the AI Support Agent task.
 - **Reason**: `AppleSupport` exhibits the highest customer diversity, cleanest English monolingual corpus, richest multi-turn diagnostic workflows, and clearest objective boundaries between automatable software troubleshooting and high-risk human escalation.
 - **Evidence**:
@@ -20,12 +21,11 @@ This document records the foundational architectural, analytical, and problem-fr
   - `TMobileHelp` / Telecoms: Rejected due to extreme DM deflection (>82%), making public autonomous troubleshooting unrealistic.
   - `SpotifyCares`: Viable runner-up, but smaller volume (43k vs 106k) and narrower domain scope than Apple's device/OS ecosystem.
 - **Trade-off**: High link sharing (75.37%) and DM deflection (52.58%) require explicit modeling of link generation and DM handoffs as escalation actions.
-- **Confidence**: **HIGH** (Justified by leading customer diversity, rich multi-turn troubleshooting, and clear domain boundaries).
+- **Confidence**: **HIGH**
 
 ---
 
 ## Decision 2: Atomic Unit of Customer Support Modeling
-
 - **Decision**: Frame the fundamental prediction unit as a **Contextualized Turn**: $(C_1, S_1, \dots, C_k) \rightarrow S_k$, rather than treating tweets as independent single-row records.
 - **Reason**: Customer support conversations are multi-turn dialogue trees. In the dataset, 45.45% of conversations have 3 or more tweets, and customer messages frequently refer back to prior agent troubleshooting steps.
 - **Evidence**:
@@ -35,12 +35,11 @@ This document records the foundational architectural, analytical, and problem-fr
   - Single-turn classification (predicting intent/response solely from $C_k$): Fails on elliptical follow-up replies.
   - Full-thread generation at once: Unrealistic for real-time live support streaming.
 - **Trade-off**: Requires reconstructing and maintaining parent-child context windows during training, evaluation, and live inference.
-- **Confidence**: **HIGH** (Empirically grounded in conversation topology and multi-turn dependency).
+- **Confidence**: **HIGH**
 
 ---
 
 ## Decision 3: Data Splitting Strategy (Chronological Temporal Split)
-
 - **Decision**: Enforce a strict **time-based chronological split** (Train: earlier timestamps $\rightarrow$ Test/Validation: later timestamps) rather than random row-level or random conversation-level splitting.
 - **Reason**: Random splitting causes lookahead data leakage where future support knowledge, software updates (e.g. iOS 11 features), and recurring incident threads leak into the training set.
 - **Evidence**:
@@ -51,12 +50,11 @@ This document records the foundational architectural, analytical, and problem-fr
   - Random row split: Severe leakage across turns of the same conversation.
   - Random conversation split: Prevents intra-thread leakage but allows temporal lookahead leakage across ecosystem updates.
 - **Trade-off**: Model performance on later time periods reflects genuine temporal generalization challenges rather than inflated random cross-validation scores.
-- **Confidence**: **HIGH** (Standard ML practice for temporal sequence tasks with policy/software drift).
+- **Confidence**: **HIGH**
 
 ---
 
 ## Decision 4: Framing Direct Message (DM) Redirections as Historical Private-Channel Boundaries
-
 - **Decision**: Treat historical support replies instructing customers to "Send a DM with your serial number / Apple ID" as **Historical Private-Channel Boundaries / Information-Gathering Actions**, clearly distinguished from ground-truth operational escalation.
 - **Reason**: Public customer support channels have strict privacy boundaries. Asking for a DM was Apple's historical protocol when sensitive private identifiers or account credentials were required.
 - **Evidence**:
@@ -66,12 +64,11 @@ This document records the foundational architectural, analytical, and problem-fr
   - Filtering out all DM-request tweets: Destroys >52% of dataset and removes essential safety boundaries.
   - Treating historical DM as absolute proof of necessary human escalation: Conflates brand policy with technical necessity.
 - **Trade-off**: The evaluation benchmark must score both direct automated troubleshooting and appropriate escalation to DM as valid correct behaviors depending on privacy/safety triggers.
-- **Confidence**: **HIGH** (Accurately reflects real-world multi-channel support boundaries).
+- **Confidence**: **HIGH**
 
 ---
 
 ## Decision 5: Multipart Customer Tweet Aggregation & Inbound Link Disambiguation
-
 - **Decision**: Distinguish third-party customer comments (54.67% of Inbound $\rightarrow$ Inbound links) from same-author consecutive turns (45.33%). For same-author chains, adopt $\Delta t \le 120$s with linguistic continuity checks as the candidate multipart aggregation heuristic for Phase 2.
 - **Reason**: Empirical analysis revealed that more than half of Inbound $\rightarrow$ Inbound links are other customers replying to a public thread. Treating all Inbound $\rightarrow$ Inbound links as multipart was an unsupported assumption.
 - **Evidence**:
@@ -81,4 +78,118 @@ This document records the foundational architectural, analytical, and problem-fr
   - Blindly grouping all Inbound $\rightarrow$ Inbound links: Grouped third-party tweets and corrupts customer problem statements.
   - No grouping (treating every tweet independently): Truncates customer issues split across multiple 140-character messages.
 - **Trade-off**: Requires evaluating both time-delta and textual continuity (e.g. "1/2", sentence continuation) during Phase 2 dataset construction.
-- **Confidence**: **MEDIUM** (Empirically grounded on same-author breakdown; exact multi-modal threshold will be finalized in Phase 2).
+- **Confidence**: **MEDIUM**
+
+---
+
+# Phase 2 Decisions (Conversation Reconstruction, Preprocessing & Leakage Control)
+
+## Decision 6: Canonical Schema Definition for Modeling Examples
+- **Decision**: Define every canonical interaction example as $(\mathcal{H}_k, C_k, S_k)$ with full provenance metadata (`interaction_id`, `conversation_id`, `customer_id`, `created_ts`, `context`, `customer_message_raw`, `customer_message_normalized`, `historical_response_raw`, `target_support_tweet_id`, `source_customer_tweet_ids`, `multipart_aggregated`, `latency_seconds`).
+- **Reason**: Guarantees full auditability and traceability back to raw tweets in `data/raw/twcs.csv` while ensuring context and target are strictly separated.
+- **Evidence**: 106,646 canonical records built with 0 missing fields and 0 schema errors in `data/processed/interactions.jsonl`.
+- **Alternatives Considered**: Flattened single-string prompts (loses turn structure and token auditing).
+- **Trade-off**: Slightly larger JSON record size (~150 MB dataset on disk) compensated by complete reproducibility and auditability.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 7: Multi-Part Same-Author Aggregation Heuristic
+- **Decision**: Group same-author customer tweets into a unified turn when $\Delta t \le 120$s AND (`is_linguistic_continuation` is True OR $\Delta t \le 60$s).
+- **Reason**: Solves Twitter's 140-character limit problem where customers split a single sentence or error log across 2 consecutive tweets.
+- **Evidence**: Identified and aggregated exactly 1,929 genuine multi-part customer query chains in `AppleSupport` without incorrectly merging separate delayed queries.
+- **Alternatives Considered**:
+  - Fixed 300s window without linguistic check: Merged unrelated follow-up turns.
+  - No merging: Truncated 1,929 initial problem descriptions.
+- **Trade-off**: Modest increase in preprocessing complexity for higher problem completeness.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 8: Strict Third-Party Customer Comment Isolation
+- **Decision**: Filter out third-party customer comments from the target customer's context path during conversation reconstruction.
+- **Reason**: 54.67% of Inbound $\rightarrow$ Inbound links represent third-party customers chiming in. Injecting third-party complaints into the target customer's context corrupts the customer profile and confuses issue attribution.
+- **Evidence**: Automated Test Q verified that 100% of reconstructed contexts isolate `(Author == Target Customer) OR (Author == AppleSupport)`.
+- **Alternatives Considered**: Including all public thread participants in context (causes severe multi-customer confusion).
+- **Trade-off**: Thread-level social banter is lost; target-level diagnostic clarity is preserved.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 9: Causal Tie-Breaking for Identical Timestamps
+- **Decision**: When $T(\text{parent}) == T(\text{child})$, the directed edge (`child.in_response_to == parent.tweet_id`) places the parent strictly before the child. Sibling ties are sorted deterministically by integer `tweet_id`.
+- **Reason**: Twitter timestamps have 1-second resolution; rapid automated agent acknowledgments can share the same second as the incoming tweet.
+- **Evidence**: 56 timestamp ties in the dataset graph were verified and placed in strictly causal parent $\rightarrow$ child order with zero temporal loops.
+- **Alternatives Considered**: Discarding tied turns (unnecessary loss of valid data) or random tie breaking (nondeterministic).
+- **Trade-off**: None. Preserves causality and 100% determinism.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 10: Primary Benchmark Partitioning Strategy (`TemporalSplit` 80/10/10)
+- **Decision**: Adopt chronological `TemporalSplit` (Train: 85,316 [80.0%] | Dev: 10,664 [10.0%] | Test: 10,666 [10.0%]) as the primary evaluation split.
+- **Reason**: Accurately simulates the production reality where models trained on past data are evaluated on future customer support queries during the iOS 11 rollout surge.
+- **Evidence**: Train spans 2016-03-04 to 2017-11-17; Test spans 2017-11-26 to 2017-12-03. Exact query overlap between Train and Test is minimal (59 queries, 0.56%).
+- **Alternatives Considered**: Random split (rejected due to lookahead leakage); Customer split (useful as secondary generalization diagnostic).
+- **Trade-off**: Small temporal distribution shift between early iOS 11.0 (Train) and iOS 11.1/11.2 (Test) must be handled by the model.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 11: Programmatic Retrieval Leakage Exclusion Engine
+- **Decision**: The RAG retrieval candidate filter (`RetrievalFilter`) must programmatically exclude: (1) query $k$ itself, (2) target support response $S_k$, (3) any candidates with $T \ge T(C_k)$, (4) same-conversation future turns, and (5) registered golden evaluation examples.
+- **Reason**: Prevents RAG systems from retrieving identical or future answers during evaluation.
+- **Evidence**: Automated Tests J and K verified zero self-retrieval and zero future retrieval violations across candidate pools.
+- **Alternatives Considered**: Manual exclusion lists (error-prone, non-scalable).
+- **Trade-off**: None. Essential requirement for evaluation integrity.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 12: Permanent Golden Set Isolation Mechanism
+- **Decision**: Establish an immutable registration registry (`golden_ids`) that automatically purges golden examples from training sets, demonstration pools, and vector retrieval indexes.
+- **Reason**: Ensures that when the 150–250 golden evaluation benchmark is created in Phase 3, zero contamination of training or RAG index pools can occur.
+- **Evidence**: Verified in `src/data/leakage.py` and `tests/test_leakage.py`.
+- **Alternatives Considered**: Ad-hoc post-hoc filtering (high risk of accidental contamination).
+- **Trade-off**: None.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 13: Lifecycle Classification of Unreplied Customer Queries
+- **Decision**: Classify all 19,490 customer inbound tweets mentioning `AppleSupport` that received no observed reply in the dataset as `NO_OBSERVED_RESPONSE` and isolate them in `exclusion_log.jsonl`.
+- **Reason**: Prevents hallucinating or synthesizing ground-truth support responses while preserving the unreplied cohort for future intent/escalation distribution audits.
+- **Evidence**: Complete reconciliation: 106,646 usable + 19,490 unreplied = 126,136 total inbound queries accounted for.
+- **Alternatives Considered**: Dropping unreplied rows silently (unreconciled data loss).
+- **Trade-off**: None. Clean separation between supervised pairs and unreplied queries.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 14: Text Normalization Strategy
+- **Decision**: Maintain both `raw_text` (original characters, casing, punctuation) and `normalized_text` (lowercased, URLs masked as `<url>`, mentions masked as `<user>`).
+- **Reason**: Response generation models require natural casing and punctuation, while deduplication and retrieval benefit from masked representations.
+- **Evidence**: Preserves 100% of raw text fidelity while enabling exact string and normalized duplicate auditing (2.73% normalized query duplication).
+- **Alternatives Considered**: Overwriting raw text destructively (destroys data fidelity).
+- **Trade-off**: Small storage overhead for dual representations.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 15: Primary Evidence Source Locking
+- **Decision**: Historical `AppleSupport` conversation interactions in `twcs.csv` are formally locked as the sole primary evidence source for the benchmark. Modern post-2017 Apple documentation is strictly prohibited from entering the primary benchmark.
+- **Reason**: Mixing modern documentation (iOS 16/17/18, Apple Silicon) into a 2017 iOS 11 dataset creates anachronistic hallucinations.
+- **Evidence**: Confirmed in temporal drift analysis (`reports/temporal_analysis.md`).
+- **Alternatives Considered**: Allowing modern web scraping (corrupts historical baseline).
+- **Trade-off**: Limits knowledge to what was publicly known up to Q4 2017.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 16: Canonical Processed Storage Format
+- **Decision**: Store processed dataset as newline-delimited JSON (`data/processed/interactions.jsonl`) with companion metadata (`interactions_metadata.json`, `splits.json`, `exclusion_log.jsonl`).
+- **Reason**: Zero external C-extension dependencies (no pyarrow requirement), human-auditable, streamable in chunks, and cross-platform reproducible.
+- **Evidence**: Successfully generated and tested across 106,646 interactions.
+- **Alternatives Considered**: Parquet (requires third-party binary wheels); SQLite-only (less convenient for batch streaming).
+- **Trade-off**: Larger file size than snappy-compressed parquet (~150 MB vs ~40 MB).
+- **Confidence**: **HIGH**

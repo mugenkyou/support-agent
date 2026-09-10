@@ -2,6 +2,7 @@
 data/twcs.sqlite
 data/twcs.sqlite-journal
 data/raw/twcs.csv
+data/processed/*.jsonl
 *.sqlite
 *.sqlite3
 *.db
