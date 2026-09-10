@@ -1,0 +1,1770 @@
+{
+  "graph_pointers": {
+    "total_tweets_with_in_response_to": 2017439,
+    "valid_parents_count": 2013577,
+    "valid_parents_pct": 99.81,
+    "dangling_parents_count": 3862,
+    "dangling_parents_pct": 0.19
+  },
+  "temporal_ordering": {
+    "strictly_chronological_count": 2013521,
+    "strictly_chronological_pct": 100.0,
+    "timestamp_ties_count": 56,
+    "timestamp_ties_pct": 0.0,
+    "temporal_violations_count": 0,
+    "temporal_violations_pct": 0.0
+  },
+  "interaction_types": {
+    "Support -> Support (Multi-part/Internal handoff)": 3393,
+    "Support -> Customer Follow-up (Outbound -> Inbound)": 559849,
+    "Customer -> Support Response (Inbound -> Outbound)": 1261888,
+    "Customer -> Customer (Self-reply/Multi-part)": 188447
+  },
+  "conversation_topology": {
+    "total_conversation_trees": 798197,
+    "isolated_tweets_count": 0,
+    "isolated_tweets_pct": 0.0,
+    "2_tweet_threads_count": 435398,
+    "2_tweet_threads_pct": 54.55,
+    "3_tweet_threads_count": 112012,
+    "3_tweet_threads_pct": 14.03,
+    "4_tweet_threads_count": 104844,
+    "4_tweet_threads_pct": 13.14,
+    "5_plus_tweet_threads_count": 145943,
+    "5_plus_tweet_threads_pct": 18.28,
+    "tree_size_mean": 3.52,
+    "tree_size_p50": 2,
+    "tree_size_p90": 6,
+    "tree_size_p95": 8,
+    "tree_size_p99": 15,
+    "tree_size_max": 1390
+  },
+  "sampled_linked_interactions": [
+    {
+      "customer_tweet_id": 2251281,
+      "customer_author_id": "655846",
+      "customer_text": "@115911 uninstalled ur visual voicemail app cuz no one there can fix quote \"We can't help u\" am paying 4 it but can't use it this is wrong also ur kiosk in malls is a joke theyre to busy groping ea other rather than helping customers strike 2",
+      "customer_created_at": "Fri Nov 10 18:44:07 +0000 2017",
+      "support_tweet_id": 2251280,
+      "support_author_id": "TMobileHelp",
+      "support_text": "@655846 We hear you loud &amp; clear, Joshua. Whether feature issues or concerns about your in-store experience, DM us so we can discuss. *KeithM",
+      "support_created_at": "Fri Nov 10 18:49:16 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1145764,
+      "customer_author_id": "389673",
+      "customer_text": "@AppleSupport is a $600 Watch supposed to last longer than 2 years? Simply went to sit down today and the face fell out. https://t.co/GCTRhsVcz7",
+      "customer_created_at": "Sat Oct 14 21:58:40 +0000 2017",
+      "support_tweet_id": 1145763,
+      "support_author_id": "AppleSupport",
+      "support_text": "@389673 We're glad to look into this with you. DM us using the link below. We'll work from there. https://t.co/GDrqU22YpT",
+      "support_created_at": "Sat Oct 14 22:07:00 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1756934,
+      "customer_author_id": "529005",
+      "customer_text": "@TMobileHelp How do you have so little hats for such a big city? \ud83d\ude12 we went to different stores and none of them had hats https://t.co/QATm7MvWni",
+      "customer_created_at": "Tue Nov 07 20:18:59 +0000 2017",
+      "support_tweet_id": 1756936,
+      "support_author_id": "TMobileHelp",
+      "support_text": "@529005 These hat are really popular, so I\u2019d grab them as soon as possible when they are available! Stay tuned with the next offer! *KyleSaragosa",
+      "support_created_at": "Tue Nov 07 20:33:56 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1408958,
+      "customer_author_id": "447485",
+      "customer_text": "Also i am getting my TV from Walmart! #DragoniteHappy! :D",
+      "customer_created_at": "Wed Nov 01 19:06:29 +0000 2017",
+      "support_tweet_id": 1408956,
+      "support_author_id": "Walmart",
+      "support_text": "@447485 Woohooo! What size \ud83d\udcfa  will you be getting, Dragonite? I really\n want a new TV myself but I want a 65\". I can dream. \ud83d\ude02 -Pia",
+      "support_created_at": "Wed Nov 01 22:29:55 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2694168,
+      "customer_author_id": "757195",
+      "customer_text": "@115911 @115913 I just had two fraud I-phones ordered on my account to a city Inhave never lived in. Weak Identity verification?",
+      "customer_created_at": "Sun Nov 19 17:47:05 +0000 2017",
+      "support_tweet_id": 2694167,
+      "support_author_id": "TMobileHelp",
+      "support_text": "@757195 @115913 We want to check this out with you, Alok. Please send a DM our way so we can help: https://t.co/cuEwtd2epS *DanKing",
+      "support_created_at": "Sun Nov 19 17:47:55 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1766000,
+      "customer_author_id": "531107",
+      "customer_text": "@AppleSupport fix ya shit.. I\u2019m getting irritated",
+      "customer_created_at": "Tue Nov 07 20:48:25 +0000 2017",
+      "support_tweet_id": 1765999,
+      "support_author_id": "AppleSupport",
+      "support_text": "@531107 We're happy to help. Tell us what's going on. We can work on your issue together.",
+      "support_created_at": "Tue Nov 07 21:46:33 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1575345,
+      "customer_author_id": "396894",
+      "customer_text": "@GWRHelp another awful train on Cardiff to Portsmouth route. 2 grotty carriages; not enough seats. Should be grateful it's on time I guess.",
+      "customer_created_at": "Sat Nov 04 14:39:54 +0000 2017",
+      "support_tweet_id": 1575344,
+      "support_author_id": "GWRHelp",
+      "support_text": "@396894 Sorry for the shorter train, Anita. More trains are requiring require work at the moment. - Jordan",
+      "support_created_at": "Sat Nov 04 14:47:10 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 696443,
+      "customer_author_id": "286168",
+      "customer_text": "@LondonMidland Is there any particular reason why every 17:09 train from Bham Moor street to Worcester Shrubhill has been delayed this week?",
+      "customer_created_at": "Thu Nov 23 17:14:06 +0000 2017",
+      "support_tweet_id": 696442,
+      "support_author_id": "LondonMidland",
+      "support_text": "@286168 It's delayed today due to an operational incident on an earlier service. Very sorry for delays.",
+      "support_created_at": "Thu Nov 23 17:16:49 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1433357,
+      "customer_author_id": "416258",
+      "customer_text": "@AdobeCare I already had these kinds of notifications turned off. Why did I receive this notification and how do I ensure that I don't receive these kinds of notifications in the future? https://t.co/btwSFGjuTz",
+      "customer_created_at": "Wed Nov 15 07:15:42 +0000 2017",
+      "support_tweet_id": 1433356,
+      "support_author_id": "AdobeCare",
+      "support_text": "@416258 Hi Jesse, once you have turned off the notifications please sign out and sign back in. Let us know if this helps. Thanks. ^K",
+      "support_created_at": "Fri Nov 17 23:16:58 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1513983,
+      "customer_author_id": "471289",
+      "customer_text": "@AmericanAir My brothers flight 2190 is delayed. Will they make their connection flight 2402?",
+      "customer_created_at": "Mon Oct 16 22:52:18 +0000 2017",
+      "support_tweet_id": 1513981,
+      "support_author_id": "AmericanAir",
+      "support_text": "@471289 It's possible. Please have your brother work with our airport team if the connection is missed.",
+      "support_created_at": "Tue Oct 17 00:10:22 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1027757,
+      "customer_author_id": "363214",
+      "customer_text": "@161612 @ATVIAssist max ammo glitch in boss fight https://t.co/InuuRYWiWT",
+      "customer_created_at": "Sat Oct 14 01:57:32 +0000 2017",
+      "support_tweet_id": 1027755,
+      "support_author_id": "ATVIAssist",
+      "support_text": "@363214\n\nPlease go ahead and clear your cache(https://t.co/vNUSMNbZ5f) and let me know if any issue like this happens again. Thanks. ^JW",
+      "support_created_at": "Sat Oct 14 17:18:22 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 593841,
+      "customer_author_id": "260636",
+      "customer_text": "@JetBlue i can't acces to manage flight with my confirmation code: We are sorry, an internal system error has occurred\nPlease try again later, the server may be busy now. \nIs that normal?",
+      "customer_created_at": "Sun Dec 03 17:22:40 +0000 2017",
+      "support_tweet_id": 593840,
+      "support_author_id": "JetBlue",
+      "support_text": "@260636 We're sorry to hear you're having trouble online. Can you send us a DM with your confirmation code? We can take a closer look.  https://t.co/xSmyP7Lfyg",
+      "support_created_at": "Sun Dec 03 17:27:03 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 864714,
+      "customer_author_id": "325368",
+      "customer_text": "@SW_Help Thanks. Is there discount if I am Gold Season ticket holder?",
+      "customer_created_at": "Fri Oct 13 15:12:49 +0000 2017",
+      "support_tweet_id": 864716,
+      "support_author_id": "SW_Help",
+      "support_text": "@325368 Hi, Unfortunately you do not get discount on a season ticket. ^BK",
+      "support_created_at": "Fri Oct 13 15:15:50 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1817582,
+      "customer_author_id": "413130",
+      "customer_text": "@AskTarget So target, you set a street date on crota, but your stores don't honor it then you say it will be online and you are sold out? \ud83d\udc1f",
+      "customer_created_at": "Mon Oct 16 04:05:10 +0000 2017",
+      "support_tweet_id": 1817581,
+      "support_author_id": "AskTarget",
+      "support_text": "@413130 This item was available in stores on 10/15. We're researching the online availability now. Please stay tuned for any availability updates.",
+      "support_created_at": "Mon Oct 16 11:47:01 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1382667,
+      "customer_author_id": "441787",
+      "customer_text": "@441788 Fix: Use premiere pro... Sucks far less",
+      "customer_created_at": "Fri Oct 27 21:26:02 +0000 2017",
+      "support_tweet_id": 1382665,
+      "support_author_id": "AdobeCare",
+      "support_text": "@441787 @441788 Let us know if you need any help! ^RB",
+      "support_created_at": "Sat Oct 28 07:06:44 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2876101,
+      "customer_author_id": "798421",
+      "customer_text": "Dear @115888, you keep asking to go premium again and again. And I just went premium to skip ads, the first thing that happens is I'm unable to get rid of this ad! WTH!! https://t.co/nYCat0zQqd",
+      "customer_created_at": "Tue Nov 28 02:16:18 +0000 2017",
+      "support_tweet_id": 2876099,
+      "support_author_id": "SpotifyCares",
+      "support_text": "@798421 Hey there! Could you send us a DM with your account's email address? We'll take a look backstage /KC https://t.co/ldFdZRiNAt",
+      "support_created_at": "Tue Nov 28 05:44:35 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2162367,
+      "customer_author_id": "634939",
+      "customer_text": "@AmazonHelp Yes it is :)",
+      "customer_created_at": "Thu Oct 19 12:15:35 +0000 2017",
+      "support_tweet_id": 2162369,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@634939 Have you already gone through the registration, or did you purchase the device from your own https://t.co/ykTUEmdsQA account? ^LB",
+      "support_created_at": "Thu Oct 19 12:30:48 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 111031,
+      "customer_author_id": "140705",
+      "customer_text": "@115873 - your driver in #delhi wants 600 rupees to return a bag left in boot #blackmail",
+      "customer_created_at": "Thu Nov 23 20:06:10 +0000 2017",
+      "support_tweet_id": 111030,
+      "support_author_id": "Uber_Support",
+      "support_text": "@140705 We're here to help! Send us a DM with your email address so we can connect.",
+      "support_created_at": "Thu Nov 23 20:11:13 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1619477,
+      "customer_author_id": "496438",
+      "customer_text": "@Uber_Support why cant i order an uber",
+      "customer_created_at": "Sun Nov 05 16:08:31 +0000 2017",
+      "support_tweet_id": 1619475,
+      "support_author_id": "Uber_Support",
+      "support_text": "@496438 Here to help. Send us a note at https://t.co/xMxswVLBKT so our team can connect.",
+      "support_created_at": "Sun Nov 05 16:15:36 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1400746,
+      "customer_author_id": "445688",
+      "customer_text": "@Tesco Oh! Darn, I should\u2019ve asked a staff member. Couldn\u2019t find them anywhere! Would they be down the cereal aisle or in seasonal? Thanks!",
+      "customer_created_at": "Sat Oct 28 16:26:10 +0000 2017",
+      "support_tweet_id": 1400745,
+      "support_author_id": "Tesco",
+      "support_text": "@445688 Hi David, I've gave the store a call to find out the location of them for you. you can find them at isle 17/18 on at the end. Thanks - Lee",
+      "support_created_at": "Sat Oct 28 16:54:44 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 100443,
+      "customer_author_id": "464646",
+      "customer_text": "@Delta Your moms house",
+      "customer_created_at": "Thu Nov 30 20:25:49 +0000 2017",
+      "support_tweet_id": 1484140,
+      "support_author_id": "Delta",
+      "support_text": "@464646 Tweets us when you need us! *TCC",
+      "support_created_at": "Thu Nov 30 20:26:43 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2866089,
+      "customer_author_id": "796047",
+      "customer_text": "Nobody better try to steal my @115821 boxes this week, I have a #LaserCat on the job, guarding the christmas booty! https://t.co/Rig1YM2YGH",
+      "customer_created_at": "Mon Nov 27 23:55:36 +0000 2017",
+      "support_tweet_id": 2866088,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@796047 Your defender of all boxes and packages is the most majestic and terrifying thing imaginable! Even more so than a shark with a laser beam attached to its head! ^BV",
+      "support_created_at": "Tue Nov 28 00:28:39 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1113306,
+      "customer_author_id": "382751",
+      "customer_text": "Dear @115911 can i please talk to somebody higher up ?!! No the reps can\u2019t help me I need the bosses... please no reps just higher up",
+      "customer_created_at": "Tue Oct 24 02:56:51 +0000 2017",
+      "support_tweet_id": 1113305,
+      "support_author_id": "TMobileHelp",
+      "support_text": "@382751 Shoot us a DM with the details, we got you covered! *KittyG",
+      "support_created_at": "Tue Oct 24 02:57:54 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 583371,
+      "customer_author_id": "257592",
+      "customer_text": "@AirbnbHelp I have already spoken to your customer service department.  The host does not list heat as an amenity.  I would never think to check for heat in a $2M house.",
+      "customer_created_at": "Sun Dec 03 15:03:46 +0000 2017",
+      "support_tweet_id": 583373,
+      "support_author_id": "AirbnbHelp",
+      "support_text": "@257592 If you wish us to address this issue for you, please let us know and we can have a member of a specialized assist you, we're here to help.",
+      "support_created_at": "Sun Dec 03 15:18:46 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2503996,
+      "customer_author_id": "714132",
+      "customer_text": "@Uber_Support I messaged it :)",
+      "customer_created_at": "Wed Nov 15 20:38:55 +0000 2017",
+      "support_tweet_id": 2503998,
+      "support_author_id": "Uber_Support",
+      "support_text": "@714132 We have followed up via DM.",
+      "support_created_at": "Wed Nov 15 20:48:58 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1174097,
+      "customer_author_id": "381854",
+      "customer_text": "@Delta ?",
+      "customer_created_at": "Tue Oct 24 22:12:49 +0000 2017",
+      "support_tweet_id": 1174098,
+      "support_author_id": "Delta",
+      "support_text": "@381854 They can be reached from 8:00am-9:00pm. *AMC",
+      "support_created_at": "Tue Oct 24 22:20:14 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2805828,
+      "customer_author_id": "782564",
+      "customer_text": "@154872 You are Killing me.  No such thing as \"Important Change to Overdraft Charges\"!!!  Email you keep sending is a lie and deceitful.  I made a choice, you need to accept it and stop emailing me.  If you keep lying and deceiving, how can I trust you?",
+      "customer_created_at": "Tue Nov 21 17:53:54 +0000 2017",
+      "support_tweet_id": 2805826,
+      "support_author_id": "KeyBank_Help",
+      "support_text": "@782564 Hello Michael! Did you require any assistance? Please follow and DM your phone number with billing ZIP code if you have questions. We would be happy to call. Thank you!^CH",
+      "support_created_at": "Tue Nov 21 18:05:00 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2500236,
+      "customer_author_id": "713307",
+      "customer_text": "@British_Airways is there an issue with the iPhone app just now?",
+      "customer_created_at": "Wed Nov 15 17:00:00 +0000 2017",
+      "support_tweet_id": 2500235,
+      "support_author_id": "British_Airways",
+      "support_text": "@713307 Hi Simon, we have been experiencing a few technical issues. We're working hard to get these resolved as soon as possible. We're sorry for the inconvenience caused. ^Rach",
+      "support_created_at": "Wed Nov 15 19:28:23 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1134259,
+      "customer_author_id": "387256",
+      "customer_text": "@Uber_Support You did but you refuse to believe 4 young adults account of what happened. Shame on you Uber. The driver is NOT being truthful!!",
+      "customer_created_at": "Tue Oct 24 01:08:58 +0000 2017",
+      "support_tweet_id": 1134258,
+      "support_author_id": "Uber_Support",
+      "support_text": "@387256 Please direct message us with the email address associated with the account and we'll follow up with them directly via in-app support.",
+      "support_created_at": "Tue Oct 24 01:27:46 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2382639,
+      "customer_author_id": "672205",
+      "customer_text": "How come there's no #PowerOutlet on @AmericanAir A321's SFO-CLT? 5hr flight in 2017 need \ud83d\udd0c for \ud83d\udcf1\ud83d\udcbb",
+      "customer_created_at": "Tue Nov 14 06:01:06 +0000 2017",
+      "support_tweet_id": 2382638,
+      "support_author_id": "AmericanAir",
+      "support_text": "@672205 Sorry for the inconvenience, Mitch. We always want to help you keep your devices charged.",
+      "support_created_at": "Tue Nov 14 06:19:10 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2614847,
+      "customer_author_id": "739156",
+      "customer_text": "@ATVIAssist trying to log on to WWII but it says the service isn't available. Checked PSN and The website as instructed and everything is green there. https://t.co/0G8naGj2GG",
+      "customer_created_at": "Fri Nov 17 12:07:15 +0000 2017",
+      "support_tweet_id": 2614845,
+      "support_author_id": "ATVIAssist",
+      "support_text": "@739156\n\nHi Taylor please send us a DM if you're in need of assistance. ^JW https://t.co/c9WoAfwenP",
+      "support_created_at": "Fri Nov 17 13:47:36 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1364403,
+      "customer_author_id": "437675",
+      "customer_text": "@sainsburys lovely fresh bunch of grapes delivered 2 minutes ago. Sort it out Sainsbury\u2019s. https://t.co/hx9u7pSG89",
+      "customer_created_at": "Fri Oct 27 20:30:06 +0000 2017",
+      "support_tweet_id": 1364401,
+      "support_author_id": "sainsburys",
+      "support_text": "@437675 Sorry Lauren, what store were these purchased from? Can you tell me the barcode number please? Steven",
+      "support_created_at": "Fri Oct 27 21:01:01 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2101524,
+      "customer_author_id": "537781",
+      "customer_text": "@117196. As of today you are about to lose a customer who has been with you since 2009 and brought my family on but after today we all are leaving. I have never received this type of treatment and was just transfered to a. Old sprint # no longer in use wow",
+      "customer_created_at": "Thu Nov 02 21:51:40 +0000 2017",
+      "support_tweet_id": 2101523,
+      "support_author_id": "BoostCare",
+      "support_text": "@537781 So sorry to hear about this experience. We want to help! Please send us a DM so we can better assist. -JA",
+      "support_created_at": "Thu Nov 02 22:02:07 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1969993,
+      "customer_author_id": "583587",
+      "customer_text": "@Tesco your #Trowbridge store cafe is a joke Staff need training to listen to allergies and NOT ignore them nearly causing serious problems!",
+      "customer_created_at": "Tue Oct 31 16:47:48 +0000 2017",
+      "support_tweet_id": 1969994,
+      "support_author_id": "Tesco",
+      "support_text": "@583587 Hi there, I'm so sorry you didn't get great service at the cafe in Trowbridge. I would like to log this for you and speak to the store. 1/3",
+      "support_created_at": "Tue Oct 31 17:10:58 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 859078,
+      "customer_author_id": "209728",
+      "customer_text": "i fancy mcdonald's hash browns",
+      "customer_created_at": "Fri Oct 20 16:40:37 +0000 2017",
+      "support_tweet_id": 859077,
+      "support_author_id": "McDonalds",
+      "support_text": "@209728 You\u2019ve got great taste, Maddie! Head this way today!",
+      "support_created_at": "Fri Oct 20 16:48:26 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 45703,
+      "customer_author_id": "126129",
+      "customer_text": "@Tesco Cant see one for spotify",
+      "customer_created_at": "Wed Nov 01 14:20:14 +0000 2017",
+      "support_tweet_id": 45701,
+      "support_author_id": "Tesco",
+      "support_text": "@126129 Hi Emma, unfortunately we don't sell digital Spotify cards, I'm sorry for any disappointment this may cause. - Peter",
+      "support_created_at": "Wed Nov 01 16:35:22 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 408519,
+      "customer_author_id": "212389",
+      "customer_text": "@Delta The case number assigned to the letter I sent via the @Delta complaint form is 00261792. It's something that needs to be addressed urgently.",
+      "customer_created_at": "Mon Oct 09 21:39:06 +0000 2017",
+      "support_tweet_id": 408520,
+      "support_author_id": "Delta",
+      "support_text": "@212389 ...review it.  *HYC 2/2",
+      "support_created_at": "Mon Oct 09 22:32:25 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1283843,
+      "customer_author_id": "420321",
+      "customer_text": "@AmazonHelp Selon le suivi il semble que ce soit LaPoste",
+      "customer_created_at": "Thu Oct 26 18:14:03 +0000 2017",
+      "support_tweet_id": 1283845,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@420321 N'ayant pas acc\u00e8s \u00e0 votre compte sur Twitter, merci de contacter notre SAV via le lien suivant: https://t.co/qzuu0dgDXz ^MD",
+      "support_created_at": "Thu Oct 26 18:23:02 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 326185,
+      "customer_author_id": "193708",
+      "customer_text": "@BofA_Help I need help I have an overdraft fee I have I didn't cause that I cant pay!",
+      "customer_created_at": "Fri Oct 06 23:49:08 +0000 2017",
+      "support_tweet_id": 326186,
+      "support_author_id": "BofA_Help",
+      "support_text": "@193708 We were unable to reach you to go over your request. If help is still needed please DM best time to call. Thanks! ^jg",
+      "support_created_at": "Sat Oct 07 18:29:48 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2176450,
+      "customer_author_id": "638001",
+      "customer_text": "Definitely not what I would class as \"Delivered\" @115830 https://t.co/QNmwPQK345",
+      "customer_created_at": "Thu Nov 09 15:55:17 +0000 2017",
+      "support_tweet_id": 2176449,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@638001 Sorry that your order wasn't left in your safe place, Amy! Let's take a closer look into this with you here: https://t.co/JzP7hlA23B ^JZ",
+      "support_created_at": "Thu Nov 09 15:58:00 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 825071,
+      "customer_author_id": "316502",
+      "customer_text": "Is it just me, or ever since @115821 started using @118706 for prime, delivery delays have become commonplace?",
+      "customer_created_at": "Fri Oct 13 00:41:54 +0000 2017",
+      "support_tweet_id": 825069,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@316502 Do you have a recent order that's running late? Please don't provide any acct specific or personal info. ^LB",
+      "support_created_at": "Fri Oct 13 00:44:32 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1194419,
+      "customer_author_id": "400653",
+      "customer_text": "@115722 Odd that it was fine an hour ago and now mysteriously has tanked... even after restarting router twice -_-",
+      "customer_created_at": "Wed Oct 25 01:02:45 +0000 2017",
+      "support_tweet_id": 1194417,
+      "support_author_id": "VerizonSupport",
+      "support_text": "@400653 We can help! What area are you located? ^DDG",
+      "support_created_at": "Wed Oct 25 01:31:06 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1351021,
+      "customer_author_id": "621078",
+      "customer_text": "@marksandspencer Oh My Days! It would make my husband's Christmas if he received this message from Paddington \u2764His name is Graham. Please M&amp;S\ud83e\udd1e\ud83c\udffb #lovethebear",
+      "customer_created_at": "Wed Nov 08 10:49:28 +0000 2017",
+      "support_tweet_id": 2103504,
+      "support_author_id": "marksandspencer",
+      "support_text": "@621078 Here you go Emma, hope it likes it :)  #lovethebear https://t.co/g1AVzE8vhl",
+      "support_created_at": "Wed Nov 08 11:34:45 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 811232,
+      "customer_author_id": "313284",
+      "customer_text": "@SW_Help @115793 On the delayed 19:35 Waterloo to Weymouth. Best way to get to Ashurst? Taxi?",
+      "customer_created_at": "Thu Oct 12 19:14:52 +0000 2017",
+      "support_tweet_id": 811231,
+      "support_author_id": "SW_Help",
+      "support_text": "@313284 Hi Alan, when you arrive at Southampton speak to a member of station staff or use the station help point for assistance.^NM",
+      "support_created_at": "Thu Oct 12 19:19:16 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2688724,
+      "customer_author_id": "755975",
+      "customer_text": "@marksandspencer r absolute legends, horrific queues in the Norwich store 2day, the staff came rnd with shortbread to keep everyone sweet \ud83d\ude19\ud83d\udc4c\ud83c\udffd I\u2019ll b bk \ud83d\udcb7\ud83d\udcb7",
+      "customer_created_at": "Sat Nov 18 19:48:56 +0000 2017",
+      "support_tweet_id": 2688723,
+      "support_author_id": "marksandspencer",
+      "support_text": "@755975 Oh brilliant, Hannah - this sounds great! Thanks for letting us know and we're glad we could keep you in treats while you were waiting :)",
+      "support_created_at": "Sun Nov 19 14:20:55 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2345942,
+      "customer_author_id": "678351",
+      "customer_text": "@AppleSupport what happens if bought an app but it\u2019s not appearing on phone &amp; if u click to download again it charges u again????? Got \u00a33.98 charge for app not got? As thought it would come from cloud if clicked it agin ??",
+      "customer_created_at": "Mon Nov 13 15:13:59 +0000 2017",
+      "support_tweet_id": 2345941,
+      "support_author_id": "AppleSupport",
+      "support_text": "@678351 For best assistance purchasing an app, please reach out to our iTunes experts here: https://t.co/SDIe7UiyJN DM us if you have any additional questions! https://t.co/GDrqU22YpT",
+      "support_created_at": "Mon Nov 13 16:24:00 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 950034,
+      "customer_author_id": "345329",
+      "customer_text": "@hulu_support I have 1 profile. ONLY 1. Please stop asking me which profile I want to watch every time I open the app. #Roku",
+      "customer_created_at": "Sat Oct 21 01:44:18 +0000 2017",
+      "support_tweet_id": 950033,
+      "support_author_id": "hulu_support",
+      "support_text": "@345329 Sorry for any frustrations! Currently, you'll be prompted to select a profile but we'll be sharing your feedback.",
+      "support_created_at": "Sat Oct 21 19:54:01 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2312460,
+      "customer_author_id": "670620",
+      "customer_text": "@XboxSupport So im having a weird problem connecting to online services for games and im not sure what to do. Ive tried resetting my router and clearing cache files and nothing works. Any ideas on what to do because this only happens on this Xbox, others work fine.",
+      "customer_created_at": "Sun Nov 12 20:33:03 +0000 2017",
+      "support_tweet_id": 2312458,
+      "support_author_id": "XboxSupport",
+      "support_text": "@670620 Hi! Let's have you follow us, DM us your Gamertag, and some more info about what you're seeing: https://t.co/nPX1yNXCi5\n ^BL",
+      "support_created_at": "Sun Nov 12 22:30:01 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2430092,
+      "customer_author_id": "697622",
+      "customer_text": "@118189 @DropboxSupport There is clearly something wrong, as it doesn\u2019t say \u201cNo more photos to upload\u201d or something like that. It keeps saying \u201cFinding photos to upload\u2026\u201d",
+      "customer_created_at": "Mon Nov 13 22:10:32 +0000 2017",
+      "support_tweet_id": 2430090,
+      "support_author_id": "DropboxSupport",
+      "support_text": "@697622 @118189 Hi there, sorry to hear about this. Can you please take a look here: https://t.co/6gTJrdTbA1 and let us know if any of the solutions provided applies to your case? Looking forward to your response! Thanks!",
+      "support_created_at": "Tue Nov 14 20:24:07 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 316379,
+      "customer_author_id": "191545",
+      "customer_text": "@115888 needs an explicit \u201cplay next\u201d option\u2014 I\u2019m too lazy to move a song to the top by going to the queue",
+      "customer_created_at": "Sat Oct 07 07:31:51 +0000 2017",
+      "support_tweet_id": 316378,
+      "support_author_id": "SpotifyCares",
+      "support_text": "@191545 Hi there! You can suggest this idea in our Community at https://t.co/rtDvYZOF32 and get support from other users /NY",
+      "support_created_at": "Sat Oct 07 08:08:48 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2892755,
+      "customer_author_id": "720319",
+      "customer_text": "My package says it'll be here by 10:30, but @115817's website still says processing for delievery? I'm confused",
+      "customer_created_at": "Tue Nov 28 14:42:23 +0000 2017",
+      "support_tweet_id": 2892753,
+      "support_author_id": "UPSHelp",
+      "support_text": "@720319 We can take a look into this for you. Can you please DM us the tracking number. ^LD https://t.co/wKJHDXWGRQ",
+      "support_created_at": "Tue Nov 28 14:49:24 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 374890,
+      "customer_author_id": "204896",
+      "customer_text": "@TMobileHelp It was down for about 30 minutes but it's working now. Thanks.",
+      "customer_created_at": "Mon Oct 09 01:21:46 +0000 2017",
+      "support_tweet_id": 374892,
+      "support_author_id": "TMobileHelp",
+      "support_text": "@204896 Glad to hear that its working for you! Feel free to reach out to us again if you ever need help! *SultanGardezy",
+      "support_created_at": "Mon Oct 09 01:34:49 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 416975,
+      "customer_author_id": "214482",
+      "customer_text": "@115850 is the echo dot available in India first generation or second? If I already have a prime... Will the free subscription still work?",
+      "customer_created_at": "Tue Oct 10 02:44:39 +0000 2017",
+      "support_tweet_id": 416976,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@214482 The Echo is the second generation that has been launched in India. Your Amazon Prime Membership (1/2) ^VM",
+      "support_created_at": "Tue Oct 10 03:26:58 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 311719,
+      "customer_author_id": "190441",
+      "customer_text": "@British_Airways is there anyway I can get a refund for a flight I'm due to get into New Orleans tomorrow? #HurricaneNate",
+      "customer_created_at": "Fri Oct 06 20:54:14 +0000 2017",
+      "support_tweet_id": 311721,
+      "support_author_id": "British_Airways",
+      "support_text": "@190441 involuntary change. Please DM us your details so we can help.^Jo 2/2",
+      "support_created_at": "Sat Oct 07 03:42:18 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 410741,
+      "customer_author_id": "212977",
+      "customer_text": "@AskPlayStation there a way I can easily see all games I own on PSN to then share it with a friend? looking to see what games to shareplay",
+      "customer_created_at": "Mon Oct 09 19:52:26 +0000 2017",
+      "support_tweet_id": 410740,
+      "support_author_id": "AskPlayStation",
+      "support_text": "@212977 Hello Harry. Let's look into that. From main menu go to Library&gt; Purchased. You will be able to check all your purchased content.",
+      "support_created_at": "Mon Oct 09 23:49:04 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1960955,
+      "customer_author_id": "581603",
+      "customer_text": "Amazon logistics is starting to suck. 2 day delivery is becoming \"2 days when we can,\" and things are getting destroyed along the way.",
+      "customer_created_at": "Wed Oct 18 16:17:26 +0000 2017",
+      "support_tweet_id": 1960953,
+      "support_author_id": "AmazonHelp",
+      "support_text": "@581603 Oh no! Have we missed a guaranteed or estimated delivery date? Let us know! We are here to help! ^CN",
+      "support_created_at": "Wed Oct 18 17:05:00 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2270993,
+      "customer_author_id": "349778",
+      "customer_text": "@MicrosoftHelps About 3 months ago last time and when i try to login i get error message to change my password. I've changed it so many times, change my email address even but nothing helped. Account reputation is in good standing so i don't know what else is the matter. Not travelling",
+      "customer_created_at": "Sat Nov 11 12:18:24 +0000 2017",
+      "support_tweet_id": 2270995,
+      "support_author_id": "MicrosoftHelps",
+      "support_text": "@349778 Thank you for the helpful details. Were you able to get the Service Request number upon contacting our support? If yes, please send it to us so we can escalate your concern.",
+      "support_created_at": "Sat Nov 11 14:13:25 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1624510,
+      "customer_author_id": "497553",
+      "customer_text": "@115714 data down nation wide? What's the deal and eta of the fix?",
+      "customer_created_at": "Tue Oct 17 10:16:41 +0000 2017",
+      "support_tweet_id": 1624511,
+      "support_author_id": "sprintcare",
+      "support_text": "@497553 There's an outage in multiple markets and our Network Team is aware of this matter. -HS",
+      "support_created_at": "Tue Oct 17 12:05:09 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 2838259,
+      "customer_author_id": "789913",
+      "customer_text": "@115765 issues with \u2018error 5, 3 or 1\u2019 still continuing, your reddit post still hasn\u2019t helped! Any way to resolve this issue?!",
+      "customer_created_at": "Mon Nov 27 15:17:44 +0000 2017",
+      "support_tweet_id": 2838258,
+      "support_author_id": "ATVIAssist",
+      "support_text": "@789913 Hey, this is currently being investigated but we can try a few more steps. Send over a DM, thanks! ^AM https://t.co/c9WoAfwenP",
+      "support_created_at": "Mon Nov 27 15:58:58 +0000 2017"
+    },
+    {
+      "customer_tweet_id": 1389220,
+      "customer_author_id": "235956",
+      "customer_text": "Last night\u2019s arrival from water taxi to San Clemente Palace Kempinski. Thanks @British_Airways @2321 #gatwickmysterytrip #FlyBA https://t.co/MHIqzs1Rcw",
+      "customer_created_at": "Sat Oct 28 07:50:41 +0000 2017",
+      "support_tweet_id": 1389219,
+      "support_author_id": "British_Airways",
+      "support_text": "@235956 That looks amazing, have a great time.^Lynn",
+      "support_created_at": "Sat Oct 28 10:58:59 +0000 2017"
+    }
+  ],
+  "sampled_multi_turn_conversations": [
+    {
+      "root_tweet_id": 2909513,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2909513,
+          "author_id": "805514",
+          "inbound": true,
+          "created_at": "Tue Nov 28 00:03:22 +0000 2017",
+          "text": "can someone tell me how credible @115937 is? im trying to get these shoes for my grandpa and i can only find them on ebay",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2909512,
+          "author_id": "AskeBay",
+          "inbound": false,
+          "created_at": "Tue Nov 28 20:30:16 +0000 2017",
+          "text": "@805514 We always want you to be confident buying on eBay. If you don't receive your item or what you get isn't right then we'll stand behind you with our Money Back Guarantee: https://t.co/BYviQ1Pb1l. Let us know if we can help with any questions! ^CM",
+          "in_response_to_tweet_id": 2909513
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1960919,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 1960919,
+          "author_id": "581594",
+          "inbound": true,
+          "created_at": "Mon Oct 30 22:41:06 +0000 2017",
+          "text": "@AirbnbHelp I cancelled on Friday and emailed that I would be refunded in full through ApplePay...but still no money??",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1960918,
+          "author_id": "AirbnbHelp",
+          "inbound": false,
+          "created_at": "Mon Oct 30 22:42:29 +0000 2017",
+          "text": "@581594 Hi Allison, thank you for letting us know. Can you please send us a DM of your email address and Reservation Code so we can investigate? https://t.co/WCQEFGIlXC",
+          "in_response_to_tweet_id": 1960919
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1809130,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 1809130,
+          "author_id": "359898",
+          "inbound": true,
+          "created_at": "Sat Oct 14 15:08:45 +0000 2017",
+          "text": "@Uber_Support ur app keeps sending drivers to the wrong addy EVERY TIME. No # to call for help to fix this nor is there resource #badservice",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1809129,
+          "author_id": "Uber_Support",
+          "inbound": false,
+          "created_at": "Sat Oct 14 16:48:43 +0000 2017",
+          "text": "@359898 Sorry to hear, Enzo. As we're always looking for ways to improve app functions, fill in the blank form here - https://t.co/zUe0dj6yoX.",
+          "in_response_to_tweet_id": 1809130
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2240794,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2240794,
+          "author_id": "642796",
+          "inbound": true,
+          "created_at": "Fri Nov 10 14:34:57 +0000 2017",
+          "text": "@AmericanAir should take note from @SouthwestAir customer service provider #Debbi who was awesome w/ assisting me with booking flights for my children \ud83d\ude47\ud83c\udffd\ud83d\ude47\ud83c\udffd\ud83d\udeeb #happy #parent #happy #customer",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2240793,
+          "author_id": "SouthwestAir",
+          "inbound": false,
+          "created_at": "Fri Nov 10 14:45:59 +0000 2017",
+          "text": "@642796 We're glad Debbi was able to lend a hand, Philippica! If you DM your confirmation number, we'd love to pass along the kudos. ^SF https://t.co/mQmfkXW4oV",
+          "in_response_to_tweet_id": 2240794
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2186555,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2186555,
+          "author_id": "640327",
+          "inbound": true,
+          "created_at": "Tue Oct 17 14:32:28 +0000 2017",
+          "text": "@DunkinDonuts I have messaged you many times about my horrible experience yesterday and have yet to hear anything.",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2186554,
+          "author_id": "DunkinDonuts",
+          "inbound": false,
+          "created_at": "Thu Oct 19 11:50:51 +0000 2017",
+          "text": "@640327 Hi! Please email us at __email__ so we can assist.",
+          "in_response_to_tweet_id": 2186555
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2146847,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2146847,
+          "author_id": "631083",
+          "inbound": true,
+          "created_at": "Wed Nov 08 20:44:14 +0000 2017",
+          "text": "@comcastcares 3rd day in a row, our business internet is down. This is getting old.",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2146846,
+          "author_id": "comcastcares",
+          "inbound": false,
+          "created_at": "Wed Nov 08 20:55:41 +0000 2017",
+          "text": "@631083 Hi, I would be happy to help look in to the internet. Can you please send me a DM with your acct# or phone# so I can assist you? -CLR",
+          "in_response_to_tweet_id": 2146847
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2009202,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2009202,
+          "author_id": "594124",
+          "inbound": true,
+          "created_at": "Sat Nov 04 18:43:47 +0000 2017",
+          "text": "Like I\ufe0f really @115714!!!!! \ud83d\ude21",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2009201,
+          "author_id": "sprintcare",
+          "inbound": false,
+          "created_at": "Sat Nov 04 18:50:51 +0000 2017",
+          "text": "@594124 Having service issues? How long has this been happening? Are you the only person experiencing this issue in your area or household? -AS",
+          "in_response_to_tweet_id": 2009202
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1942874,
+      "turns_count": 6,
+      "tweets": [
+        {
+          "tweet_id": 1942874,
+          "author_id": "577353",
+          "inbound": true,
+          "created_at": "Mon Oct 30 00:40:04 +0000 2017",
+          "text": "Same here... Unreal @ComcastCares https://t.co/QHiVa2Jevv",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1942872,
+          "author_id": "comcastcares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 01:20:04 +0000 2017",
+          "text": "@577353 Hello! I would like to assist you with your MSG channel. Can you please send a DM with your first and last name a... https://t.co/Nztz3MgLX1",
+          "in_response_to_tweet_id": 1942874
+        },
+        {
+          "tweet_id": 1942873,
+          "author_id": "577353",
+          "inbound": true,
+          "created_at": "Mon Oct 30 10:31:21 +0000 2017",
+          "text": "@comcastcares I don't expect you to understand the full extent being thousands of miles away. Can  a local representative reach out?",
+          "in_response_to_tweet_id": 1942872
+        },
+        {
+          "tweet_id": 1942875,
+          "author_id": "comcastcares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 14:12:15 +0000 2017",
+          "text": "@577353 Good Morning. I am in the corporate office how can I help you?-RK",
+          "in_response_to_tweet_id": 1942873
+        },
+        {
+          "tweet_id": 1942876,
+          "author_id": "577353",
+          "inbound": true,
+          "created_at": "Mon Oct 30 19:59:39 +0000 2017",
+          "text": "@comcastcares I, like many others in my area are curious about why we were unable to watch the Knicks vs Clev on MSG last night. A literal black screen.",
+          "in_response_to_tweet_id": 1942875
+        },
+        {
+          "tweet_id": 1942877,
+          "author_id": "comcastcares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 20:06:37 +0000 2017",
+          "text": "@577353 There could be a few reasons this happened. Are you able to send a DM so I can get more information? -JB",
+          "in_response_to_tweet_id": 1942876
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2975464,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2975464,
+          "author_id": "820606",
+          "inbound": true,
+          "created_at": "Thu Nov 16 02:35:19 +0000 2017",
+          "text": "@UPSHelp quick question. I was able to track my package this morning but now it\u2019s not letting me track it...?",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2975463,
+          "author_id": "UPSHelp",
+          "inbound": false,
+          "created_at": "Thu Nov 16 02:40:55 +0000 2017",
+          "text": "@820606 Sorry to hear that! If you're on a computer, try using a different web browser to see if it will let you track it. You can also DM us the tracking number and we can check on it for you. ^KS https://t.co/wKJHDXWGRQ",
+          "in_response_to_tweet_id": 2975464
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2737456,
+      "turns_count": 6,
+      "tweets": [
+        {
+          "tweet_id": 2737456,
+          "author_id": "767036",
+          "inbound": true,
+          "created_at": "Mon Nov 20 17:29:08 +0000 2017",
+          "text": "@sainsburys are double nectar vouchers able to be used tomorrow?\nYour terms say BETWEEN 15-21.. does not say those dates are included.. just between.. thanks",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2737455,
+          "author_id": "767036",
+          "inbound": true,
+          "created_at": "Mon Nov 20 19:23:28 +0000 2017",
+          "text": "@sainsburys Any idea? Need to know if I need to rush out now to use a voucher or if can wait till tomorrow. Thanks",
+          "in_response_to_tweet_id": 2737456
+        },
+        {
+          "tweet_id": 2737453,
+          "author_id": "767036",
+          "inbound": true,
+          "created_at": "Mon Nov 20 20:09:41 +0000 2017",
+          "text": "@sainsburys Helloooo @sainsburys ...\nAny chance of a reply please???????\nIt's only a simple question",
+          "in_response_to_tweet_id": 2737455
+        },
+        {
+          "tweet_id": 2737451,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Mon Nov 20 20:14:44 +0000 2017",
+          "text": "@767036 Hi Abigail, yes you can use the vouchers tomorrow. Tomorrow is the last day. Daryl.",
+          "in_response_to_tweet_id": 2737453
+        },
+        {
+          "tweet_id": 2737452,
+          "author_id": "767036",
+          "inbound": true,
+          "created_at": "Mon Nov 20 21:48:21 +0000 2017",
+          "text": "@sainsburys Thanks",
+          "in_response_to_tweet_id": 2737451
+        },
+        {
+          "tweet_id": 2737454,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Mon Nov 20 21:55:12 +0000 2017",
+          "text": "@767036 No problem at all. Happy to help! Daryl.",
+          "in_response_to_tweet_id": 2737452
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1916190,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 1916190,
+          "author_id": "570766",
+          "inbound": true,
+          "created_at": "Thu Oct 26 03:00:56 +0000 2017",
+          "text": "@Postmates_Help wtf acct says \"too many deliveries\" :(",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1916189,
+          "author_id": "Postmates_Help",
+          "inbound": false,
+          "created_at": "Thu Oct 26 03:02:39 +0000 2017",
+          "text": "@570766 Sounds like there's an issue with your account. You\u2019ll have to contact our Account Help team for assistance https://t.co/IqUSCIt37I",
+          "in_response_to_tweet_id": 1916190
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2817434,
+      "turns_count": 6,
+      "tweets": [
+        {
+          "tweet_id": 2817434,
+          "author_id": "785392",
+          "inbound": true,
+          "created_at": "Mon Nov 27 04:17:52 +0000 2017",
+          "text": "@Uber_Support, Hi I am trying to get a new password and still waiting somebody respond",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2817432,
+          "author_id": "Uber_Support",
+          "inbound": false,
+          "created_at": "Mon Nov 27 04:19:24 +0000 2017",
+          "text": "@785392 We're here to help! Send us a DM with your email address so we can connect.",
+          "in_response_to_tweet_id": 2817434
+        },
+        {
+          "tweet_id": 2817431,
+          "author_id": "785392",
+          "inbound": true,
+          "created_at": "Mon Nov 27 04:21:03 +0000 2017",
+          "text": "@Uber_Support My email is __email__",
+          "in_response_to_tweet_id": 2817432
+        },
+        {
+          "tweet_id": 2817433,
+          "author_id": "785392",
+          "inbound": true,
+          "created_at": "Mon Nov 27 04:26:13 +0000 2017",
+          "text": "@Uber_Support Direct messages requesting specific name?",
+          "in_response_to_tweet_id": 2817432
+        },
+        {
+          "tweet_id": 2817430,
+          "author_id": "Uber_Support",
+          "inbound": false,
+          "created_at": "Mon Nov 27 04:23:45 +0000 2017",
+          "text": "@785392 We're currently reviewing your email and will be in touch shortly. We appreciate your patience!",
+          "in_response_to_tweet_id": 2817431
+        },
+        {
+          "tweet_id": 2817441,
+          "author_id": "Uber_Support",
+          "inbound": false,
+          "created_at": "Mon Nov 27 04:33:23 +0000 2017",
+          "text": "@785392 Please delete your previous tweet for security purposes. We'll be responding to your email as soon as possible so keep an eye out for our message there. Thanks!",
+          "in_response_to_tweet_id": 2817433
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2511399,
+      "turns_count": 10,
+      "tweets": [
+        {
+          "tweet_id": 2511399,
+          "author_id": "715821",
+          "inbound": true,
+          "created_at": "Mon Oct 30 05:08:44 +0000 2017",
+          "text": "#IdeaCellular Worst Customer Service !\n@1755 @78474 @135788 @146956  @144775 @78475 @78476 @5548 @277458 https://t.co/rWA0afR0ur",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2511397,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 05:15:30 +0000 2017",
+          "text": "@715821 As we are checking there is no SMS has been sent from your number. Rgds,Pradnya https://t.co/LBfZgLCSfr",
+          "in_response_to_tweet_id": 2511399
+        },
+        {
+          "tweet_id": 2511398,
+          "author_id": "715821",
+          "inbound": true,
+          "created_at": "Mon Oct 30 05:36:36 +0000 2017",
+          "text": "@idea_cares By evening I will give you screen shot of SMS sent on 18 Sept ! 1stly Idea cellular deactivates my number for no reason &amp; very smartly lie",
+          "in_response_to_tweet_id": 2511397
+        },
+        {
+          "tweet_id": 2511400,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 06:13:28 +0000 2017",
+          "text": "@715821 Request you to share screenshot of message so we can check further.  Rgds,Pradnya https://t.co/LBfZgLCSfr",
+          "in_response_to_tweet_id": 2511398
+        },
+        {
+          "tweet_id": 2511401,
+          "author_id": "715821",
+          "inbound": true,
+          "created_at": "Mon Oct 30 18:34:19 +0000 2017",
+          "text": "@idea_cares Check DM and show some courtesy on deactivation issue for no reason",
+          "in_response_to_tweet_id": 2511400
+        },
+        {
+          "tweet_id": 2511402,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 19:49:30 +0000 2017",
+          "text": "@715821 You can locate the nearest My Idea store on this link  https://t.co/IrSbe9ia4Q.(2/2)\nRgds,\nDarshan.",
+          "in_response_to_tweet_id": 2511401
+        },
+        {
+          "tweet_id": 2511403,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 19:49:00 +0000 2017",
+          "text": "@715821 Apologies for the trouble. Request you to visit your nearest my Idea store for further assistance.(1/2)\nRegards,\nDarshan.",
+          "in_response_to_tweet_id": 2511401
+        },
+        {
+          "tweet_id": 2511404,
+          "author_id": "715821",
+          "inbound": true,
+          "created_at": "Mon Oct 30 19:50:59 +0000 2017",
+          "text": "@idea_cares No interested. I will move to @118343",
+          "in_response_to_tweet_id": 2511402
+        },
+        {
+          "tweet_id": 2511406,
+          "author_id": "715821",
+          "inbound": true,
+          "created_at": "Mon Oct 30 19:50:09 +0000 2017",
+          "text": "@idea_cares Again the same, I proved the usage done but useless !",
+          "in_response_to_tweet_id": 2511403
+        },
+        {
+          "tweet_id": 2511405,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Mon Oct 30 22:16:41 +0000 2017",
+          "text": "@715821 Apologies for the trouble. We understand how frustrating this can be. Please bear us for sometime.\nRgds,\nDarshan.",
+          "in_response_to_tweet_id": 2511404
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1820423,
+      "turns_count": 13,
+      "tweets": [
+        {
+          "tweet_id": 1820423,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:04:02 +0000 2017",
+          "text": "@115821 @115850 AN EMPTY BOX WAS DELIVERED TODAY INSTEAD OF THE SWEETS I ORDERED FOR MY FRIEND'S BIRTHDAY! AMAZON IS A BLOODY CHEATER!",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1820421,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:21:30 +0000 2017",
+          "text": "@546520 That's strange. Have you reported this to our support team here: https://t.co/vlvfJr4nN9 ? ^AU",
+          "in_response_to_tweet_id": 1820423
+        },
+        {
+          "tweet_id": 1820426,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:05:30 +0000 2017",
+          "text": "@115821 @115850 IS THIS A JOKE! When I called customer care, they offered me a refund! I DON'T NEED A REFUND!  I NEED MY PRODUCT DELIVERED TODAY!!!!!!",
+          "in_response_to_tweet_id": 1820423
+        },
+        {
+          "tweet_id": 1820427,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:04:48 +0000 2017",
+          "text": "@115821 @115850 Amazon representative showed parcel as delivered and then handed me an empty box. When I showed him the box he took it and left with it.",
+          "in_response_to_tweet_id": 1820423
+        },
+        {
+          "tweet_id": 1820428,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:33:39 +0000 2017",
+          "text": "@115821 @115850 @AmazonHelp Please escalate the issue. The delivery guy has now rolled back the order and shown it as \"refused at time of delivery\".",
+          "in_response_to_tweet_id": 1820423
+        },
+        {
+          "tweet_id": 1820422,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:24:04 +0000 2017",
+          "text": "@AmazonHelp @AmazonHelp I have called them up. They offered a refund. You do realise I can't gift my friend a refund. I need the product by today.",
+          "in_response_to_tweet_id": 1820421
+        },
+        {
+          "tweet_id": 2362704,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:18:37 +0000 2017",
+          "text": "@546520 I'm sorry, please fill this form: https://t.co/beaaDm0muc and we'll get back to you soon. ^SI",
+          "in_response_to_tweet_id": 1820426
+        },
+        {
+          "tweet_id": 2362701,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:19:00 +0000 2017",
+          "text": "@546520 Please fill in your details using the link: https://t.co/JzRdscmdH9 and I'll get in touch with you soon. ^AK (2/2)",
+          "in_response_to_tweet_id": 1820427
+        },
+        {
+          "tweet_id": 2362703,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:18:06 +0000 2017",
+          "text": "@546520 Apologies for the trouble with the order received. I'd like to take a closer look at this. ^AK (1/2)",
+          "in_response_to_tweet_id": 1820427
+        },
+        {
+          "tweet_id": 2381437,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:49:32 +0000 2017",
+          "text": "@546520 We're truly sorry for the hassle. We've received your shared details, our team is working on it and will get back to you. ^RS",
+          "in_response_to_tweet_id": 1820428
+        },
+        {
+          "tweet_id": 2381438,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:47:00 +0000 2017",
+          "text": "@546520 Kindly provide your details here: https://t.co/xfldI1wfXQ we'll look into the issue and take the appropriate action. ^SH",
+          "in_response_to_tweet_id": 1820428
+        },
+        {
+          "tweet_id": 1820424,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 07:33:30 +0000 2017",
+          "text": "@546520 Please fill in the form, we will check and connect with you accordingly. ^RW",
+          "in_response_to_tweet_id": 1820422
+        },
+        {
+          "tweet_id": 2362702,
+          "author_id": "546520",
+          "inbound": true,
+          "created_at": "Sun Oct 29 07:24:19 +0000 2017",
+          "text": "@AmazonHelp Okay.",
+          "in_response_to_tweet_id": 2362701
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1816429,
+      "turns_count": 5,
+      "tweets": [
+        {
+          "tweet_id": 1816429,
+          "author_id": "545650",
+          "inbound": true,
+          "created_at": "Sun Oct 29 02:33:42 +0000 2017",
+          "text": "amazon\u304b\u3089\u30b3\u30f3\u30d3\u30cb\u3078\u306e\u8377\u7269\u5230\u7740\u3092\u78ba\u8a8d\u5f8c\u5f85\u6a5f\u3057\u3066\u308b\u4eba\u304c\u3053\u3061\u3089(=\u30fb\u03c9\u30fb)\uff89\n\n\u53d7\u3051\u53d6\u308a\u6848\u5185\u306e\u30e1\u30fc\u30eb\u307e\u3060\u30fc\uff1f_(:3 \u300d\u2220 )_",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1816428,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 03:07:32 +0000 2017",
+          "text": "@545650 (1/2)\u30a2\u30de\u30be\u30f3\u3067\u3059\u3002\u5546\u54c1\u5230\u7740\u304b\u3089\u304a\u53d7\u53d6\u308a\u53ef\u80fd\u306e\u30e1\u30fc\u30eb\u304c\u9001\u4fe1\u3055\u308c\u308b\u307e\u3067\u3001\u30bf\u30a4\u30e0\u30e9\u30b0\u304c\u3054\u3056\u3044\u307e\u3059\u3002\u6570\u6642\u9593\u304a\u5f85\u3061\u3044\u305f\u3060\u3044\u3066\u3082\u5c4a\u304b\u306a\u3044\u5834\u5408\u306f\u3001\u30ab\u30b9\u30bf\u30de\u30fc\u30b5\u30fc\u30d3\u30b9\u306b\u3066\u304a\u8abf\u3079\u3044\u305f\u3057\u307e\u3059\u3002\u3053\u3061\u3089\u304b\u3089\u3054\u9023\u7d61\u304f\u3060\u3055\u3044\u3002https://t.co/NtNAX37Sr4 ET",
+          "in_response_to_tweet_id": 1816429
+        },
+        {
+          "tweet_id": 1816430,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 03:08:57 +0000 2017",
+          "text": "@545650 (2/2)\u306a\u304a\u3001\uff25\u30e1\u30fc\u30eb\u304c\u9001\u4fe1\u6e08\u307f\u306e\u5834\u5408\u306f\u3001\u30a2\u30ab\u30a6\u30f3\u30c8\u30b5\u30fc\u30d3\u30b9\u306e\u30e1\u30c3\u30bb\u30fc\u30b8\u30bb\u30f3\u30bf\u30fc\u304b\u3089\u3082\u3054\u89a7\u3044\u305f\u3060\u3051\u307e\u3059\u306e\u3067\u3001\u4e00\u5ea6\u3054\u78ba\u8a8d\u304f\u3060\u3055\u3044\u3002https://t.co/Fp9BqCgoaM\nET",
+          "in_response_to_tweet_id": 1816429
+        },
+        {
+          "tweet_id": 2092673,
+          "author_id": "545650",
+          "inbound": true,
+          "created_at": "Sun Oct 29 05:12:17 +0000 2017",
+          "text": "@AmazonHelp \uff15\u5206\u307b\u3069\u3057\u305f\u3089\u30e1\u30fc\u30eb\u304c\u6765\u305f\u306e\u3067\u3001\u8377\u7269\u3092\u53d7\u3051\u53d6\u308b\u4e8b\u304c\u51fa\u6765\u307e\u3057\u305f\n\u3042\u308a\u304c\u3068\u3046\u3054\u3056\u3044\u307e\u3057\u305f",
+          "in_response_to_tweet_id": 1816430
+        },
+        {
+          "tweet_id": 2092674,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Sun Oct 29 05:17:30 +0000 2017",
+          "text": "@545650 \u304a\u5f85\u305f\u305b\u3044\u305f\u3057\u307e\u3057\u305fm(__)m \u7121\u4e8b\u5546\u54c1\u3092\u304a\u53d7\u3051\u53d6\u308a\u9802\u3051\u3066\u5b89\u5fc3\u3044\u305f\u3057\u307e\u3057\u305f\u3002\u3069\u3046\u305e\u3088\u308d\u3057\u304f\u304a\u9858\u3044\u3044\u305f\u3057\u307e\u3059\u3002 EK",
+          "in_response_to_tweet_id": 2092673
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1927884,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 1927884,
+          "author_id": "573737",
+          "inbound": true,
+          "created_at": "Fri Oct 27 18:24:33 +0000 2017",
+          "text": "@SpotifyCares I need help managing student account \u2757",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1927883,
+          "author_id": "SpotifyCares",
+          "inbound": false,
+          "created_at": "Fri Oct 27 18:26:48 +0000 2017",
+          "text": "@573737 Hey there! Don't worry, we'll help out. We'd like to share more info with you. Can you send us a DM instead? /DQ https://t.co/ldFdZRiNAt",
+          "in_response_to_tweet_id": 1927884
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2138807,
+      "turns_count": 3,
+      "tweets": [
+        {
+          "tweet_id": 2138807,
+          "author_id": "311081",
+          "inbound": true,
+          "created_at": "Wed Nov 08 21:57:32 +0000 2017",
+          "text": "@AppleSupport can you guys fix this damn problem already?! Sick of seeing all of my I\ufe0f turn into that!",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2138805,
+          "author_id": "AppleSupport",
+          "inbound": false,
+          "created_at": "Wed Nov 08 22:15:00 +0000 2017",
+          "text": "@311081 Here\u2019s what you can do to work around the issue until it\u2019s fixed in a future software update: https://t.co/xXaXefaskH",
+          "in_response_to_tweet_id": 2138807
+        },
+        {
+          "tweet_id": 2138806,
+          "author_id": "311081",
+          "inbound": true,
+          "created_at": "Wed Nov 08 22:17:20 +0000 2017",
+          "text": "@AppleSupport Did it. I guess I\u2019ll wait to see if it works. Thx",
+          "in_response_to_tweet_id": 2138805
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2163355,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2163355,
+          "author_id": "635161",
+          "inbound": true,
+          "created_at": "Thu Nov 09 08:54:09 +0000 2017",
+          "text": "Shoutout to @115879 drivers of LA, like the guy who starting driving away while I was only halfway out of the car. The bruise is so impressive I gave him 5 stars, anyway. #jumpandroll",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2163354,
+          "author_id": "AskLyft",
+          "inbound": false,
+          "created_at": "Thu Nov 09 09:09:19 +0000 2017",
+          "text": "@635161 Please report this to our Critical Response Line by tapping the 'Call Me' button at https://t.co/93jojKlTCK.",
+          "in_response_to_tweet_id": 2163355
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2663345,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2663345,
+          "author_id": "722620",
+          "inbound": true,
+          "created_at": "Tue Oct 31 07:02:35 +0000 2017",
+          "text": "@116331 is digitisatn so slow dat idea took so many days fr porting. Nt gud impression",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2663344,
+          "author_id": "idea_cares",
+          "inbound": false,
+          "created_at": "Tue Oct 31 07:05:58 +0000 2017",
+          "text": "@722620 Sorry for the inconvenience caused. We are working on improving in our services. Regards,Sneha.",
+          "in_response_to_tweet_id": 2663345
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2839384,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2839384,
+          "author_id": "455108",
+          "inbound": true,
+          "created_at": "Mon Nov 27 16:14:01 +0000 2017",
+          "text": "@Delta you guys actually suck u made me miss my meeting and didn\u2019t even put my miles in. What\u2019s going on in the office ???",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2839383,
+          "author_id": "Delta",
+          "inbound": false,
+          "created_at": "Mon Nov 27 16:16:18 +0000 2017",
+          "text": "@455108 I am so sorry about your experience. I need information to assist you. Can you please DM me your information like your SkyMiles number. Thank you!  *TJM",
+          "in_response_to_tweet_id": 2839384
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 1811373,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 1811373,
+          "author_id": "544202",
+          "inbound": true,
+          "created_at": "Sat Oct 14 23:48:17 +0000 2017",
+          "text": "my lyft driver: do you mind if i smoke a cigarette? \nme: ummm yes, i do.",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 1811372,
+          "author_id": "AskLyft",
+          "inbound": false,
+          "created_at": "Sat Oct 14 23:49:17 +0000 2017",
+          "text": "@544202 To be immediately connected with our Critical Response Line, click the \"Call Me\" button and enter your number at https://t.co/93jojKlTCK.",
+          "in_response_to_tweet_id": 1811373
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2765559,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2765559,
+          "author_id": "773442",
+          "inbound": true,
+          "created_at": "Tue Nov 21 06:37:45 +0000 2017",
+          "text": "@Ask_Spectrum what\u2019s this internet outage worth in bill reduction?  Been in and out all day, now totally down. Just awful.",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2765558,
+          "author_id": "Ask_Spectrum",
+          "inbound": false,
+          "created_at": "Tue Nov 21 09:40:15 +0000 2017",
+          "text": "@773442 I apologize for the delayed response. Have your concerns been addressed? If not, I will need the account holders name and service address to review this. Can you send this information in a private message? I will do my best for you from here. ^CM",
+          "in_response_to_tweet_id": 2765559
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2101356,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2101356,
+          "author_id": "620629",
+          "inbound": true,
+          "created_at": "Tue Nov 07 23:29:47 +0000 2017",
+          "text": "@ArgosHelpers looking over comments I'm not the only one that didn't get my Xbox on release day. Bad service. Lesson learnt for next time!",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2101355,
+          "author_id": "ArgosHelpers",
+          "inbound": false,
+          "created_at": "Wed Nov 08 02:45:11 +0000 2017",
+          "text": "@620629 Hi, The supplier, UK Mail, has advised us that deliveries have been delayed &amp; will be with you in the next working day. My apologies. - Jack",
+          "in_response_to_tweet_id": 2101356
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2927318,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2927318,
+          "author_id": "809890",
+          "inbound": true,
+          "created_at": "Wed Nov 29 04:05:54 +0000 2017",
+          "text": "so my lyft driver swerving and shit",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2927317,
+          "author_id": "AskLyft",
+          "inbound": false,
+          "created_at": "Wed Nov 29 04:06:22 +0000 2017",
+          "text": "@809890 Please report this to our Critical Response Line by tapping the 'Call Me' button at https://t.co/93jojKlTCK.",
+          "in_response_to_tweet_id": 2927318
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2736594,
+      "turns_count": 4,
+      "tweets": [
+        {
+          "tweet_id": 2736594,
+          "author_id": "758292",
+          "inbound": true,
+          "created_at": "Sun Nov 26 23:28:12 +0000 2017",
+          "text": "Soooo @115879 driver just charged me $50 for spilling a drink in his car. I had no drink and there was no spill when I got out.  Wtf even???",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2736593,
+          "author_id": "758292",
+          "inbound": true,
+          "created_at": "Sun Nov 26 23:29:09 +0000 2017",
+          "text": "@115879 and imma tweet about this until @115879 fixes it. Will be using @115873 until they fix this bogus bs.",
+          "in_response_to_tweet_id": 2736594
+        },
+        {
+          "tweet_id": 2736591,
+          "author_id": "AskLyft",
+          "inbound": false,
+          "created_at": "Sun Nov 26 23:32:28 +0000 2017",
+          "text": "@758292 Can you please DM us at @AskLyft with the phone number associated with your account so we can escalate your Support Ticket to the proper team?",
+          "in_response_to_tweet_id": 2736593
+        },
+        {
+          "tweet_id": 2736592,
+          "author_id": "758292",
+          "inbound": true,
+          "created_at": "Sun Nov 26 23:33:34 +0000 2017",
+          "text": "@AskLyft done",
+          "in_response_to_tweet_id": 2736591
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2507179,
+      "turns_count": 17,
+      "tweets": [
+        {
+          "tweet_id": 2507179,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Sun Nov 26 14:41:38 +0000 2017",
+          "text": "@XboxSupport had a halo 3 lan yesterday, my Xbox one X kept crashing about 8-10 minutes into almost every game. Is this a known issue? System linked with other X1s and a 360",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2507177,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Sun Nov 26 19:23:41 +0000 2017",
+          "text": "@714829 Hi there! Just so we're on the same page, was the console fully shutting off or were you being kicked to the dashboard? ^TJ",
+          "in_response_to_tweet_id": 2507179
+        },
+        {
+          "tweet_id": 2507178,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Sun Nov 26 19:24:51 +0000 2017",
+          "text": "@XboxSupport Fully shutting off every time.",
+          "in_response_to_tweet_id": 2507177
+        },
+        {
+          "tweet_id": 2507180,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Sun Nov 26 20:18:58 +0000 2017",
+          "text": "@XboxSupport For troubleshooting purposes, it kept on fully shutting off without using a halo 3 disc, with using a halo 3 disc, with using a halo 3 odst multiplayer disc, and with reinstalling the game updates.",
+          "in_response_to_tweet_id": 2507178
+        },
+        {
+          "tweet_id": 2507181,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Sun Nov 26 22:50:00 +0000 2017",
+          "text": "@714829 Thanks for that info. Just to clarify, are you accessing these games through the Halo Master Chief Collection? ^JA",
+          "in_response_to_tweet_id": 2507180
+        },
+        {
+          "tweet_id": 2507182,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Mon Nov 27 02:30:22 +0000 2017",
+          "text": "@XboxSupport No, through backwards compatible",
+          "in_response_to_tweet_id": 2507181
+        },
+        {
+          "tweet_id": 2507183,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Mon Nov 27 02:45:41 +0000 2017",
+          "text": "@714829 Thank you for confirming that for us. Are you by chance part of the Insider program?  ^BL",
+          "in_response_to_tweet_id": 2507182
+        },
+        {
+          "tweet_id": 2507184,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Mon Nov 27 12:46:16 +0000 2017",
+          "text": "@XboxSupport I believe so, but I don't believe I have any insider program update installed",
+          "in_response_to_tweet_id": 2507183
+        },
+        {
+          "tweet_id": 2507185,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Tue Nov 28 01:51:33 +0000 2017",
+          "text": "@XboxSupport My OS is currently 10.0.16299.4037",
+          "in_response_to_tweet_id": 2507183
+        },
+        {
+          "tweet_id": 2507186,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Tue Nov 28 02:06:43 +0000 2017",
+          "text": "@714829 the console plugged into a wall socket or a power strip when you noticed this happening?  2 ^BL",
+          "in_response_to_tweet_id": 2507185
+        },
+        {
+          "tweet_id": 2507187,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Tue Nov 28 02:06:42 +0000 2017",
+          "text": "@714829 Thank you for that information. Look's like you are on the GA OS version currently. Was  1 ^BL",
+          "in_response_to_tweet_id": 2507185
+        },
+        {
+          "tweet_id": 2507188,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Tue Nov 28 02:22:28 +0000 2017",
+          "text": "@XboxSupport Surge protected power strip. It was on the same power strip as a regular xbox one that didn't have the issue I was constantly having.",
+          "in_response_to_tweet_id": 2507186
+        },
+        {
+          "tweet_id": 2507189,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Tue Nov 28 03:29:47 +0000 2017",
+          "text": "@714829 Thanks for that info. Just to clarify, does this issue still occur if you plug the console directly into a wall outlet?  ^JA",
+          "in_response_to_tweet_id": 2507188
+        },
+        {
+          "tweet_id": 2507190,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Tue Nov 28 03:55:54 +0000 2017",
+          "text": "@XboxSupport Yes",
+          "in_response_to_tweet_id": 2507189
+        },
+        {
+          "tweet_id": 2507191,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Tue Nov 28 05:01:17 +0000 2017",
+          "text": "@714829 may need to get the console serviced. You can set that up here: https://t.co/ZAgUyfl2P1 / https://t.co/IXLgtVLr9X  2 ^RR",
+          "in_response_to_tweet_id": 2507190
+        },
+        {
+          "tweet_id": 2507192,
+          "author_id": "XboxSupport",
+          "inbound": false,
+          "created_at": "Tue Nov 28 05:01:16 +0000 2017",
+          "text": "@714829 Thanks for that! If this is still occurring and the prior steps have not helped then you  1 ^RR",
+          "in_response_to_tweet_id": 2507190
+        },
+        {
+          "tweet_id": 2507193,
+          "author_id": "714829",
+          "inbound": true,
+          "created_at": "Tue Nov 28 14:05:16 +0000 2017",
+          "text": "@XboxSupport I am not quite sure that is necessary, since this issue is not present in other games -- just Halo 3 (Xbox One X Enhanced). I will try another Xbox One X enhanced game and advise.",
+          "in_response_to_tweet_id": 2507191
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2142020,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2142020,
+          "author_id": "629836",
+          "inbound": true,
+          "created_at": "Wed Nov 08 20:58:53 +0000 2017",
+          "text": "Give me my pills! (at @Sainsburys in Lincoln, Lincolnshire) https://t.co/yxwdoF03ar",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2142019,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Wed Nov 08 22:55:43 +0000 2017",
+          "text": "@629836 Hi Darran, could you DM me on the below link some more info please? Mariya https://t.co/MdMtnTlX6H",
+          "in_response_to_tweet_id": 2142020
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2562134,
+      "turns_count": 4,
+      "tweets": [
+        {
+          "tweet_id": 2562134,
+          "author_id": "598961",
+          "inbound": true,
+          "created_at": "Thu Nov 16 17:43:17 +0000 2017",
+          "text": "@AmazonHelp  I pre-ordered something &amp; now it says I need to refresh my payment method ?????????",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2562132,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Thu Nov 16 17:47:25 +0000 2017",
+          "text": "@598961 Thanks for reaching out! You can learn how to update and manage your payment methods via the following link: https://t.co/n6PLnIrgAK ^MW",
+          "in_response_to_tweet_id": 2562134
+        },
+        {
+          "tweet_id": 2562133,
+          "author_id": "598961",
+          "inbound": true,
+          "created_at": "Thu Nov 16 18:46:25 +0000 2017",
+          "text": "@AmazonHelp 0 help, If it already took out the money why would I  have to pay twice?",
+          "in_response_to_tweet_id": 2562132
+        },
+        {
+          "tweet_id": 2562135,
+          "author_id": "AmazonHelp",
+          "inbound": false,
+          "created_at": "Thu Nov 16 18:53:00 +0000 2017",
+          "text": "@598961 Please let us look into this further. Use this link in order for us to do so:  https://t.co/hApLpMlfHN ^DO https://t.co/1XyLaGkcaN",
+          "in_response_to_tweet_id": 2562133
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2815344,
+      "turns_count": 2,
+      "tweets": [
+        {
+          "tweet_id": 2815344,
+          "author_id": "784884",
+          "inbound": true,
+          "created_at": "Tue Oct 31 18:51:34 +0000 2017",
+          "text": "It\u2019s a \u201cfree drinks\u201d day on @SouthwestAir. I\u2019ve ALWAYS wanted to fly on a free drinks day, &amp; now it\u2019s finally happening and I\u2019m on a DIET. \ud83d\ude44",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2815343,
+          "author_id": "SouthwestAir",
+          "inbound": false,
+          "created_at": "Tue Oct 31 19:13:53 +0000 2017",
+          "text": "@784884 We're no experts, but isn't red wine low cal? ;) ^NA https://t.co/OeMXE6kK1O",
+          "in_response_to_tweet_id": 2815344
+        }
+      ]
+    },
+    {
+      "root_tweet_id": 2246631,
+      "turns_count": 6,
+      "tweets": [
+        {
+          "tweet_id": 2246631,
+          "author_id": "543023",
+          "inbound": true,
+          "created_at": "Fri Nov 10 19:28:42 +0000 2017",
+          "text": "@sainsburys any of your stores selling football manager 2018? Thanks",
+          "in_response_to_tweet_id": null
+        },
+        {
+          "tweet_id": 2246630,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Fri Nov 10 19:42:16 +0000 2017",
+          "text": "@543023 What's your local store Imran, I'll check their stock for you. Steven",
+          "in_response_to_tweet_id": 2246631
+        },
+        {
+          "tweet_id": 2246629,
+          "author_id": "543023",
+          "inbound": true,
+          "created_at": "Fri Nov 10 19:43:08 +0000 2017",
+          "text": "@sainsburys Either of the East Kilbride stores in G74 will be fine. I'm not sure if they sell PC games anymore though.",
+          "in_response_to_tweet_id": 2246630
+        },
+        {
+          "tweet_id": 2246628,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Fri Nov 10 21:11:47 +0000 2017",
+          "text": "@543023 I can see that the East Kilbride store has some in stock however I would advise calling them first to double check! Gabby",
+          "in_response_to_tweet_id": 2246629
+        },
+        {
+          "tweet_id": 2246627,
+          "author_id": "543023",
+          "inbound": true,
+          "created_at": "Fri Nov 10 21:25:54 +0000 2017",
+          "text": "@sainsburys Thank you",
+          "in_response_to_tweet_id": 2246628
+        },
+        {
+          "tweet_id": 2246626,
+          "author_id": "sainsburys",
+          "inbound": false,
+          "created_at": "Fri Nov 10 21:29:37 +0000 2017",
+          "text": "@543023 Our pleasure! Take care. Lauren",
+          "in_response_to_tweet_id": 2246627
+        }
+      ]
+    }
+  ]
+}

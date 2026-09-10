@@ -1,0 +1,284 @@
+{
+  "metadata": {
+    "dataset_path": "data\\raw\\twcs.csv",
+    "analysis_version": "1.0.0",
+    "generation_timestamp": "2026-09-10T14:43:38.684574+00:00",
+    "random_seed": 42
+  },
+  "file_properties": {
+    "file_size_bytes": 516508641,
+    "file_size_mb": 492.58,
+    "sha256_checksum": "cd297fcfa1bf6f99938be242e8e578980bc6d1b96adc8691abec9a39175b03c0",
+    "encoding": "utf-8",
+    "delimiter": ",",
+    "total_rows": 2811774,
+    "column_count": 7,
+    "columns": [
+      "tweet_id",
+      "author_id",
+      "inbound",
+      "created_at",
+      "text",
+      "response_tweet_id",
+      "in_response_to_tweet_id"
+    ]
+  },
+  "column_statistics": {
+    "tweet_id": {
+      "total_rows": 2811774,
+      "non_null_rows": 2811774,
+      "null_rows": 0,
+      "null_percentage": 0.0,
+      "sample_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    "author_id": {
+      "total_rows": 2811774,
+      "non_null_rows": 2811774,
+      "null_rows": 0,
+      "null_percentage": 0.0,
+      "sample_values": [
+        "sprintcare",
+        "115712",
+        "115712",
+        "sprintcare",
+        "115712"
+      ]
+    },
+    "inbound": {
+      "total_rows": 2811774,
+      "non_null_rows": 2811774,
+      "null_rows": 0,
+      "null_percentage": 0.0,
+      "sample_values": [
+        "False",
+        "True",
+        "True",
+        "False",
+        "True"
+      ]
+    },
+    "created_at": {
+      "total_rows": 2811774,
+      "non_null_rows": 2811774,
+      "null_rows": 0,
+      "null_percentage": 0.0,
+      "sample_values": [
+        "Tue Oct 31 22:10:47 +0000 2017",
+        "Tue Oct 31 22:11:45 +0000 2017",
+        "Tue Oct 31 22:08:27 +0000 2017",
+        "Tue Oct 31 21:54:49 +0000 2017",
+        "Tue Oct 31 21:49:35 +0000 2017"
+      ]
+    },
+    "text": {
+      "total_rows": 2811774,
+      "non_null_rows": 2811774,
+      "null_rows": 0,
+      "null_percentage": 0.0,
+      "sample_values": [
+        "@115712 I understand. I would like to assist you. We would need to get you into a private secured link to further assist.",
+        "@sprintcare and how do you propose we do that",
+        "@sprintcare I have sent several private messages and no one is responding as usual",
+        "@115712 Please send us a Private Message so that we can further assist you. Just click \u2018Message\u2019 at the top of your profile.",
+        "@sprintcare I did."
+      ]
+    },
+    "response_tweet_id": {
+      "total_rows": 2811774,
+      "non_null_rows": 1771145,
+      "null_rows": 1040629,
+      "null_percentage": 37.01,
+      "sample_values": [
+        "2",
+        "1",
+        "3",
+        "4",
+        "5,7"
+      ]
+    },
+    "in_response_to_tweet_id": {
+      "total_rows": 2811774,
+      "non_null_rows": 2017439,
+      "null_rows": 794335,
+      "null_percentage": 28.25,
+      "sample_values": [
+        "3",
+        "1",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  },
+  "integrity_checks": {
+    "unique_tweet_ids_count": 2811774,
+    "duplicate_tweet_ids_count": 0,
+    "duplicate_tweet_id_rate": 0.0,
+    "malformed_tweet_ids": 0,
+    "invalid_timestamps": 0,
+    "earliest_timestamp": "2008-05-08T20:13:59+00:00",
+    "latest_timestamp": "2017-12-03T23:14:01+00:00",
+    "inbound_values_distribution": {
+      "False": 1273931,
+      "True": 1537843
+    },
+    "malformed_in_response_to_tweet_id": 0
+  },
+  "text_statistics": {
+    "null_text_count": 0,
+    "empty_text_count": 0,
+    "whitespace_only_text_count": 0,
+    "char_length_min": 2,
+    "char_length_max": 495,
+    "char_length_mean": 113.96,
+    "char_length_median_p50": 115,
+    "char_length_p90": 169,
+    "char_length_p95": 215,
+    "tweets_with_url_count": 631485,
+    "tweets_with_url_pct": 22.46,
+    "tweets_with_mention_count": 2752045,
+    "tweets_with_mention_pct": 97.88,
+    "tweets_with_hashtag_count": 159126,
+    "tweets_with_hashtag_pct": 5.66
+  },
+  "response_pointer_statistics": {
+    "rows_with_response_tweet_id": 1771145,
+    "rows_with_response_tweet_id_pct": 62.99,
+    "rows_with_multiple_responses": 222426,
+    "rows_with_in_response_to_tweet_id": 2017439,
+    "rows_with_in_response_to_tweet_id_pct": 71.75
+  },
+  "author_statistics": {
+    "total_unique_authors": 702777,
+    "total_inbound_authors": 702669,
+    "total_outbound_authors": 108,
+    "top_20_authors_by_volume": [
+      {
+        "author_id": "AmazonHelp",
+        "total_tweets": 169840,
+        "outbound_count": 169840,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "AppleSupport",
+        "total_tweets": 106860,
+        "outbound_count": 106860,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "Uber_Support",
+        "total_tweets": 56270,
+        "outbound_count": 56270,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "SpotifyCares",
+        "total_tweets": 43265,
+        "outbound_count": 43265,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "Delta",
+        "total_tweets": 42253,
+        "outbound_count": 42253,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "Tesco",
+        "total_tweets": 38573,
+        "outbound_count": 38573,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "AmericanAir",
+        "total_tweets": 36764,
+        "outbound_count": 36764,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "TMobileHelp",
+        "total_tweets": 34317,
+        "outbound_count": 34317,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "comcastcares",
+        "total_tweets": 33031,
+        "outbound_count": 33031,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "British_Airways",
+        "total_tweets": 29361,
+        "outbound_count": 29361,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "SouthwestAir",
+        "total_tweets": 28977,
+        "outbound_count": 28977,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "VirginTrains",
+        "total_tweets": 27817,
+        "outbound_count": 27817,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "Ask_Spectrum",
+        "total_tweets": 25860,
+        "outbound_count": 25860,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "XboxSupport",
+        "total_tweets": 24557,
+        "outbound_count": 24557,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "sprintcare",
+        "total_tweets": 22381,
+        "outbound_count": 22381,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "hulu_support",
+        "total_tweets": 21872,
+        "outbound_count": 21872,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "sainsburys",
+        "total_tweets": 19466,
+        "outbound_count": 19466,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "GWRHelp",
+        "total_tweets": 19364,
+        "outbound_count": 19364,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "AskPlayStation",
+        "total_tweets": 19098,
+        "outbound_count": 19098,
+        "inbound_count": 0
+      },
+      {
+        "author_id": "ChipotleTweets",
+        "total_tweets": 18749,
+        "outbound_count": 18749,
+        "inbound_count": 0
+      }
+    ]
+  }
+}
