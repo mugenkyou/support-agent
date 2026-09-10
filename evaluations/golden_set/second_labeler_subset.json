@@ -1,0 +1,452 @@
+[
+  {
+    "golden_id": "gold_588142_588144",
+    "customer_message": "@AppleSupport hey guys!! Any clue if you guys are going to release a fix for the reboot issue going in iOS 11.2?",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2706804_2706806",
+    "customer_message": "@AppleSupport Thank you, but I was hoping for one on iPhone X along with Pro Shots etc. and not just iOS 11 guides. Like the Harry Potter and Game of Thrones interactive books - Now that would be amazing.",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2506764_2506766",
+    "customer_message": "iOS 11 home screen notification mess continues @115858 @AppleSupport https://t.co/M5BG42r2Gp",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_154450_154451",
+    "customer_message": "Thank you @115858 for forcing me to restore &amp; update my phone.I only lost all of my photos,contacts and messages in the process. Not to mention my camera doesn\u2019t work anymore \ud83d\ude43\ud83d\ude43 thnx",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_519205_519203",
+    "customer_message": "@AppleSupport Yeah I did, twice",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2617075_2617076",
+    "customer_message": "@AppleSupport sooooo after updating to iOS 11 my gps won\u2019t work whatever I do... the only things I haven\u2019t tried are factory reset and downgrading back to iOS 10 but I don\u2019t wannaaaa",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_152971_152969",
+    "customer_message": "@AppleSupport But nobody else in the family plan has this issue",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2802476_2802474",
+    "customer_message": "@AppleSupport Thanks. \u2026but that doesn\u2019t explain why I don\u2019t see the Apple Pay in messages feature.",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_567640_567641",
+    "customer_message": "@AppleSupport So does iOS 11.2 not actually include Apple Pay Cash?",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_617123_617121",
+    "customer_message": "@AppleSupport The device is suddenly turned off, does not come back to work,",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_114478_114479",
+    "customer_message": "@AppleSupport I\u2019m running iOS 11.1.2. I want to be able to permanently: (a) keep flash off, (b) keep live photo off, and (c) keep HDR on. Currently, I have to go in and change all these settings every time I take a photo. Thanks.",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2786451_2786453",
+    "customer_message": "@AppleSupport plz can u sort these updates out so my phone isnt crashing all the time! It was perfectly fine before the latest update came about! Now constantly freezin! Plz sort it out asap as ma phone is nearly being traded in for somethin else! \ud83d\ude4f Its drivin me insane! Thanks!",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_154469_154470",
+    "customer_message": "When you update the iOS but you\u2019re now on day two and wondering what happened to your iPad &amp; if it\u2019ll ever work again. Thanks @115858 https://t.co/oJJjPneGPm",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2691874_2691872",
+    "customer_message": "@AppleSupport Update. Now reinstalling after crashing",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2631562_2631559",
+    "customer_message": "@AppleSupport The issue started 2 days ago",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_123078_123079",
+    "customer_message": "@AppleSupport Restarting the phone does not work. When my wife and I FaceTime and hit the home button for something, that\u2019s when it triggers the problem. I asked her to hit the home button on her end so when she came back to FaceTime, it triggered it on her end as well",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2751136_2751137",
+    "customer_message": "@AppleSupport I am not able to access my iPhone 6plus thru Touch ID after the latest software update 11.1.2. Not even able to set up new finger print, attached message is shown as error https://t.co/jNZMZfIpAA",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_590905_590903",
+    "customer_message": "@AppleSupport It just started doing this when I updated it to the most up to date update \ud83d\ude44\ud83d\ude12",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_563063_563065",
+    "customer_message": "@AppleSupport That's a bit of a personal question, but iOS 11.2 Public Beta 6",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2705025_2705026",
+    "customer_message": "@115858 can we get this new update to fix the \" I \" problem \ud83d\ude44",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2688584_2688587",
+    "customer_message": "iOS 11.1.1 broke GPS and nobody seems to be talking about it. @128511 @AppleSupport @223118",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_669536_669538",
+    "customer_message": "@AppleSupport since the newest phone was released the podcast app has been trash. Freezes and turns off two or three times before being able to use. Doesn\u2019t update properly. Any recommendations for a podcast app that works?",
+    "annotator_1_intent": "software_update_and_os_compatibility",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": true,
+    "adjudicated_intent": "software_update_and_os_compatibility",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2863598_2863599",
+    "customer_message": "@AppleSupport the battery meter on my 18 month old iPhone 6 stopped working very suddenly and the phone barely holds a charge now. I've done some research and found that many ppl have experienced similar issues with the iPhone 6. this is very frustrating as my phone is &lt;2yrs old",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2800607_2800608",
+    "customer_message": "@AppleSupport FYI: most recent update to iOS 11 has killed any battery life I had. And yes, I've turned off all the background stuff that otherwise eats up battery life.",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_21138_21140",
+    "customer_message": "Just watched my #iphone go from 23% battery to 20, then 13, now 9 all in 10 seconds. On low power mode. Wtf. Now 4%. Wtf @115858",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2784643_2784641",
+    "customer_message": "@AppleSupport Done this. Still having the same problem though :( reading on the internet something about the battery swelling from people that have had similar problems.",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2410114_2410116",
+    "customer_message": "@AppleSupport hi, I\u2019m concerned about my iPhone battery life, is there any help you can provide?",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_487891_487890",
+    "customer_message": "@231126 Now, when I click on a tweet, sometimes the responses don't load. You're right, it's Twitter or iOS upgrade, and with every upgrade my battery drains faster too. @AppleSupport",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2943304_2943305",
+    "customer_message": "@115858 And the phone just switched itself off with 61% battery. https://t.co/tIGlxIsBAr",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_546642_546640",
+    "customer_message": "@AppleSupport Don\u2019t worry I just upgraded my phone early instead and got the X so all is good \u270c\ud83c\udffb",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_498656_498657",
+    "customer_message": "@AppleSupport  6S Plus with the latest software upgrade.  Battery life is so short I can\u2019t make it through the day with minimal use.  FIX IMMEDIATELY!!",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_176022_176024",
+    "customer_message": "@AppleSupport ever since I updated to iOS 11 my battery seems to run out really quickly. Any suggestions why? Please fix x",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_119532_119534",
+    "customer_message": "Have to say I\u2019m unfortunately falling out of love with my @115858  IPhone this draining of the battery since the ISO update is wearing thin @AppleSupport #bloodyupdate I\u2019m sure updates are supposed to enhance not hinder",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_701722_701723",
+    "customer_message": "iOS update 11.1.2 is draining my 7 plus battery like crazy. Went to bed at 85%, woke up at 11%. @115858 @AppleSupport",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_446504_446503",
+    "customer_message": "Dear @115858 @AppleSupport \n\nThis iOS is the WORST! Charging my battery twice a day is not what I had in mind!\nPlease fix it.",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_84219_84220",
+    "customer_message": "Battery life is jumping down in 4% steps while streaming music via Apple Music over LTE to Bluetooth headphones \ud83d\ude2e That can\u2018t ne normal, @AppleSupport? https://t.co/pmlSAQMupI",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_2698036_2698038",
+    "customer_message": "@AppleSupport guys. Since iOS 11 my iPhone 6 has been crap. Lags. MAJOR battery drains. Went to bed with 100% woke up to 35% (untouched no apps open) and now dying quicker than I can tweet. Come on guys. \ud83d\ude44 I\u2019m on 11.1.2 update n can barely use my phone.",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "software_update_and_os_compatibility",
+    "agreed": false,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_25269_25270",
+    "customer_message": "my phone died and the little connect charger sign came up and when i got it turned back on it said my battery was half full that\u2019s so cute @115858",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2561814_92823",
+    "customer_message": "@AppleSupport Will a wireless charging base recharge my iPhone 8 when it has a smart battery case on it?",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2841936_2841934",
+    "customer_message": "@AppleSupport 11.11.2 and iphone 6s+",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2754774_2754772",
+    "customer_message": "@AppleSupport Also the phone \ud83d\udcf1 is restart many times in one day .?",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2321188_2321189",
+    "customer_message": "Yo, @115858 why is my iPhone 7 battery draining so damn fast? Please fix! \ud83d\ude21",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_1100849_1100850",
+    "customer_message": "@AppleSupport any way to check my iphones overall battery health?",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_464718_464719",
+    "customer_message": "I believe iOS 11.1.2 has battery problem. @AppleSupport need your help.",
+    "annotator_1_intent": "battery_drain_and_charging_issues",
+    "annotator_2_intent": "battery_drain_and_charging_issues",
+    "agreed": true,
+    "adjudicated_intent": "battery_drain_and_charging_issues",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_481754_481753",
+    "customer_message": "@AppleSupport It happens when i do anything on my device and even when I\u2019m connected to Wi-Fi.",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_2867279_2867280",
+    "customer_message": "@115858 @AppleSupport Please bring back option to turn off Auto-Brightness in settings and cancel the auto WiFi turn on. If I\u2019m turning off my WiFi I need it to stay off.",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_2847543_2847544",
+    "customer_message": "Anyone else having trouble with @115858 @AppleSupport iphone6 with WiFi on IOS 11.1.2... I can connect to WiFi but internet is so slow but it\u2019s fine on my partners phone and tablet?",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_2972438_2972440",
+    "customer_message": "@AppleSupport In control center, then it turns on again without notice",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "low"
+  },
+  {
+    "golden_id": "gold_2944532_2944530",
+    "customer_message": "@AppleSupport I\u2019m on the latest iOS think it is11.1.3. Just recently but it is really bad. It does it with battery saver on WiFi off and brightness at the lowest",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "none"
+  },
+  {
+    "golden_id": "gold_488073_488074",
+    "customer_message": "@AppleSupport If I have wifi enabled on my iMac running latest MacOS it keeps waking my USB hard drives during sleep every 30-60 sec or so. Disabling wifi and only keep wired connection fixes it. Seem like a bug and not a feature :) Fix?",
+    "annotator_1_intent": "network_and_connectivity_troubleshooting",
+    "annotator_2_intent": "network_and_connectivity_troubleshooting",
+    "agreed": true,
+    "adjudicated_intent": "network_and_connectivity_troubleshooting",
+    "ambiguity": "none"
+  }
+]

@@ -193,3 +193,94 @@ This document records the foundational architectural, analytical, and problem-fr
 - **Alternatives Considered**: Parquet (requires third-party binary wheels); SQLite-only (less convenient for batch streaming).
 - **Trade-off**: Larger file size than snappy-compressed parquet (~150 MB vs ~40 MB).
 - **Confidence**: **HIGH**
+
+---
+
+## Decision 17: Intent Granularity & 11-Class Operational Taxonomy
+- **Decision**: Adopt the 11-intent operational support taxonomy (`taxonomy_v1`), rejecting coarse (5-intent) and overly fragmented fine (30+ intent) candidate taxonomies.
+- **Reason**: The 11 intents map 1:1 with distinct operational workflows, troubleshooting trees, escalation rules, and support documentation categories in the actual AppleSupport corpus.
+- **Evidence**: Inter-rater agreement on 50 dual-annotated cases yielded $\kappa = 0.9666$ and 98.0% raw agreement (`reports/label_agreement.md`).
+- **Alternatives Considered**: 5-class coarse taxonomy (lacked operational utility, lumped battery with broken screens); 32-class fine taxonomy (severe boundary confusion, $\kappa < 0.65$).
+- **Trade-off**: Requires structured precedence rules for multi-symptom queries.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 18: Single Primary Intent Policy with Root-Cause Precedence Hierarchy
+- **Decision**: Formalize a single primary intent per interaction using a deterministic 5-level precedence hierarchy: Physical Safety/Hardware > Account Security/Billing > Subsystem Malfunction > Software Lag > General Feedback.
+- **Reason**: Multi-label classification introduces label dependency ambiguity and complicates downstream evaluation without adding customer value, since customer support workflows prioritize the highest-severity root actionable defect.
+- **Evidence**: Multi-intent queries occurred in 3.5% of samples; the hierarchy resolved 100% of these cases unambiguously.
+- **Alternatives Considered**: Multi-label taxonomy (arbitrary thresholds, harder evaluation).
+- **Trade-off**: Secondary minor issues mentioned in passing are handled during dialogue turns rather than top-level classification.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 19: Stratified Golden Evaluation Set Sampling with Rare-Intent Oversampling
+- **Decision**: Construct a 200-example golden evaluation set using stratified sampling with minimum quotas ($\ge 10$ examples per intent) across Test (60%) and Dev (40%) splits.
+- **Reason**: Natural distribution is heavily skewed toward iOS updates (37.2%) and battery drain (19.4%), which would leave critical rare intents (e.g., Activation Lock at 0.5%, Billing at 2.4%) statistically unrepresented under uniform random sampling.
+- **Evidence**: Full distribution comparison documented in `evaluations/golden_set/sampling_method.md` and `reports/taxonomy_analysis.md`.
+- **Alternatives Considered**: Simple uniform random sampling (would yield $\le 1$ Activation Lock case in 200 samples).
+- **Trade-off**: Golden set distribution differs from natural prior; reporting must account for deliberate stratification.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 20: Dual-Annotator Sample Protocol & Inter-Rater Reliability Threshold
+- **Decision**: Require independent dual annotation on at least 25% ($N = 50$) of the golden set, with a hard acceptance gate of Cohen's $\kappa \ge 0.85$ and mandatory adjudication of all disagreements.
+- **Reason**: Ensures the taxonomy is human-labelable by independent annotators without informal author coaching or hidden assumptions.
+- **Evidence**: Achieved $\kappa = 0.9666$ (49/50 raw agreement); single disagreement adjudicated and incorporated into boundary rules.
+- **Alternatives Considered**: Single annotator labeling (high risk of idiosyncratic bias).
+- **Trade-off**: Additional human annotation effort.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 21: Context Window Information Boundary for Human Labelers
+- **Decision**: Present annotators strictly with preceding turn history within the conversation up to prediction timestamp ($\mathcal{H}_k + \mathcal{C}_k$) and mask historical agent responses ($\mathcal{S}_k$).
+- **Reason**: Prevents annotators from reverse-engineering the intent from AppleSupport's subsequent answer (target leakage) while preserving necessary context for short follow-up messages (e.g., "Yes, tried that").
+- **Evidence**: Verified by Test F and Test K in `tests/test_golden_set.py`.
+- **Alternatives Considered**: Showing full conversation (severe lookahead contamination); showing only $\mathcal{C}_k$ in isolation (causes artificial ambiguity for multi-turn follow-ups).
+- **Trade-off**: Labelers must read conversation context when available.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 22: Permanent Evaluation Set Isolation from Training and Retrieval Indices
+- **Decision**: All 200 golden set interactions and their associated conversation threads are permanently marked and strictly excluded from any future model training, prompt tuning, or retrieval corpora.
+- **Reason**: Prevents benchmark contamination and artificial evaluation inflation in subsequent phases.
+- **Evidence**: Enforced by Tests G, H, I, J, K in `tests/test_golden_set.py`.
+- **Alternatives Considered**: Drawing golden samples from the training split (violates evaluation integrity).
+- **Trade-off**: Reduces test partition size available for unsupervised retrieval by 200 records.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 23: Structured Semantic Taxonomy Schema and Versioning Policy
+- **Decision**: Maintain machine-readable YAML (`src/taxonomy/taxonomy.yaml`) and JSON (`src/taxonomy/taxonomy.json`) containing structured operational fields (definition, inclusion, exclusion, positive/negative examples, boundary cases, support behavior) pinned to semantic version `taxonomy_v1`.
+- **Reason**: Enables automated schema validation, dynamic prompt ingestion in downstream phases, and deterministic reproducibility across platforms.
+- **Evidence**: Verified by Tests A, B, C, L in `tests/test_taxonomy.py`.
+- **Alternatives Considered**: Plaintext guidelines only (unparsable by automated validation suites).
+- **Trade-off**: Requires synchronization between YAML source and JSON cache via `src/taxonomy/loader.py`.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 24: Disambiguation Precedence Rules for Temporal Triggers vs Subsystem Defects
+- **Decision**: When a customer mentions an OS update as a temporal trigger for a specific subsystem failure (e.g., "battery dies at 40% after iOS 11 update"), the specific subsystem intent (`battery_drain_and_charging_issues`) takes operational precedence over the update intent (`software_update_and_os_compatibility`).
+- **Reason**: The required support action is hardware/battery health triage and diagnostic logging, not update download/installation troubleshooting.
+- **Evidence**: Emerged from adjudication of disagreement case `golden_000004` (`evaluations/golden_set/adjudication.md`).
+- **Alternatives Considered**: Classifying by the first mentioned keyword (superficial and clinically unhelpful).
+- **Trade-off**: Requires labelers and models to distinguish temporal attribution from actionable symptoms.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 25: Disagreement Adjudication Protocol and Ambiguity Tracking
+- **Decision**: Preserve all raw annotator labels, document every disagreement with explicit rationale in `evaluations/golden_set/adjudication.md`, and tag every golden record with an explicit ambiguity rating (`none`, `low`, `medium`, `high`).
+- **Reason**: Disagreements and ambiguous examples are critical evaluation assets for measuring classifier calibration and refusal thresholds in downstream phases.
+- **Evidence**: Documented 1 adjudicated case and 3 high-ambiguity test cases in `evaluations/golden_set/adjudication.md`.
+- **Alternatives Considered**: Discarding ambiguous or disagreed examples (creates an artificially easy evaluation set).
+- **Trade-off**: Downstream classifier accuracy will be bounded by genuine customer ambiguity (~2-3%).
+- **Confidence**: **HIGH**
+

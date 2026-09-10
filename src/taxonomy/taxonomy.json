@@ -1,0 +1,295 @@
+{
+  "version": "taxonomy_v1",
+  "brand": "AppleSupport",
+  "description": "Human-labelable operational intent taxonomy grounded in AppleSupport Twitter support corpus.",
+  "intents": [
+    {
+      "name": "software_update_and_os_compatibility",
+      "definition": "Customer inquiries regarding OS updates (iOS, macOS, watchOS), upgrade/downgrade procedures, update verification, or device software compatibility.",
+      "inclusion": [
+        "Questions about installing, verifying, or troubleshooting iOS/macOS/watchOS updates.",
+        "Inquiries regarding device model compatibility with new OS versions (e.g. iOS 11 on iPhone 5s/6).",
+        "Questions about update download stalls, OTA verification errors, or reverting/downgrading OS."
+      ],
+      "exclusion": [
+        "Battery drain after update (use battery_drain_and_charging_issues).",
+        "App crashes after update (use app_crash_freeze_and_performance_lag).",
+        "Wi-Fi disconnection after update (use network_and_connectivity_troubleshooting)."
+      ],
+      "positive_examples": [
+        "@AppleSupport Can I update my iPad Air to iOS 11 without losing any data?",
+        "@AppleSupport My iPhone 6 is stuck on verifying update screen for over 2 hours.",
+        "@AppleSupport Is it possible to downgrade from iOS 11 back to iOS 10.3.3?"
+      ],
+      "negative_examples": [
+        "@AppleSupport iOS 11 is draining my battery 20% every hour.",
+        "@AppleSupport Control center Wi-Fi button in iOS 11 doesn't turn off Wi-Fi."
+      ],
+      "boundary_cases": [
+        "If customer mentions update failure + general slowness: classify as software_update_and_os_compatibility if the installation failed, otherwise app_crash_freeze_and_performance_lag if the update completed and the OS is slow."
+      ],
+      "typical_support_behavior": "Provide Apple Support compatibility documentation link; guide through iTunes recovery mode update or free up required storage space."
+    },
+    {
+      "name": "battery_drain_and_charging_issues",
+      "definition": "Customer complaints and troubleshooting requests regarding rapid battery depletion, unexpected shutdowns, charging failures, or device overheating.",
+      "inclusion": [
+        "Complaints about abnormal battery percentage drops or sudden shutdowns at 20-30% charge.",
+        "Device failing to charge, charging slowly, or showing 'Accessory Not Supported' with charging cables.",
+        "Device running unusually hot during normal charging or standby."
+      ],
+      "exclusion": [
+        "Device physically swollen due to expanded battery (use hardware_damage_and_repair_service).",
+        "General performance lag without battery mention (use app_crash_freeze_and_performance_lag)."
+      ],
+      "positive_examples": [
+        "@AppleSupport My iPhone 7 battery was at 80% and died 5 minutes later.",
+        "@AppleSupport Why does my phone get extremely hot when plugged into the charger?",
+        "@AppleSupport Ever since updating, battery life went from all day to 3 hours."
+      ],
+      "negative_examples": [
+        "@AppleSupport My phone screen popped open from battery swelling.",
+        "@AppleSupport Phone charges fine but YouTube keeps freezing."
+      ],
+      "boundary_cases": [
+        "If customer says 'iOS 11 ruined my battery': classify as battery_drain_and_charging_issues (primary problem is battery, OS update is context)."
+      ],
+      "typical_support_behavior": "Check Settings > Battery > Battery Usage by App; recommend toggling Background App Refresh; suggest hardware diagnostic."
+    },
+    {
+      "name": "network_and_connectivity_troubleshooting",
+      "definition": "Customer issues regarding Wi-Fi, Bluetooth, Cellular Data, Hotspot, GPS, or CarPlay connectivity.",
+      "inclusion": [
+        "Wi-Fi failing to connect, dropping connection, or greyed out in Settings.",
+        "Bluetooth pairing failures with cars, AirPods, headphones, or other accessories.",
+        "Cellular 'No Service', 'Searching...', or mobile data disconnection issues."
+      ],
+      "exclusion": [
+        "AirPods sound distortion or mute (use audio_music_and_accessory_issues).",
+        "iCloud sync delay over active internet (use storage_backup_and_icloud_sync)."
+      ],
+      "positive_examples": [
+        "@AppleSupport My iPhone X keeps disconnecting from my home Wi-Fi network every 10 minutes.",
+        "@AppleSupport Bluetooth won't pair with my car audio after the new update.",
+        "@AppleSupport My phone says No Service even though my carrier confirmed my account is active."
+      ],
+      "negative_examples": [
+        "@AppleSupport My AirPods connect but the left ear has no sound.",
+        "@AppleSupport I have full Wi-Fi but App Store won't process my credit card."
+      ],
+      "boundary_cases": [
+        "If Bluetooth connects but no audio plays: classify as network_and_connectivity_troubleshooting if pairing fails; audio_music_and_accessory_issues if pairing succeeds but sound output is corrupt."
+      ],
+      "typical_support_behavior": "Guide through Settings > General > Reset > Reset Network Settings; toggle Airplane Mode; reboot router."
+    },
+    {
+      "name": "app_crash_freeze_and_performance_lag",
+      "definition": "Customer reports of third-party or native apps crashing, screen freezing, UI lag, keyboard typing stutter, or general system unresponsiveness.",
+      "inclusion": [
+        "Specific apps closing unexpectedly on launch or during use.",
+        "Keyboard stuttering, typing delay, or touch responsiveness lag.",
+        "Device freezing on lock screen or requiring frequent force restarts."
+      ],
+      "exclusion": [
+        "Physical display glass crack or digitizer hardware failure (use hardware_damage_and_repair_service).",
+        "OS update installation freeze (use software_update_and_os_compatibility)."
+      ],
+      "positive_examples": [
+        "@AppleSupport Every time I open the Camera app, the screen stays black and crashes.",
+        "@AppleSupport Typing has a 2 second delay on the keyboard in iOS 11.",
+        "@AppleSupport Instagram and Twitter keep quitting automatically when I open them."
+      ],
+      "negative_examples": [
+        "@AppleSupport Screen shattered and touch no longer responds.",
+        "@AppleSupport iTunes won't let me purchase apps."
+      ],
+      "boundary_cases": [
+        "If lag is accompanied by battery drain: choose battery_drain_and_charging_issues if battery is the primary focus, app_crash_freeze_and_performance_lag if sluggishness is the primary focus."
+      ],
+      "typical_support_behavior": "Force quit app, force restart device, update apps via App Store, reinstall troublesome app."
+    },
+    {
+      "name": "apple_id_and_account_security",
+      "definition": "Customer issues regarding Apple ID credentials, account lockouts, two-factor authentication (2FA), verification codes, or password recovery.",
+      "inclusion": [
+        "Forgotten Apple ID email or password.",
+        "'Apple ID has been locked for security reasons' or 'Account Disabled' prompts.",
+        "Unable to receive 2FA verification SMS or trusted device prompts."
+      ],
+      "exclusion": [
+        "Device stuck on Activation Lock screen after factory reset (use activation_lock_and_device_security).",
+        "App Store subscription billing dispute (use billing_subscription_and_app_store_charges)."
+      ],
+      "positive_examples": [
+        "@AppleSupport I can't log into my Apple ID and the recovery email is old.",
+        "@AppleSupport My Apple ID is disabled for security reasons, how do I unlock it?",
+        "@AppleSupport Not getting my verification code on my trusted phone number."
+      ],
+      "negative_examples": [
+        "@AppleSupport I bought a phone on eBay and it has the previous owner's iCloud lock.",
+        "@AppleSupport Apple charged me $9.99 for Apple Music without asking."
+      ],
+      "boundary_cases": [
+        "Apple ID account lockout vs Activation Lock: If customer cannot sign in to Apple services on an unlocked device $\\\\rightarrow$ apple_id_and_account_security. If the device itself is locked out during setup $\\\\rightarrow$ activation_lock_and_device_security."
+      ],
+      "typical_support_behavior": "Direct to iforgot.apple.com; explain identity verification protocols; prompt private DM for security assistance."
+    },
+    {
+      "name": "billing_subscription_and_app_store_charges",
+      "definition": "Customer inquiries, disputes, refund requests, or subscription cancellations regarding App Store, iTunes, or Apple Music payments.",
+      "inclusion": [
+        "Unrecognized charges from Apple or iTunes on bank statement.",
+        "Requests to cancel recurring subscriptions or free trials.",
+        "Refund requests for accidental in-app purchases."
+      ],
+      "exclusion": [
+        "Declined payment method due to invalid Apple ID credentials (use apple_id_and_account_security).",
+        "Hardware purchase refund at Apple Retail Store (use feedback_complaint_or_general_inquiry)."
+      ],
+      "positive_examples": [
+        "@AppleSupport I was charged $4.99 for an app subscription I cancelled last week.",
+        "@AppleSupport How do I get a refund for an accidental purchase my kid made on iPad?",
+        "@AppleSupport Getting an 'unknown error' when adding my credit card to App Store."
+      ],
+      "negative_examples": [
+        "@AppleSupport I can't download apps because my Apple ID is locked.",
+        "@AppleSupport My paid apps keep crashing on launch."
+      ],
+      "boundary_cases": [
+        "Payment decline due to Apple ID lockout: choose apple_id_and_account_security."
+      ],
+      "typical_support_behavior": "Direct to reportaproblem.apple.com; guide through Settings > Apple ID > Subscriptions to cancel trial."
+    },
+    {
+      "name": "storage_backup_and_icloud_sync",
+      "definition": "Customer issues regarding device storage capacity, iCloud storage management, iTunes backups/restores, and photo/data synchronization across Apple devices.",
+      "inclusion": [
+        "'iPhone Storage Full' or 'Cannot Take Photo' alerts.",
+        "iCloud backup failing to complete or taking too long.",
+        "Photos, Notes, or Contacts not syncing between iPhone, iPad, and Mac."
+      ],
+      "exclusion": [
+        "Apple ID login authentication failure (use apple_id_and_account_security).",
+        "Local hardware flash memory failure (use hardware_damage_and_repair_service)."
+      ],
+      "positive_examples": [
+        "@AppleSupport System storage is taking up 45GB of my 64GB iPhone, how do I clean it?",
+        "@AppleSupport My iCloud backup says 'The last backup could not be completed'.",
+        "@AppleSupport My photos on my iPhone are not showing up in Photos on my MacBook."
+      ],
+      "negative_examples": [
+        "@AppleSupport I can't sign in to iCloud because I forgot my password.",
+        "@AppleSupport My phone is slow after clearing storage."
+      ],
+      "boundary_cases": [
+        "Storage full preventing iOS update: classify as storage_backup_and_icloud_sync if customer asks how to free up space; software_update_and_os_compatibility if the focus is on the update installation error."
+      ],
+      "typical_support_behavior": "Guide through Settings > General > iPhone Storage; explain iCloud Photo Library optimization; verify iCloud storage quota."
+    },
+    {
+      "name": "hardware_damage_and_repair_service",
+      "definition": "Physical device damage, broken screens, liquid exposure, camera lens fractures, speaker/mic physical failure, or repair appointment requests.",
+      "inclusion": [
+        "Cracked front glass, shattered back glass, or bent frame.",
+        "Device dropped in water or liquid contact indicator triggered.",
+        "Physical home button, Touch ID, Face ID, or volume rocker failure.",
+        "Requests to book an Apple Store Genius Bar appointment for repair."
+      ],
+      "exclusion": [
+        "Software touch responsiveness lag without physical damage (use app_crash_freeze_and_performance_lag).",
+        "Battery draining quickly without physical swelling (use battery_drain_and_charging_issues)."
+      ],
+      "positive_examples": [
+        "@AppleSupport Dropped my iPhone 8 and the screen is completely cracked.",
+        "@AppleSupport Dropped my phone in the sink and now the speaker sounds muffled.",
+        "@AppleSupport How much does it cost to replace a broken home button at the Genius Bar?"
+      ],
+      "negative_examples": [
+        "@AppleSupport My screen works fine but keyboard is lagging.",
+        "@AppleSupport Battery percentage jumps around."
+      ],
+      "boundary_cases": [
+        "Swollen battery causing screen to lift: classify as hardware_damage_and_repair_service (urgent physical safety hazard)."
+      ],
+      "typical_support_behavior": "Explain warranty/AppleCare coverage limits; guide to locate.apple.com to book Genius Bar appointment."
+    },
+    {
+      "name": "activation_lock_and_device_security",
+      "definition": "Customer issues regarding Activation Lock screen, Find My iPhone locking, proof of purchase removal, or lost/stolen device lockouts.",
+      "inclusion": [
+        "Device locked to previous owner's iCloud account during setup.",
+        "Forgotten Activation Lock credentials on factory-reset device.",
+        "Putting device in Lost Mode or erasing stolen device via Find My iPhone."
+      ],
+      "exclusion": [
+        "Regular Apple ID password reset on working device (use apple_id_and_account_security).",
+        "Hardware damage preventing Touch ID/Face ID recognition (use hardware_damage_and_repair_service)."
+      ],
+      "positive_examples": [
+        "@AppleSupport Bought an iPad on eBay and it's asking for the previous owner's Apple ID.",
+        "@AppleSupport I erased my old iPhone but now Activation Lock won't accept my credentials.",
+        "@AppleSupport My iPhone was stolen at the airport, how do I lock it remotely?"
+      ],
+      "negative_examples": [
+        "@AppleSupport I forgot my screen passcode and phone is disabled.",
+        "@AppleSupport I want to sign out of iCloud on my current phone."
+      ],
+      "boundary_cases": [
+        "Screen passcode disabled vs Activation Lock: Screen passcode $\\\\rightarrow$ apple_id_and_account_security (iTunes restore). iCloud Activation Lock screen $\\\\rightarrow$ activation_lock_and_device_security."
+      ],
+      "typical_support_behavior": "Explain proof-of-purchase unlocking policy; direct to al-support.apple.com or original owner."
+    },
+    {
+      "name": "audio_music_and_accessory_issues",
+      "definition": "Customer issues regarding sound playback, AirPods hardware/firmware, speaker volume, microphone input, Apple Music catalog, or Apple accessories.",
+      "inclusion": [
+        "No sound from receiver/speaker, distorted audio, or static during calls.",
+        "AirPods microphone failure, audio cutting out, or charging case issues.",
+        "Apple Music playlist sync errors, missing offline downloads, or song playback errors."
+      ],
+      "exclusion": [
+        "Bluetooth pairing connection failures (use network_and_connectivity_troubleshooting).",
+        "Apple Music subscription billing charges (use billing_subscription_and_app_store_charges)."
+      ],
+      "positive_examples": [
+        "@AppleSupport My right AirPod has no sound at all while the left one works fine.",
+        "@AppleSupport The earpiece speaker on my iPhone 7 is so quiet I can't hear calls.",
+        "@AppleSupport Apple Music deleted all my offline downloaded songs after update."
+      ],
+      "negative_examples": [
+        "@AppleSupport AirPods won't connect to Bluetooth.",
+        "@AppleSupport I was charged twice for Apple Music."
+      ],
+      "boundary_cases": [
+        "AirPods won't pair: network_and_connectivity_troubleshooting. AirPods paired but audio distorted: audio_music_and_accessory_issues."
+      ],
+      "typical_support_behavior": "Guide through resetting AirPods; check speaker mesh for obstruction; inspect Sound & Haptics settings."
+    },
+    {
+      "name": "feedback_complaint_or_general_inquiry",
+      "definition": "Customer feedback, broad brand praise or complaints, retail store experience inquiries, or vague questions without a specific technical problem.",
+      "inclusion": [
+        "General praise or complaints about Apple customer service or product quality.",
+        "Retail store hours, product availability, or general pre-sales inquiries.",
+        "Vague customer statements without a concrete troubleshootable defect."
+      ],
+      "exclusion": [
+        "Any actionable technical defect covered by specific categories (e.g., battery, connectivity, OS update).",
+        "Account password resets or billing refund requests (use respective specific intents)."
+      ],
+      "positive_examples": [
+        "@AppleSupport Just want to shout out the team at the Regent Street Apple Store for great service!",
+        "@AppleSupport Apple products used to just work, now everything is buggy.",
+        "@AppleSupport When will iPhone X be available for in-store pickup?"
+      ],
+      "negative_examples": [
+        "@AppleSupport My phone is buggy because iOS 11 keeps crashing.",
+        "@AppleSupport My battery dies in 2 hours."
+      ],
+      "boundary_cases": [
+        "Vague complaint: If the customer provides no actionable symptom, choose feedback_complaint_or_general_inquiry. If they mention a specific symptom (battery, crash, Wi-Fi), classify under that specific technical intent."
+      ],
+      "typical_support_behavior": "Acknowledge feedback with empathy; ask clarifying diagnostic questions if customer wishes to troubleshoot."
+    }
+  ]
+}

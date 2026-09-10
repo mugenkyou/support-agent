@@ -1,4 +1,4 @@
-"""Central test runner for Phase 2 test suite."""
+"""Central test runner for the test suite."""
 
 import json
 import os
@@ -8,7 +8,7 @@ import unittest
 sys.path.insert(0, os.path.abspath("."))
 
 
-def run_phase2_test_suite():
+def run_all_test_suite():
     loader = unittest.TestLoader()
     suite = loader.discover("tests", pattern="test_*.py")
 
@@ -25,11 +25,11 @@ def run_phase2_test_suite():
     }
 
     os.makedirs("artifacts", exist_ok=True)
-    with open("artifacts/phase2_test_results.json", "w", encoding="utf-8") as f:
+    with open("artifacts/test_results.json", "w", encoding="utf-8") as f:
         json.dump(test_summary, f, indent=2)
 
     print("\n" + "=" * 80)
-    print(f"PHASE 2 TEST SUITE RESULT: {test_summary['status']} ({result.testsRun - len(result.failures) - len(result.errors)}/{result.testsRun} passed)")
+    print(f"FULL TEST SUITE RESULT: {test_summary['status']} ({result.testsRun - len(result.failures) - len(result.errors)}/{result.testsRun} passed)")
     print("=" * 80)
 
     if not result.wasSuccessful():
@@ -37,4 +37,4 @@ def run_phase2_test_suite():
 
 
 if __name__ == "__main__":
-    run_phase2_test_suite()
+    run_all_test_suite()

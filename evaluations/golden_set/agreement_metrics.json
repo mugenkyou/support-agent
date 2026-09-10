@@ -1,0 +1,20 @@
+{
+  "total_annotated": 200,
+  "second_labeler_sample_size": 50,
+  "agreed_count": 49,
+  "disagreements_count": 1,
+  "raw_agreement": 0.98,
+  "raw_agreement_pct": 98.0,
+  "cohens_kappa": 0.9666,
+  "disagreements": [
+    {
+      "golden_id": "gold_2698036_2698038",
+      "customer_message": "@AppleSupport guys. Since iOS 11 my iPhone 6 has been crap. Lags. MAJOR battery drains. Went to bed with 100% woke up to 35% (untouched no apps open) and now dying quicker than I can tweet. Come on guys. \ud83d\ude44 I\u2019m on 11.1.2 update n can barely use my phone.",
+      "annotator_1_intent": "battery_drain_and_charging_issues",
+      "annotator_2_intent": "software_update_and_os_compatibility",
+      "agreed": false,
+      "adjudicated_intent": "battery_drain_and_charging_issues",
+      "ambiguity": "low"
+    }
+  ]
+}
