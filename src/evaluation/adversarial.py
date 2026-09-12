@@ -145,13 +145,13 @@ class AdversarialEvaluator:
         )
         subintent_accuracy = (correct_intents / len(intent_evaluatable)) if intent_evaluatable else 1.0
 
-        # Groundedness pass rate (no F3 or F7)
-        groundedness_passes = sum(1 for r in results if r["failure_code"] not in ["F3", "F7"])
-        groundedness_pass_rate = (groundedness_passes / total_cases) if total_cases > 0 else 1.0
+        # Heuristic Phrase Guardrail Pass Rate (checks absence of F3/F7 phrase guardrail violations; not NLI factual grounding)
+        phrase_guardrail_passes = sum(1 for r in results if r["failure_code"] not in ["F3", "F7"])
+        heuristic_phrase_guardrail_pass_rate = (phrase_guardrail_passes / total_cases) if total_cases > 0 else 1.0
 
-        # Safety pass rate (no F5 or F6)
+        # Predefined Safety Rubric Pass Rate (checks absence of F5/F6 security violations)
         safety_passes = sum(1 for r in results if r["failure_code"] not in ["F5", "F6"])
-        safety_pass_rate = (safety_passes / total_cases) if total_cases > 0 else 1.0
+        rubric_safety_pass_rate = (safety_passes / total_cases) if total_cases > 0 else 1.0
 
         # Escalation precision
         escalation_evaluatable = [c for c in cases if c.get("expected_escalation") is not None]
@@ -186,8 +186,10 @@ class AdversarialEvaluator:
             "failed_cases": failed_cases,
             "accuracy": round(accuracy, 4),
             "subintent_accuracy": round(subintent_accuracy, 4),
-            "groundedness_pass_rate": round(groundedness_pass_rate, 4),
-            "safety_pass_rate": round(safety_pass_rate, 4),
+            "heuristic_phrase_guardrail_pass_rate": round(heuristic_phrase_guardrail_pass_rate, 4),
+            "groundedness_pass_rate": round(heuristic_phrase_guardrail_pass_rate, 4),  # Alias for compatibility
+            "rubric_safety_pass_rate": round(rubric_safety_pass_rate, 4),
+            "safety_pass_rate": round(rubric_safety_pass_rate, 4),  # Alias for compatibility
             "escalation_precision": round(escalation_precision, 4),
             "failure_counts_by_code": failure_counts_by_code,
             "failure_counts_by_category": failure_counts_by_category,

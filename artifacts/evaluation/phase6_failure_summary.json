@@ -1,31 +1,31 @@
 {
   "stage": "after",
-  "timestamp": "2026-09-12T21:21:18.061527+00:00",
+  "timestamp": "2026-09-12T21:24:25.629370+00:00",
   "total_cases": 60,
-  "passed_cases": 20,
-  "failed_cases": 40,
-  "accuracy": 0.3333,
-  "subintent_accuracy": 0.5333,
-  "groundedness_pass_rate": 1.0,
-  "safety_pass_rate": 1.0,
-  "escalation_precision": 0.5667,
+  "passed_cases": 24,
+  "failed_cases": 36,
+  "accuracy": 0.4,
+  "subintent_accuracy": 0.5833,
+  "heuristic_phrase_guardrail_pass_rate": 1.0,
+  "rubric_safety_pass_rate": 1.0,
+  "escalation_precision": 0.6,
   "failure_counts_by_code": {
-    "F1": 20,
-    "F2": 4,
+    "F1": 18,
+    "F2": 3,
     "F3": 0,
     "F4": 4,
     "F5": 0,
     "F6": 0,
     "F7": 0,
-    "F8": 12,
+    "F8": 11,
     "F9": 0,
     "F10": 0
   },
   "failure_counts_by_category": {
     "short_elliptical_context": {
       "total": 8,
-      "passed": 3,
-      "failed": 5
+      "passed": 5,
+      "failed": 3
     },
     "multi_intent_queries": {
       "total": 8,
@@ -34,8 +34,8 @@
     },
     "taxonomy_boundary_cases": {
       "total": 8,
-      "passed": 2,
-      "failed": 6
+      "passed": 4,
+      "failed": 4
     },
     "safety_security_traps": {
       "total": 10,

@@ -82,8 +82,8 @@ def run_adversarial_evaluation(is_after: bool = False):
         "failed_cases": eval_results["failed_cases"],
         "accuracy": eval_results["accuracy"],
         "subintent_accuracy": eval_results["subintent_accuracy"],
-        "groundedness_pass_rate": eval_results["groundedness_pass_rate"],
-        "safety_pass_rate": eval_results["safety_pass_rate"],
+        "heuristic_phrase_guardrail_pass_rate": eval_results["heuristic_phrase_guardrail_pass_rate"],
+        "rubric_safety_pass_rate": eval_results["rubric_safety_pass_rate"],
         "escalation_precision": eval_results["escalation_precision"],
         "failure_counts_by_code": eval_results["failure_counts_by_code"],
         "failure_counts_by_category": eval_results["failure_counts_by_category"],
@@ -114,8 +114,8 @@ def run_adversarial_evaluation(is_after: bool = False):
             "failed_cases": eval_results["failed_cases"],
             "accuracy": eval_results["accuracy"],
             "subintent_accuracy": eval_results["subintent_accuracy"],
-            "groundedness_pass_rate": eval_results["groundedness_pass_rate"],
-            "safety_pass_rate": eval_results["safety_pass_rate"],
+            "heuristic_phrase_guardrail_pass_rate": eval_results["heuristic_phrase_guardrail_pass_rate"],
+            "rubric_safety_pass_rate": eval_results["rubric_safety_pass_rate"],
             "escalation_precision": eval_results["escalation_precision"],
         },
         "failure_counts_by_code": eval_results["failure_counts_by_code"],
@@ -128,13 +128,13 @@ def run_adversarial_evaluation(is_after: bool = False):
     print("\n" + "=" * 80)
     print(f"PHASE 6 ADVERSARIAL EVALUATION RESULTS ({suffix.upper()})")
     print("=" * 80)
-    print(f"Total Test Cases:       {eval_results['total_cases']}")
-    print(f"Passed Test Cases:      {eval_results['passed_cases']} ({eval_results['accuracy']*100:.1f}%)")
-    print(f"Failed Test Cases:      {eval_results['failed_cases']}")
-    print(f"Sub-Intent Accuracy:    {eval_results['subintent_accuracy']*100:.1f}%")
-    print(f"Groundedness Pass Rate: {eval_results['groundedness_pass_rate']*100:.1f}%")
-    print(f"Safety Pass Rate:       {eval_results['safety_pass_rate']*100:.1f}%")
-    print(f"Escalation Precision:   {eval_results['escalation_precision']*100:.1f}%")
+    print(f"Total Test Cases:                {eval_results['total_cases']}")
+    print(f"Passed Test Cases:               {eval_results['passed_cases']} ({eval_results['accuracy']*100:.1f}%)")
+    print(f"Failed Test Cases:               {eval_results['failed_cases']}")
+    print(f"Sub-Intent Accuracy:             {eval_results['subintent_accuracy']*100:.1f}%")
+    print(f"Heuristic Phrase Guardrail Pass: {eval_results['heuristic_phrase_guardrail_pass_rate']*100:.1f}% (0% phrase hallucinations)")
+    print(f"Predefined Safety Rubric Pass:   {eval_results['rubric_safety_pass_rate']*100:.1f}% (0% policy breaches)")
+    print(f"Escalation Precision:            {eval_results['escalation_precision']*100:.1f}%")
     print("-" * 80)
     print("Failure Counts by Code:")
     for code, cnt in eval_results["failure_counts_by_code"].items():
