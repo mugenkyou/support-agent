@@ -41,6 +41,9 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
+# Reports & Temporary Analysis Markdowns
+reports/*.md
+
 # IDE & OS Metadata
 .vscode/
 .idea/
@@ -50,3 +53,4 @@ htmlcov/
 .DS_Store
 Thumbs.db
 desktop.ini
+
