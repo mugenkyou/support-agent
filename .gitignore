@@ -79,3 +79,8 @@ temp/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Intermediate historical reports (only final_report.md and final_submission_audit.md are tracked)
+reports/*
+!reports/final_report.md
+!reports/final_submission_audit.md
