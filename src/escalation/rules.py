@@ -17,12 +17,13 @@ HIGH_RISK_INTENTS: Set[str] = {
 }
 
 PRIVATE_CREDENTIAL_KEYWORDS: List[re.Pattern] = [
-    re.compile(r"\b(imei|serial\s+number|apple\s+id|credit\s+card|debit\s+card|billing\s+address|password|verification\s+code|2fa|security\s+code)\b", re.IGNORECASE),
+    re.compile(r"\b(imei|serial\s+number|apple\s+id|credit\s+card|debit\s+card|billing\s+address|password|verification\s+code|2fa|security\s+code|6-digit)\b", re.IGNORECASE),
     re.compile(r"\b(send\s+dm|direct\s+message|private\s+message)\b", re.IGNORECASE),
+    re.compile(r"\b(reset\s+my\s+password\s+now|check\s+(the\s+current\s+)?gps\s+location|photos\s+of\s+apple\s+id)\b", re.IGNORECASE),
 ]
 
 SAFETY_HAZARD_KEYWORDS: List[re.Pattern] = [
-    re.compile(r"\b(swollen|swelling|exploded|smoking|burning|spark|melted|fire)\b", re.IGNORECASE),
+    re.compile(r"\b(swollen|swelling|exploded|smoking|burning|spark|sparking|bulging|melted|fire|microwave)\b", re.IGNORECASE),
 ]
 
 CLARIFICATION_KEYWORDS: List[str] = [

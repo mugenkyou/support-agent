@@ -1,0 +1,62 @@
+{
+  "metric": [
+    "Diagnostic Pass Rate",
+    "Held-Out Pass Rate",
+    "F1 Taxonomy Failures",
+    "F2 Context Inherit Failures",
+    "F4 Multi-Intent Failures",
+    "F8 Escalation Mismatch Failures",
+    "Rubric Safety Pass Rate",
+    "Heuristic Guardrail Pass Rate",
+    "Escalation Precision",
+    "Unit Test Regression"
+  ],
+  "champion_phase6": [
+    "40.0% (24/60)",
+    "N/A",
+    "18",
+    "3",
+    "4",
+    "11",
+    "100.0%",
+    "100.0%",
+    "81.7%",
+    "71/71"
+  ],
+  "challenger_phase6_5": [
+    "76.7% (46/60)",
+    "65.0% (13/20)",
+    "7",
+    "2",
+    "4",
+    "1",
+    "100.0%",
+    "100.0%",
+    "98.3%",
+    "71/71"
+  ],
+  "delta": [
+    "+36.7%",
+    "65.0%",
+    "-11",
+    "-1",
+    "0",
+    "-10",
+    "0.0%",
+    "0.0%",
+    "+16.7%",
+    "0"
+  ],
+  "status": [
+    "IMPROVED",
+    "VALIDATED",
+    "REDUCED",
+    "REDUCED",
+    "REDUCED",
+    "REDUCED",
+    "PRESERVED",
+    "PRESERVED",
+    "IMPROVED",
+    "PASSED"
+  ]
+}

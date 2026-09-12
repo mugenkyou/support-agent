@@ -1,0 +1,131 @@
+{
+  "total_remaining_failures": 14,
+  "failures": [
+    {
+      "case_id": "adv_a_03",
+      "primary_category": "F2",
+      "root_cause": "Context inheritance failure: predicted intent 'hardware_damage_and_repair_service' instead of expected 'feedback_complaint_or_general_inquiry'.",
+      "user_impact": "User query 'Still broken....' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F2"
+    },
+    {
+      "case_id": "adv_a_06",
+      "primary_category": "F2",
+      "root_cause": "Context inheritance failure: predicted intent 'apple_id_and_account_security' instead of expected 'billing_subscription_and_app_store_charges'.",
+      "user_impact": "User query 'What now?...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F2"
+    },
+    {
+      "case_id": "adv_b_01",
+      "primary_category": "F4",
+      "root_cause": "Multi-intent prioritization failure: predicted intent 'battery_drain_and_charging_issues' over primary 'software_update_and_os_compatibility'.",
+      "user_impact": "User query 'My iPhone won't update to iOS 11.2 and now the bat...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F4"
+    },
+    {
+      "case_id": "adv_b_02",
+      "primary_category": "F4",
+      "root_cause": "Multi-intent prioritization failure: predicted intent 'apple_id_and_account_security' over primary 'hardware_damage_and_repair_service'.",
+      "user_impact": "User query 'My Apple ID is locked and my phone battery is swel...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F4"
+    },
+    {
+      "case_id": "adv_b_05",
+      "primary_category": "F4",
+      "root_cause": "Multi-intent prioritization failure: predicted intent 'network_and_connectivity_troubleshooting' over primary 'audio_music_and_accessory_issues'.",
+      "user_impact": "User query 'Bluetooth disconnects from my AirPods and the volu...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F4"
+    },
+    {
+      "case_id": "adv_b_06",
+      "primary_category": "F4",
+      "root_cause": "Multi-intent prioritization failure: predicted intent 'software_update_and_os_compatibility' over primary 'hardware_damage_and_repair_service'.",
+      "user_impact": "User query 'My phone is stuck on the Apple logo after dropping...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F4"
+    },
+    {
+      "case_id": "adv_c_02",
+      "primary_category": "F8",
+      "root_cause": "Escalation decision mismatch: predicted 'HIGH_RISK_ESCALATE' instead of expected 'PUBLIC_TROUBLESHOOTING'.",
+      "user_impact": "User query 'iPhone gets burning hot while fast charging with o...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F8"
+    },
+    {
+      "case_id": "adv_c_03",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'apple_id_and_account_security' instead of expected 'billing_subscription_and_app_store_charges'.",
+      "user_impact": "User query 'Can't sign into App Store with my Apple ID, says A...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_e_02",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'app_crash_freeze_and_performance_lag' instead of expected 'software_update_and_os_compatibility'.",
+      "user_impact": "User query 'My iPhone 6s is running slow on iOS 11.0....' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_e_04",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'app_crash_freeze_and_performance_lag' instead of expected 'software_update_and_os_compatibility'.",
+      "user_impact": "User query 'Can I use 3D Touch on my iPhone 7 keyboard to move...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_g_01",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'hardware_damage_and_repair_service' instead of expected 'battery_drain_and_charging_issues'.",
+      "user_impact": "User query 'I only asked about the battery issue....' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_g_04",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'software_update_and_os_compatibility' instead of expected 'hardware_damage_and_repair_service'.",
+      "user_impact": "User query 'What should I do instead?...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_h_01",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'hardware_damage_and_repair_service' instead of expected 'feedback_complaint_or_general_inquiry'.",
+      "user_impact": "User query 'How do I fix a Windows 10 Blue Screen Error 0x0000...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    },
+    {
+      "case_id": "adv_h_03",
+      "primary_category": "F1",
+      "root_cause": "Taxonomy sub-intent error: predicted intent 'storage_backup_and_icloud_sync' instead of expected 'feedback_complaint_or_general_inquiry'.",
+      "user_impact": "User query 'Kernel panic not syncing VFS unable to mount root ...' receives suboptimal or mismatched triage.",
+      "fix_attempted": "Enhanced keyword boundary matching and escalation policy scoping.",
+      "result": "Remaining failure requiring model/data scale or fine-grained context.",
+      "remaining_limitation": "F1"
+    }
+  ]
+}

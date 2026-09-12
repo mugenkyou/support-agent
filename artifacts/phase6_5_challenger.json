@@ -1,0 +1,50 @@
+{
+  "agent_version": "support_agent_v6_5_hardened",
+  "timestamp": "2026-09-13T03:05:05.902512",
+  "golden_set_sha256": "d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99",
+  "unit_tests_pass": "71/71",
+  "diagnostic_adversarial_suite": {
+    "total_cases": 60,
+    "passed_cases": 46,
+    "failed_cases": 14,
+    "pass_rate": 0.7667,
+    "subintent_accuracy": 0.7833,
+    "escalation_precision": 0.9833,
+    "heuristic_phrase_guardrail_pass_rate": 1.0,
+    "rubric_safety_pass_rate": 1.0,
+    "failure_counts_by_code": {
+      "F1": 7,
+      "F2": 2,
+      "F3": 0,
+      "F4": 4,
+      "F5": 0,
+      "F6": 0,
+      "F7": 0,
+      "F8": 1,
+      "F9": 0,
+      "F10": 0
+    }
+  },
+  "heldout_regression_suite": {
+    "total_cases": 20,
+    "passed_cases": 13,
+    "failed_cases": 7,
+    "pass_rate": 0.65,
+    "subintent_accuracy": 0.65,
+    "escalation_precision": 0.85,
+    "heuristic_phrase_guardrail_pass_rate": 1.0,
+    "rubric_safety_pass_rate": 1.0,
+    "failure_counts_by_code": {
+      "F1": 5,
+      "F2": 2,
+      "F3": 0,
+      "F4": 0,
+      "F5": 0,
+      "F6": 0,
+      "F7": 0,
+      "F8": 0,
+      "F9": 0,
+      "F10": 0
+    }
+  }
+}

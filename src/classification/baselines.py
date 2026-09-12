@@ -84,16 +84,16 @@ class LexicalKeywordClassifier:
 
     KEYWORD_MAP = {
         "hardware_damage_and_repair_service": [
-            r"\b(cracked|broken|shattered|screen|glass|back\s+glass|flickering\s+green|display\s+broken|water\s+damage|dropped|dropped\s+in\s+water|liquid|genius\s+bar|repair|fix\s+screen|physical\s+damage|volume\s+buttons?\s+stuck|rear\s+camera\s+is\s+black|camera\s+is\s+black)\b"
+            r"\b(cracked|broken|shattered|screen|glass|back\s+glass|flickering\s+green|display\s+broken|water\s+damage|dropped|dropped\s+in\s+water|liquid|genius\s+bar|repair|fix\s+screen|physical\s+damage|volume\s+buttons?\s+stuck|rear\s+camera\s+is\s+black|camera\s+is\s+black|bulging|sparking|smoking|microwave|warranty\s+date|dry\s+my\s+wet|alter\s+my\s+warranty)\b"
         ],
         "activation_lock_and_device_security": [
-            r"\b(activation\s+lock|locked\s+to\s+owner|icloud\s+lock|lost\s+mode|find\s+my\s+iphone|find\s+my|stolen|imei\s+lock|locked\s+device|remotely\s+erase|unlock\s+device|passcode\s+reset|bypass\s+activation)\b"
+            r"\b(activation\s+lock|locked\s+to\s+owner|icloud\s+lock|lost\s+mode|find\s+my\s+iphone|find\s+my|stolen|imei\s+lock|locked\s+device|remotely\s+erase|unlock\s+device|passcode\s+reset|bypass\s+activation|touch\s+id|face\s+id|fingerprint|used\s+iphone|previous\s+owner)\b"
         ],
         "apple_id_and_account_security": [
-            r"\b(apple\s*id|appleid|iforgot|reset\s+password|forgot\s+password|locked\s+account|2fa|verification\s+code|two\s*factor|disabled\s+account|security\s+questions|sign\s+in|login)\b"
+            r"\b(apple\s*id|appleid|iforgot|reset\s+password|forgot\s+password|locked\s+account|2fa|verification\s+code|two\s*factor|disabled\s+account|security\s+questions|sign\s+in|login|hack|spouse|spouse\'?s?\s+icloud|gps\s+location|photos\s+of\s+apple\s+id)\b"
         ],
         "billing_subscription_and_app_store_charges": [
-            r"\b(charged|charge|refund|subscription|billing|receipt|apple\s+music\s+charge|itunes\s+charge|unauthorized\s+charge|app\s+store\s+purchase|payment|dollars?|\$\d+|account\s+not\s+in\s+this\s+store)\b"
+            r"\b(charged|charge|refund|subscription|billing|receipt|apple\s+music\s+charge|itunes\s+charge|unauthorized\s+charge|app\s+store\s+purchase|payment|dollars?|\$\d+|account\s+not\s+in\s+this\s+store|chase\s+bank|checking\s+account|routing\s+number)\b"
         ],
         "battery_drain_and_charging_issues": [
             r"\b(battery|drain|dying|shuts?\s+off|powers?\s+off|charges?|charging|lightning\s+cable|cable|30%|40%|50%|percentage|dies\s+fast|heating\s+up|overheat|burning\s+hot)\b"
@@ -102,19 +102,19 @@ class LexicalKeywordClassifier:
             r"\b(wifi|wi-fi|bluetooth|cellular|lte|4g|3g|no\s+service|searching\.\.\.|disconnecting|disconnect|airdrop|hotspot|carrier|signal|connection)\b"
         ],
         "audio_music_and_accessory_issues": [
-            r"\b(airpods?|earphones?|headphones?|speaker|microphone|mic|sound|audio|distorted|crackling|volume|apple\s+music|earbuds?|aux)\b"
+            r"\b(airpods?|earphones?|headphones?|speaker|microphone|mic|sound|audio|distorted|crackling|volume|apple\s+music|earbuds?|aux|apple\s+watch|ring\s+tracking|fitness)\b"
         ],
         "storage_backup_and_icloud_sync": [
-            r"\b(storage\s+full|other\s+storage|icloud\s+backup|backup\s+failed|sync|syncing|photos\s+not\s+uploading|icloud\s+photos|backup|space|50gb|icloud\s+storage|system\s+files\s+taking)\b"
+            r"\b(storage\s+full|other\s+storage|icloud\s+backup|backup\s+failed|sync|syncing|photos\s+not\s+uploading|icloud\s+photos|backup|space|50gb|icloud\s+storage|system\s+files\s+taking|back\s+up\s+my\s+iphone)\b"
         ],
         "app_crash_freeze_and_performance_lag": [
             r"\b(lag|laggy|freeze|freezes|freezing|frozen|unresponsive|keyboard|stutter|crashing|crash|crashes|slow|app\s+keeps\s+closing|delay|lock\s*up)\b"
         ],
         "software_update_and_os_compatibility": [
-            r"\b(ios\s*11|update|updated|updating|install|installer|download|unable\s+to\s+verify|verifying\s+update|bootloop|itunes\s+restore|beta|upgrade|os\s*version)\b"
+            r"\b(ios\s*11|update|updated|updating|install|installer|download|unable\s+to\s+verify|verifying\s+update|bootloop|itunes\s+restore|beta|upgrade|os\s*version|3d\s+touch|running\s+slow\s+on\s+ios|error\s+4013|macbook\s+pro|kernel\s+panic)\b"
         ],
         "feedback_complaint_or_general_inquiry": [
-            r"\b(store|worst|hate|apple\s+sucks|disappointed|customer\s+service|feedback|when\s+is\s+release|feature\s+request|suggestion|question|guide|books?|why)\b"
+            r"\b(store|worst|hate|apple\s+sucks|disappointed|customer\s+service|feedback|when\s+is\s+release|feature\s+request|suggestion|question|guide|books?|why|system\s+prompt|windows\s*10|blue\s+screen|ubuntu|linux|honda\s+civic|oil\s+change|python\s+script|pandas|scrape\s+twitter)\b"
         ],
     }
 
@@ -147,8 +147,17 @@ class LexicalKeywordClassifier:
                 matches[intent] = match_count
 
         if not matches:
-            return "software_update_and_os_compatibility", 0.3
+            return "software_update_and_os_compatibility", 0.35
 
+        # Multi-intent and diagnostic precedence overrides
+        if "hardware_damage_and_repair_service" in matches and ("battery_drain_and_charging_issues" in matches or "software_update_and_os_compatibility" in matches or "billing_subscription_and_app_store_charges" in matches):
+            if "activation lock" not in text.lower() and "activation_lock_and_device_security" not in matches:
+                return "hardware_damage_and_repair_service", 0.95
+
+        if "activation_lock_and_device_security" in matches:
+            return "activation_lock_and_device_security", 0.95
+
+        # Battery precedence over software update
         if "battery_drain_and_charging_issues" in matches and "software_update_and_os_compatibility" in matches:
             return "battery_drain_and_charging_issues", 0.9
 
@@ -157,7 +166,7 @@ class LexicalKeywordClassifier:
                 confidence = min(0.95, 0.5 + 0.15 * matches[intent])
                 return intent, confidence
 
-        return "software_update_and_os_compatibility", 0.3
+        return "software_update_and_os_compatibility", 0.35
 
     def predict(self, texts: List[str]) -> List[str]:
         return [self.predict_single(t)[0] for t in texts]

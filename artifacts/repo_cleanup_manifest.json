@@ -1,0 +1,57 @@
+{
+  "audit_timestamp": "2026-09-13T03:14:00+05:30",
+  "categories": {
+    "KEEP": [
+      "src/agent/support_agent.py (Core SupportAgent pipeline)",
+      "src/classification/baselines.py (4 Intent classification baselines)",
+      "src/classification/metrics.py (Classification evaluation metrics)",
+      "src/data/conversations.py (Conversation graph reconstruction)",
+      "src/data/ingest.py (Dataset loading & validation)",
+      "src/data/leakage.py (Temporal & identity leakage prevention)",
+      "src/data/preprocessing.py (Text normalization & multipart merging)",
+      "src/data/splitting.py (Conversation & customer splitting)",
+      "src/escalation/policy.py (4-tier risk-aware escalation policy)",
+      "src/escalation/rules.py (Keyword rules, regex patterns, and safety hazard definitions)",
+      "src/evaluation/adversarial.py (Phase 6 AdversarialEvaluator and failure taxonomy)",
+      "src/evaluation/statistical.py (Paired bootstrap and Wilson confidence intervals)",
+      "src/evaluation/judge.py (LLM-as-a-judge multi-dimensional evaluator)",
+      "src/generation/generator.py (Grounded response generation)",
+      "src/generation/grounding.py (Groundedness & safety phrase checks)",
+      "src/retrieval/bm25.py (BM25 lexical retriever)",
+      "src/retrieval/dense.py (Dense semantic retriever)",
+      "src/retrieval/hybrid.py (RRF Hybrid Fusion retriever)",
+      "src/retrieval/filter.py (Causal temporal and golden set filtering)",
+      "src/retrieval/rerank.py (Template diversification reranking)",
+      "src/taxonomy/loader.py (Taxonomy YAML loader)",
+      "src/taxonomy/taxonomy.yaml (Canonical 11-intent taxonomy specifications)",
+      "tests/run_all_tests.py (Master unit test runner)",
+      "tests/test_*.py (17 test modules covering all subsystems)",
+      "tests/phase6_5_heldout_cases.json (20 held-out regression cases)",
+      "evaluations/golden_set/golden_set.jsonl (Frozen 200-example Golden Benchmark)",
+      "evaluations/adversarial_set/phase6_adversarial_cases.jsonl (60-case Diagnostic Adversarial Benchmark)",
+      "scripts/evaluate_phase6_5.py (Headline reproduction script)",
+      "scripts/demo.py (Live architectural demonstrator)",
+      "scripts/audit_secrets.py (Zero-leakage path and secret scanner)",
+      "README.md (Master submission dossier)",
+      "DECISION_LOG.md (57 architectural decisions)",
+      "LICENSE (MIT License)",
+      "requirements.txt (Minimal reproducible dependencies)",
+      "reports/*.md (Phase 1 through 6.5 analytical reports)",
+      "artifacts/*.json (Machine-readable benchmark evaluation artifacts)"
+    ],
+    "DELETE": [
+      "scratch/* (Temporary exploratory analysis scripts, excluded via .gitignore)"
+    ],
+    "EXCLUDE_LARGE_DATA": [
+      "data/raw/twcs.csv (100MB+ raw dataset, excluded via .gitignore)",
+      "data/processed/interactions.jsonl (150MB+ processed records, excluded via .gitignore)",
+      "data/*.sqlite (SQLite databases, excluded via .gitignore)"
+    ],
+    "DOCUMENT": [
+      "reports/final_submission_audit.md",
+      "artifacts/final_submission_manifest.json",
+      "artifacts/reproducibility_check.json",
+      "artifacts/repo_cleanup_manifest.json"
+    ]
+  }
+}

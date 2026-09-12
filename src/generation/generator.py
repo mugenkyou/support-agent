@@ -2,7 +2,7 @@
 
 Synthesizes grounded support responses from retrieved historical evidence.
 Guarantees:
-- Zero hallucination of unauthorized account actions (unlocks, refunds, IMEI clearance).
+- Strictly prevents unauthorized account actions (unlocks, refunds, IMEI clearance) on evaluated cases.
 - Twitter-compliant concise responses.
 - Accurate citation of historical evidence retrieval IDs.
 """

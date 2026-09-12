@@ -41,13 +41,10 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
-# Reports & Documentation Artifacts
-reports/
-reports/*
-
-# Phase 1 Test Artifacts
-artifacts/phase1_*
-scripts/run_phase1_tests.py
+# Temporary Scratch Files & Local Caches
+scratch/
+.tmp/
+temp/
 
 # IDE & OS Metadata
 .vscode/
@@ -58,10 +55,3 @@ scripts/run_phase1_tests.py
 .DS_Store
 Thumbs.db
 desktop.ini
-
-
-report/
-report/*
-scratch/
-.tmp/
-temp/

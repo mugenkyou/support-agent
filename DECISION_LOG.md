@@ -570,5 +570,45 @@ This document records the foundational architectural, analytical, and problem-fr
 - **Trade-off**: Preserves `@AppleSupport` while filtering external user handles.
 - **Confidence**: **HIGH**
 
+---
+
+# Phase 6.5 Decisions (Final Hardening Pass & Generalization Audit)
+
+## Decision 54: Precise Risk-Aware Escalation Policy and Self-Service Guidance Separation
+- **Decision**: Refine `EscalationPolicy.evaluate` to separate physical safety hazards (`HIGH_RISK_ESCALATE`), private credential/data disclosures (`PRIVATE_SUPPORT_REQUIRED`), vague short queries (`INSUFFICIENT_INFORMATION`), and safe public self-service guidance (`PUBLIC_TROUBLESHOOTING`). High-risk intents (`apple_id_and_account_security`, `billing_subscription...`, `activation_lock...`) return `PUBLIC_TROUBLESHOOTING` with official support links when general public guidance is requested without private secret disclosures or lockdown events.
+- **Reason**: Unconditional escalation of all account/billing queries over-escalated legitimate public requests for self-service links (e.g. `iforgot.apple.com`, `reportaproblem.apple.com`).
+- **Evidence**: Reduced F8 escalation mismatches from 11 to 1 on the 60-case diagnostic set, increasing Escalation Precision to 98.3%.
+- **Alternatives Considered**: Retaining unconditional high-risk intent escalation (penalized valid public self-service guidance).
+- **Trade-off**: Requires explicit keyword matching for account compromise (`hacked`, `locked`) vs public self-service how-to questions.
+- **Confidence**: **HIGH**
+
+## Decision 55: Out-of-Scope (OOD) Domain Bounds and Non-Apple Routing
+- **Decision**: Introduce explicit scope decision logic (`IN_SCOPE`, `AMBIGUOUS`, `OUT_OF_SCOPE`) into `EscalationPolicy` and classifier routing for non-Apple requests (Windows BSOD, Linux kernel, Chase bank routing, Honda Civic oil change, Python web scraping) while preserving legitimate Apple queries referencing non-Apple items ("moved from Android to iPhone").
+- **Reason**: The agent should not force unsupported non-Apple queries into Apple troubleshooting workflows.
+- **Evidence**: Validated on both diagnostic set OOD cases and held-out OOD cases (`tests/phase6_5_heldout_cases.json`).
+- **Alternatives Considered**: Naive keyword blocking on words like "Android" (would reject valid device migration queries).
+- **Trade-off**: Requires context-aware scope checking.
+- **Confidence**: **HIGH**
+
+## Decision 56: Champion vs Challenger Validation via Independent Held-Out Suite
+- **Decision**: Author an independent 20-case held-out regression suite (`tests/phase6_5_heldout_cases.json`) and evaluate Challenger vs Champion on both the 60-case diagnostic set and the 20-case held-out set.
+- **Reason**: Prevents overfitting to the 60 diagnostic challenge cases and proves technical generalization of hardening interventions.
+- **Evidence**: Challenger achieved 76.7% (46/60) on the diagnostic set (up from 40.0%) and 65.0% (13/20) on the held-out set, with 100% safety pass rate and 71/71 unit tests passing.
+- **Alternatives Considered**: Evaluating only on the diagnostic set (risk of benchmark overfitting).
+- **Trade-off**: Requires maintaining held-out evaluation datasets.
+- **Confidence**: **HIGH**
+
+---
+
+# Phase 7 Decisions (Final Submission, README, Repository Cleanup & Reviewer Polish)
+
+## Decision 57: Final Submission Packaging, Zero-Leakage Audit, and Deterministic Reproduction
+- **Decision**: Finalize repository for submission by freezing all analytical reports (Phases 1–6.5), crafting a comprehensive architectural README with Mermaid data and execution diagrams, packaging minimal dependencies (`requirements.txt`), creating single-command reproduction scripts (`scripts/evaluate_phase6_5.py` executing in < 2 seconds, and `scripts/demo.py`), auditing for zero secrets/personal paths (`scripts/audit_secrets.py`), and verifying Golden Set immutability (`d550d4998511c8fa`).
+- **Reason**: Reviewers require immediate, transparent, and reproducible verification of core technical claims without complex setup overhead, unstated dependencies, or exaggerated performance claims.
+- **Evidence**: 71/71 unit tests passing, 0 secrets or personal paths detected, < 0.1s evaluation execution, verified Golden Set SHA-256 match.
+- **Alternatives Considered**: Submitting raw experimental branch with loose scratch files and undocumented dependencies.
+- **Trade-off**: None. Preserves all historical evidence and analytical integrity.
+- **Confidence**: **HIGH**
+
 
 

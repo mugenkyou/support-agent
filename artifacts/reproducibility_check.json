@@ -1,0 +1,39 @@
+{
+  "check_timestamp": "2026-09-13T03:14:00+05:30",
+  "python_version": "3.10+ compatible",
+  "dependencies": [
+    "numpy>=1.23.0",
+    "scipy>=1.9.0",
+    "scikit-learn>=1.1.0",
+    "pyyaml>=6.0"
+  ],
+  "golden_set_verification": {
+    "file": "evaluations/golden_set/golden_set.jsonl",
+    "record_count": 200,
+    "sha256": "d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99",
+    "expected_sha256_prefix": "d550d4998511c8fa",
+    "verified_frozen": true
+  },
+  "test_suite_status": {
+    "command": "python tests/run_all_tests.py",
+    "total_tests": 71,
+    "passed": 71,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "headline_evaluation_status": {
+    "command": "python scripts/evaluate_phase6_5.py",
+    "runtime_seconds": 0.05,
+    "max_allowed_runtime_seconds": 900,
+    "reproducibility_target_met": true,
+    "diagnostic_pass_rate": "76.7% (46/60)",
+    "heldout_pass_rate": "65.0% (13/20)",
+    "rubric_safety_pass_rate": "100.0%",
+    "heuristic_guardrail_pass_rate": "100.0%"
+  },
+  "secrets_audit_status": {
+    "command": "python scripts/audit_secrets.py",
+    "findings_count": 0,
+    "status": "PASS"
+  }
+}

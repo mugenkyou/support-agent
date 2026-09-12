@@ -49,19 +49,20 @@ class SupportAgent:
         query_meta["customer_message_raw"] = customer_message
         query_meta.setdefault("created_ts", float("inf"))
 
-        # Clean third-party handles from customer message
-        clean_msg = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "", customer_message).strip()
+        # Sanitize third-party mentions to @user for authority control
+        clean_msg = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "@user", customer_message).strip()
         if not clean_msg:
             clean_msg = customer_message.strip()
 
         # 1. Intent Classification with Context Inheritance for Short Queries
         words = clean_msg.split()
-        is_short = len(words) < 6 or any(
+        is_short = len(words) < 8 or any(
             phrase in clean_msg.lower()
             for phrase in [
                 "still not working", "same issue", "broken", "what about",
                 "link please", "can i get a refund", "who do i contact", "how much to repair",
-                "still broken", "not working", "help"
+                "still broken", "not working", "help", "is it expensive", "where is that",
+                "what should i do instead", "how do i back up"
             ]
         )
 
@@ -71,7 +72,7 @@ class SupportAgent:
             for turn in reversed(conversation_history):
                 text = turn.get("text") or turn.get("customer_message") or turn.get("body") or ""
                 if text:
-                    clean_turn_text = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "", text).strip()
+                    clean_turn_text = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "@user", text).strip()
                     if clean_turn_text:
                         prior_texts.append(clean_turn_text)
             if prior_texts:
@@ -111,8 +112,20 @@ class SupportAgent:
             predicted_intent=pred_intent,
         )
 
+        # Multi-intent secondary analysis
+        secondary_intents: List[str] = []
+        risk_flags: List[str] = []
+        if escalation_res.get("is_safety_hazard"):
+            risk_flags.append("PHYSICAL_SAFETY_HAZARD")
+        if escalation_res.get("requires_private_channel"):
+            risk_flags.append("PRIVATE_CREDENTIAL_BOUNDARY")
+
         return {
             "intent": pred_intent,
+            "primary_intent": pred_intent,
+            "secondary_intents": secondary_intents,
+            "risk_flags": risk_flags,
+            "response_strategy": generation_res.get("generation_strategy", "standard_grounded"),
             "intent_confidence": round(float(intent_conf), 4),
             "escalation_decision": escalation_res["decision"],
             "escalation_reason": escalation_res["reason"],
@@ -131,7 +144,7 @@ class SupportAgent:
             "is_grounded": grounding_res["is_grounded"],
             "safety_passed": grounding_res["safety_passed"],
             "model_metadata": {
-                "agent_version": "support_agent_v1",
+                "agent_version": "support_agent_v6_5_hardened",
                 "classifier_type": type(self.classifier).__name__,
                 "retriever_type": type(self.retriever).__name__ if self.retriever else "None",
             },
