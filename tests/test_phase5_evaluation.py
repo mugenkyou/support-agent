@@ -10,7 +10,7 @@ from src.escalation.policy import EscalationPolicy
 from src.evaluation.human_eval import calibrate_judge_against_human, compute_human_agreement
 from src.evaluation.judge import MultiDimensionalJudge
 from src.evaluation.slices import evaluate_ood_benchmark, evaluate_subgroup_slices
-from src.evaluation.statistical import compute_bootstrap_ci, compute_wilson_ci
+from src.evaluation.statistical import compute_bootstrap_ci, compute_paired_bootstrap_ci, compute_wilson_ci
 from src.retrieval.filter import RetrievalFilter
 
 
@@ -98,6 +98,52 @@ class TestPhase5Evaluation(unittest.TestCase):
         ood_res = evaluate_ood_benchmark(agent)
         self.assertGreaterEqual(ood_res["ood_rejection_accuracy"], 0.75)
 
+    def test_paired_bootstrap_comparisons_and_artifact_integrity(self):
+        """TEST I: Verify paired bootstrap calculation determinism, baseline/metric presence, and artifact integrity."""
+        # Determinism & computation test
+        arr_a = [3.0, 2.0, 3.0, 2.0, 1.0, 3.0, 2.0, 3.0]
+        arr_b = [2.0, 2.0, 3.0, 1.0, 1.0, 2.0, 2.0, 3.0]
+        res1 = compute_paired_bootstrap_ci(arr_a, arr_b, n_bootstrap=1000, seed=42)
+        res2 = compute_paired_bootstrap_ci(arr_a, arr_b, n_bootstrap=1000, seed=42)
+        
+        self.assertEqual(res1["mean_difference"], res2["mean_difference"])
+        self.assertEqual(res1["ci_95_lower"], res2["ci_95_lower"])
+        self.assertEqual(res1["ci_95_upper"], res2["ci_95_upper"])
+        self.assertTrue(res1["ci_95_lower"] <= res1["mean_difference"] <= res1["ci_95_upper"])
+        self.assertEqual(res1["sample_size"], 8)
+
+        # Artifact presence & schema checks
+        paired_path = "artifacts/evaluation/phase5_paired_comparisons.json"
+        self.assertTrue(os.path.exists(paired_path))
+        with open(paired_path, "r", encoding="utf-8") as f:
+            paired_data = json.load(f)
+
+        self.assertEqual(paired_data["metadata"]["n_examples"], 200)
+        
+        for baseline in ("full_vs_dense", "full_vs_hybrid", "full_vs_diversified"):
+            self.assertIn(baseline, paired_data)
+            for metric in ("helpfulness", "relevance", "groundedness"):
+                self.assertIn(metric, paired_data[baseline])
+                m_data = paired_data[baseline][metric]
+                self.assertIn("mean_difference", m_data)
+                self.assertIn("median_difference", m_data)
+                self.assertIn("ci_95_lower", m_data)
+                self.assertIn("ci_95_upper", m_data)
+                self.assertIn("p_value", m_data)
+                self.assertIn("is_statistically_significant", m_data)
+                self.assertEqual(m_data["sample_size"], 200)
+                self.assertTrue(m_data["ci_95_lower"] <= m_data["ci_95_upper"])
+
+        # Results artifact alignment
+        res_path = "artifacts/evaluation/phase5_evaluation_results.json"
+        self.assertTrue(os.path.exists(res_path))
+        with open(res_path, "r", encoding="utf-8") as f:
+            results_data = json.load(f)
+
+        self.assertIn("paired_comparisons", results_data)
+        self.assertEqual(results_data["paired_comparisons"]["metadata"]["n_examples"], 200)
+
 
 if __name__ == "__main__":
     unittest.main()
+

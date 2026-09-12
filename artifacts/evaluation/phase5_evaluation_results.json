@@ -1,13 +1,13 @@
 {
   "benchmark_version": "phase5_master_frozen",
-  "timestamp": "2026-09-12T17:21:20Z",
+  "timestamp": "2026-09-12T19:40:43Z",
   "evaluation_sample_size": 200,
   "manifest": {
     "manifest_version": "phase5_master_v1",
-    "timestamp": "2026-09-12T17:21:09Z",
+    "timestamp": "2026-09-12T19:40:15Z",
     "environment": {
-      "python_version": "3.10.11",
-      "os_platform": "Windows-10-10.0.26200-SP0",
+      "python_version": "3.13.5",
+      "os_platform": "Windows-11-10.0.26200-SP0",
       "architecture": "64bit"
     },
     "dataset_hashes": {
@@ -166,15 +166,15 @@
   "statistical_uncertainty": {
     "intent_accuracy": {
       "mean": 0.62,
-      "ci_95_lower": 0.555,
-      "ci_95_upper": 0.6851,
-      "method": "bootstrap_1000"
+      "ci_95_lower": 0.55,
+      "ci_95_upper": 0.69,
+      "method": "bootstrap_10000"
     },
     "groundedness_rate": {
       "mean": 0.8633,
       "ci_95_lower": 0.8317,
-      "ci_95_upper": 0.8933,
-      "method": "bootstrap_1000"
+      "ci_95_upper": 0.895,
+      "method": "bootstrap_10000"
     },
     "safety_pass_rate": {
       "mean": 1.0,
@@ -184,9 +184,104 @@
     },
     "helpfulness_rate": {
       "mean": 0.685,
-      "ci_95_lower": 0.6533,
-      "ci_95_upper": 0.7217,
-      "method": "bootstrap_1000"
+      "ci_95_lower": 0.6517,
+      "ci_95_upper": 0.7183,
+      "method": "bootstrap_10000"
+    }
+  },
+  "paired_comparisons": {
+    "metadata": {
+      "n_examples": 200,
+      "n_bootstrap": 10000,
+      "seed": 42,
+      "formula": "Full_System - Baseline"
+    },
+    "full_vs_dense": {
+      "helpfulness": {
+        "mean_difference": -0.03,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.13,
+        "ci_95_upper": 0.07,
+        "p_value": 0.6279,
+        "is_statistically_significant": false,
+        "sample_size": 200
+      },
+      "relevance": {
+        "mean_difference": -0.6,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.72,
+        "ci_95_upper": -0.485,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      },
+      "groundedness": {
+        "mean_difference": -0.205,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.285,
+        "ci_95_upper": -0.13,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      }
+    },
+    "full_vs_hybrid": {
+      "helpfulness": {
+        "mean_difference": -0.03,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.13,
+        "ci_95_upper": 0.07,
+        "p_value": 0.6279,
+        "is_statistically_significant": false,
+        "sample_size": 200
+      },
+      "relevance": {
+        "mean_difference": -0.6,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.72,
+        "ci_95_upper": -0.485,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      },
+      "groundedness": {
+        "mean_difference": -0.205,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.285,
+        "ci_95_upper": -0.13,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      }
+    },
+    "full_vs_diversified": {
+      "helpfulness": {
+        "mean_difference": -0.03,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.13,
+        "ci_95_upper": 0.07,
+        "p_value": 0.6279,
+        "is_statistically_significant": false,
+        "sample_size": 200
+      },
+      "relevance": {
+        "mean_difference": -0.6,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.72,
+        "ci_95_upper": -0.485,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      },
+      "groundedness": {
+        "mean_difference": -0.205,
+        "median_difference": 0.0,
+        "ci_95_lower": -0.285,
+        "ci_95_upper": -0.13,
+        "p_value": 0.0,
+        "is_statistically_significant": true,
+        "sample_size": 200
+      }
     }
   },
   "subgroup_slices": {

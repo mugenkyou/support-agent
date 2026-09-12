@@ -231,21 +231,85 @@ def run_phase5():
     ood_results = evaluate_ood_benchmark(agent)
     print(f"OOD Safety & Routing Accuracy: {ood_results['ood_rejection_accuracy']*100:.2f}% ({ood_results['passed_cases']}/{ood_results['total_ood_cases']} passed)")
 
-    # 8. Statistical Uncertainty (95% Bootstrap Confidence Intervals)
-    print("\n--- 8. COMPUTING STATISTICAL UNCERTAINTY (95% CI) ---")
+    # 8. Statistical Uncertainty & Paired Bootstrap Comparisons (B=10,000)
+    print("\n--- 8. COMPUTING STATISTICAL UNCERTAINTY & PAIRED BOOTSTRAP COMPARISONS (B=10,000) ---")
+    from src.evaluation.statistical import compute_paired_bootstrap_ci
+
     intent_acc_vals = [1.0 if p["predicted_intent"] == p["ground_truth_intent"] else 0.0 for p in evaluated_predictions]
     
-    acc_mean, acc_low, acc_high = compute_bootstrap_ci(intent_acc_vals)
-    ground_mean, ground_low, ground_high = compute_bootstrap_ci(groundedness_values)
+    acc_mean, acc_low, acc_high = compute_bootstrap_ci(intent_acc_vals, n_bootstrap=10000)
+    ground_mean, ground_low, ground_high = compute_bootstrap_ci(groundedness_values, n_bootstrap=10000)
     safe_mean, safe_low, safe_high = compute_wilson_ci(int(sum(safety_values)), len(safety_values))
-    help_mean, help_low, help_high = compute_bootstrap_ci(helpfulness_values)
+    help_mean, help_low, help_high = compute_bootstrap_ci(helpfulness_values, n_bootstrap=10000)
 
     statistical_summary = {
-        "intent_accuracy": {"mean": acc_mean, "ci_95_lower": acc_low, "ci_95_upper": acc_high, "method": "bootstrap_1000"},
-        "groundedness_rate": {"mean": ground_mean, "ci_95_lower": ground_low, "ci_95_upper": ground_high, "method": "bootstrap_1000"},
+        "intent_accuracy": {"mean": acc_mean, "ci_95_lower": acc_low, "ci_95_upper": acc_high, "method": "bootstrap_10000"},
+        "groundedness_rate": {"mean": ground_mean, "ci_95_lower": ground_low, "ci_95_upper": ground_high, "method": "bootstrap_10000"},
         "safety_pass_rate": {"mean": safe_mean, "ci_95_lower": safe_low, "ci_95_upper": safe_high, "method": "wilson_score"},
-        "helpfulness_rate": {"mean": help_mean, "ci_95_lower": help_low, "ci_95_upper": help_high, "method": "bootstrap_1000"},
+        "helpfulness_rate": {"mean": help_mean, "ci_95_lower": help_low, "ci_95_upper": help_high, "method": "bootstrap_10000"},
     }
+
+    # Extract paired per-example arrays for Full System vs Baselines 5, 6, 7
+    full_help = [p["helpfulness"] for p in evaluated_predictions]
+    full_rel = [p["relevance"] for p in evaluated_predictions]
+    full_ground = [p["groundedness"] for p in evaluated_predictions]
+
+    # Run baseline prediction iterations to get paired arrays
+    dense_preds = []
+    hybrid_preds = []
+    div_preds = []
+
+    for gold in golden_data:
+        q = gold.get("customer_message", gold.get("customer_message_raw", ""))
+        intent, _ = clf.predict_single(q)
+        
+        # Dense
+        ev_dense = evaluator.dense.retrieve(gold, top_k=3)
+        gen_d = evaluator.generator.generate_response(q, [], intent, ev_dense)["draft_response"]
+        j_d = judge.evaluate_single(q, gen_d, ev_dense, intent, "PUBLIC_TROUBLESHOOTING")
+        dense_preds.append(j_d)
+
+        # Hybrid
+        ev_hyb = evaluator.hybrid.retrieve(gold, top_k=3)
+        gen_h = evaluator.generator.generate_response(q, [], intent, ev_hyb)["draft_response"]
+        j_h = judge.evaluate_single(q, gen_h, ev_hyb, intent, "PUBLIC_TROUBLESHOOTING")
+        hybrid_preds.append(j_h)
+
+        # Diversified
+        raw_div = evaluator.hybrid.retrieve(gold, top_k=6)
+        ev_div = evaluator.diversifier.diversify(raw_div, top_k=3)
+        gen_div = evaluator.generator.generate_response(q, [], intent, ev_div)["draft_response"]
+        j_div = judge.evaluate_single(q, gen_div, ev_div, intent, "PUBLIC_TROUBLESHOOTING")
+        div_preds.append(j_div)
+
+    paired_comparisons = {
+        "metadata": {
+            "n_examples": len(golden_data),
+            "n_bootstrap": 10000,
+            "seed": 42,
+            "formula": "Full_System - Baseline",
+        },
+        "full_vs_dense": {
+            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in dense_preds], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in dense_preds], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in dense_preds], n_bootstrap=10000),
+        },
+        "full_vs_hybrid": {
+            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in hybrid_preds], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in hybrid_preds], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in hybrid_preds], n_bootstrap=10000),
+        },
+        "full_vs_diversified": {
+            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in div_preds], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in div_preds], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in div_preds], n_bootstrap=10000),
+        },
+    }
+
+    paired_file = "artifacts/evaluation/phase5_paired_comparisons.json"
+    with open(paired_file, "w", encoding="utf-8") as f:
+        json.dump(paired_comparisons, f, indent=2)
+    print(f"Saved paired statistical comparisons to {paired_file}")
 
     # 9. Build Phase 5 Failure Database (artifacts/evaluation/phase5_failures.jsonl)
     print("\n--- 9. GENERATING FAILURE CASE DATABASE ---")
@@ -315,6 +379,7 @@ def run_phase5():
         "judge_bias_test": bias_test_res,
         "baselines_hierarchy": baseline_results,
         "statistical_uncertainty": statistical_summary,
+        "paired_comparisons": paired_comparisons,
         "subgroup_slices": subgroup_slices,
         "ood_benchmark": ood_results,
         "failure_attribution": error_counts,
@@ -325,6 +390,7 @@ def run_phase5():
     with open(results_file, "w", encoding="utf-8") as f:
         json.dump(final_output, f, indent=2)
     print(f"Saved canonical Phase 5 results to {results_file}")
+
 
     print("\n" + "=" * 80)
     print(f"PHASE 5 MASTER EVALUATION PIPELINE COMPLETED IN {round(time.time() - start_time, 2)}s")

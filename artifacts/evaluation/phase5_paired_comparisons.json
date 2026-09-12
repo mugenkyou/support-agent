@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "n_examples": 200,
+    "n_bootstrap": 10000,
+    "seed": 42,
+    "formula": "Full_System - Baseline"
+  },
+  "full_vs_dense": {
+    "helpfulness": {
+      "mean_difference": -0.03,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.13,
+      "ci_95_upper": 0.07,
+      "p_value": 0.6279,
+      "is_statistically_significant": false,
+      "sample_size": 200
+    },
+    "relevance": {
+      "mean_difference": -0.6,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.72,
+      "ci_95_upper": -0.485,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    },
+    "groundedness": {
+      "mean_difference": -0.205,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.285,
+      "ci_95_upper": -0.13,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    }
+  },
+  "full_vs_hybrid": {
+    "helpfulness": {
+      "mean_difference": -0.03,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.13,
+      "ci_95_upper": 0.07,
+      "p_value": 0.6279,
+      "is_statistically_significant": false,
+      "sample_size": 200
+    },
+    "relevance": {
+      "mean_difference": -0.6,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.72,
+      "ci_95_upper": -0.485,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    },
+    "groundedness": {
+      "mean_difference": -0.205,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.285,
+      "ci_95_upper": -0.13,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    }
+  },
+  "full_vs_diversified": {
+    "helpfulness": {
+      "mean_difference": -0.03,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.13,
+      "ci_95_upper": 0.07,
+      "p_value": 0.6279,
+      "is_statistically_significant": false,
+      "sample_size": 200
+    },
+    "relevance": {
+      "mean_difference": -0.6,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.72,
+      "ci_95_upper": -0.485,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    },
+    "groundedness": {
+      "mean_difference": -0.205,
+      "median_difference": 0.0,
+      "ci_95_lower": -0.285,
+      "ci_95_upper": -0.13,
+      "p_value": 0.0,
+      "is_statistically_significant": true,
+      "sample_size": 200
+    }
+  }
+}
