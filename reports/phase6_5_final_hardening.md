@@ -13,7 +13,7 @@ Improvements were evaluated using a strict **Champion vs Challenger** methodolog
 ## 1. Baseline Snapshot & Golden Set Integrity
 
 - **Baseline Git Commit**: `c55abaf61a06bb7b2fd802adbc7072351a04dfdb`
-- **Golden Evaluation Set SHA-256**: `d550d4998511c8fa` (200 records, 100% immutable & verified)
+- **Golden Evaluation Set SHA-256 Fingerprint (first 16 hex chars)**: `d550d4998511c8fa` (Full SHA-256: `d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99`, 200 records, 100% immutable & verified)
 - **Unit Test Regression**: 71/71 tests passing (100%)
 - **Baseline Diagnostic Score**: 24/60 passed (40.0% accuracy)
 - **Baseline Failure Breakdown**: F1=18, F2=3, F3=0, F4=4, F5=0, F6=0, F7=0, F8=11, F9=0, F10=0

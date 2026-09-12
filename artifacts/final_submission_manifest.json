@@ -30,6 +30,7 @@
   },
   "provenance": {
     "golden_set_sha256": "d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99",
+    "golden_set_sha256_fingerprint_first_16_hex_chars": "d550d4998511c8fa",
     "leakage_controls_verified": true,
     "zero_secrets_verified": true
   }

@@ -1,8 +1,11 @@
 # Large Data & Database Cache Files (Exceeds GitHub 100MB limit)
 data/twcs.sqlite
 data/twcs.sqlite-journal
-data/raw/twcs.csv
+data/raw/
+data/local/
 data/processed/*.jsonl
+data/processed/*.csv
+data/processed/*.parquet
 *.sqlite
 *.sqlite3
 *.db
@@ -10,6 +13,7 @@ data/processed/*.jsonl
 # Python bytecode & environments
 __pycache__/
 *.py[cod]
+*.pyo
 *$py.class
 *.so
 .Python
@@ -34,6 +38,11 @@ share/python-wheels/
 .installed.cfg
 *.egg
 
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
 # Testing & Type Checking
 .pytest_cache/
 .coverage
@@ -41,9 +50,24 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local model & index caches
+models/
+.cache/
+hf_cache/
+model_cache/
+indexes/
+vectorstore/
+
 # Temporary Scratch Files & Local Caches
 scratch/
 .tmp/
+tmp/
 temp/
 
 # IDE & OS Metadata

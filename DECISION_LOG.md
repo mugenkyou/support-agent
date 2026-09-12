@@ -603,7 +603,7 @@ This document records the foundational architectural, analytical, and problem-fr
 # Phase 7 Decisions (Final Submission, README, Repository Cleanup & Reviewer Polish)
 
 ## Decision 57: Final Submission Packaging, Zero-Leakage Audit, and Deterministic Reproduction
-- **Decision**: Finalize repository for submission by freezing all analytical reports (Phases 1–6.5), crafting a comprehensive architectural README with Mermaid data and execution diagrams, packaging minimal dependencies (`requirements.txt`), creating single-command reproduction scripts (`scripts/evaluate_phase6_5.py` executing in < 2 seconds, and `scripts/demo.py`), auditing for zero secrets/personal paths (`scripts/audit_secrets.py`), and verifying Golden Set immutability (`d550d4998511c8fa`).
+- **Decision**: Finalize repository for submission by freezing all analytical reports (Phases 1–6.5), crafting a comprehensive architectural README with Mermaid data and execution diagrams, packaging minimal dependencies (`requirements.txt`), creating single-command reproduction scripts (`scripts/evaluate_phase6_5.py` executing in < 2 seconds, and `scripts/demo.py`), auditing for zero secrets/personal paths (`scripts/audit_secrets.py`), and verifying Golden Set immutability (SHA-256 fingerprint: `d550d4998511c8fa`).
 - **Reason**: Reviewers require immediate, transparent, and reproducible verification of core technical claims without complex setup overhead, unstated dependencies, or exaggerated performance claims.
 - **Evidence**: 71/71 unit tests passing, 0 secrets or personal paths detected, < 0.1s evaluation execution, verified Golden Set SHA-256 match.
 - **Alternatives Considered**: Submitting raw experimental branch with loose scratch files and undocumented dependencies.

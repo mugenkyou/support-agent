@@ -45,7 +45,7 @@ The submission is evaluated against 14 strict engineering and methodological cri
 ### 7. Golden Set Integrity: PASS
 - File: `evaluations/golden_set/golden_set.jsonl`
 - Count: Exactly 200 records.
-- SHA-256 Hash: `d550d4998511c8fa` (Cryptographically verified identical to Phase 3 freeze).
+- Golden set SHA-256 fingerprint (first 16 hex chars): `d550d4998511c8fa` (Full SHA-256: `d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99`, cryptographically verified identical to Phase 3 freeze).
 - Purity: Zero Golden examples present in training splits or retrieval candidate pools (`test_golden_set_never_in_retrieval`).
 
 ### 8. Causal Leakage Controls: PASS
@@ -68,7 +68,7 @@ The submission is evaluated against 14 strict engineering and methodological cri
 
 ### 11. Secrets & Personal Paths Scan: PASS
 - Automated scan via `scripts/audit_secrets.py`: **0 findings**.
-- Zero API keys, tokens, passwords, or personal user filesystem paths (`C:\Users\...`) committed.
+- Zero API keys, tokens, passwords, or personal user filesystem paths committed.
 
 ### 12. Repository Cleanup: PASS
 - Machine-readable audit manifest: `artifacts/repo_cleanup_manifest.json`.
@@ -93,7 +93,7 @@ The submission is evaluated against 14 strict engineering and methodological cri
 3. **Can I reproduce the main result?**
    Yes. Running `python scripts/evaluate_phase6_5.py` executes in under a second and prints the complete evaluation table.
 4. **Do I trust the evaluation?**
-   Mostly yes. The held-out suite provides additional evidence beyond the diagnostic suite, although its 20-case size means it should not be treated as proof of generalization. The Golden set hash is cryptographically frozen (`d550d4998511c8fa`), and leakage tests explicitly test for lookahead contamination.
+   Mostly yes. The held-out suite provides additional evidence beyond the diagnostic suite, although its 20-case size means it should not be treated as proof of generalization. The Golden set SHA-256 fingerprint (first 16 hex chars) is cryptographically frozen (`d550d4998511c8fa`), and leakage tests explicitly test for lookahead contamination.
 5. **Can I see real failure analysis?**
    Yes. Section *"Where It Still Breaks"* explicitly details 4 persistent failure modes with real query examples.
 6. **Does the author understand their limitations?**

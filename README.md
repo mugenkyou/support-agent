@@ -326,7 +326,7 @@ The script `scripts/demo.py` demonstrates the agent's behavior across 5 core arc
 │   └── test_*.py                       # Unit tests for classification, retrieval, and escalation
 │
 ├── evaluations/                        # Evaluation datasets and annotation artifacts
-│   ├── golden_set/                     # Frozen 200-example Golden Benchmark (SHA: d550d4998511c8fa)
+│   ├── golden_set/                     # Frozen 200-example Golden Benchmark (SHA-256 fingerprint: d550d4998511c8fa)
 │   └── adversarial_set/                # 60-case Diagnostic Adversarial Set
 │
 ├── artifacts/                          # Serialized machine-readable evaluation outputs
@@ -365,7 +365,7 @@ The repository maintains an unbroken 56-entry architectural decision log ([`DECI
 
 ```text
 Automated Unit Tests:          71 / 71 passed (100%)
-Golden Evaluation Benchmark:   200 / 200 records (SHA-256: d550d4998511c8fa, FROZEN)
+Golden Evaluation Benchmark:   200 / 200 records (SHA-256 fingerprint [first 16 hex chars]: d550d4998511c8fa, FROZEN)
 Causal Non-Leakage:            Verified (T_candidate < T_query strictly enforced)
 Target Self-Retrieval:         Verified (0 occurrences in retrieval candidates)
 Golden Set in Retrieval Pool:  Verified (0 occurrences)

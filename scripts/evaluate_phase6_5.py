@@ -36,7 +36,8 @@ def main():
         sha_match = (golden_sha[:16] == expected_sha)
         print(f"\n[1] Golden Set Immutability Check:")
         print(f"    File: {golden_path}")
-        print(f"    SHA-256: {golden_sha[:16]}... (Expected: {expected_sha})")
+        print(f"    Full SHA-256: {golden_sha}")
+        print(f"    Golden set SHA-256 fingerprint (first 16 hex chars): {golden_sha[:16]} (Expected: {expected_sha})")
         print(f"    Integrity Status: {'VERIFIED / FROZEN' if sha_match else 'TAMPERED / MISMATCH'}")
     else:
         print(f"\n[1] Golden Set: File not found at {golden_path}")

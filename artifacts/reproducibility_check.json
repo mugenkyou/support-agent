@@ -11,6 +11,7 @@
     "file": "evaluations/golden_set/golden_set.jsonl",
     "record_count": 200,
     "sha256": "d550d4998511c8fa498ed25b2099bccddc513a8ae28b492f38c856ab9c57dd99",
+    "sha256_fingerprint_first_16_hex_chars": "d550d4998511c8fa",
     "expected_sha256_prefix": "d550d4998511c8fa",
     "verified_frozen": true
   },
