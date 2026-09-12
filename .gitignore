@@ -59,3 +59,9 @@ scripts/run_phase1_tests.py
 Thumbs.db
 desktop.ini
 
+
+report/
+report/*
+scratch/
+.tmp/
+temp/
