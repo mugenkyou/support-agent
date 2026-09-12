@@ -1,0 +1,38 @@
+{
+  "manifest_version": "phase6_baseline_v1",
+  "timestamp": "2026-09-12T21:16:12Z",
+  "commit_hash": "ba5eb7a1c2c5b416371a15b361245c4cb8c5945c",
+  "environment": {
+    "python_version": "3.13.5",
+    "os_platform": "Windows-11-10.0.26200-SP0",
+    "architecture": "64bit"
+  },
+  "dataset_hashes": {
+    "interactions_sha256": "991f875299207f6c",
+    "splits_sha256": "19fe23272b634164",
+    "golden_set_sha256": "d550d4998511c8fa"
+  },
+  "model_specifications": {
+    "generation_model": "Qwen/Qwen2.5-7B-Instruct",
+    "fallback_runtime": "deterministic_evidence_synthesizer",
+    "retrieval_fusion": "BM25 + Dense TruncatedSVD (RRF k=60)",
+    "reranker": "TemplateDiversifier (cosine threshold 0.75, max quota 2)",
+    "temperature": 0.1,
+    "top_p": 0.9,
+    "random_seed": 42
+  },
+  "pre_existing_test_suite": {
+    "total_tests": 66,
+    "passed": 66,
+    "failed": 0,
+    "status": "PASS"
+  },
+  "phase5_canonical_metrics": {
+    "golden_intent_accuracy": 0.6200,
+    "full_system_helpfulness": 1.99,
+    "full_system_relevance": 2.56,
+    "full_system_groundedness": 2.81,
+    "full_system_safety_pass_rate": 1.0000,
+    "golden_sample_size": 200
+  }
+}

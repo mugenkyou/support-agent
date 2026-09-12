@@ -29,7 +29,7 @@ class GroundedResponseGenerator:
         clean_q = customer_query.strip()
 
         # State 1: Clarification needed
-        if escalation_decision == "INSUFFICIENT_INFORMATION" or len(clean_q.split()) <= 2:
+        if escalation_decision == "INSUFFICIENT_INFORMATION":
             return {
                 "draft_response": "We're here to help! Could you let us know which device model and iOS version you're currently using?",
                 "evidence_citations": [],
@@ -37,20 +37,23 @@ class GroundedResponseGenerator:
                 "generation_strategy": "clarification_prompt",
             }
 
-        # State 2: High risk / Account security
+        # State 2: High risk / Account security / Hardware Repair Guidance
         if escalation_decision == "HIGH_RISK_ESCALATE" or predicted_intent in (
             "apple_id_and_account_security",
             "activation_lock_and_device_security",
             "billing_subscription_and_app_store_charges",
+            "hardware_damage_and_repair_service",
         ):
             if predicted_intent == "apple_id_and_account_security":
-                resp = "For your account security, you can reset your Apple ID password directly at https://iforgot.apple.com. If you need further help, please send us a DM."
+                resp = "For your account security, you can reset your Apple ID password directly at https://iforgot.apple.com or https://support.apple.com. If you need further help, please send us a DM."
             elif predicted_intent == "activation_lock_and_device_security":
-                resp = "To remove Activation Lock, the original purchaser must enter the Apple ID credentials or visit https://support.apple.com. Please send us a DM with proof of purchase details."
+                resp = "To remove Activation Lock, the original purchaser must enter the Apple ID credentials at https://iforgot.apple.com or visit https://support.apple.com. Please send us a DM with proof of purchase details."
             elif predicted_intent == "billing_subscription_and_app_store_charges":
-                resp = "You can view and manage subscription charges or request a refund by visiting https://reportaproblem.apple.com. Send us a DM if you have further questions."
+                resp = "You can view and manage subscription charges or request a refund by visiting https://reportaproblem.apple.com or https://support.apple.com. Send us a DM if you have further questions."
+            elif predicted_intent == "hardware_damage_and_repair_service":
+                resp = "For hardware repairs and screen service options, please visit https://locate.apple.com or https://support.apple.com to schedule an appointment at an Authorized Service Provider."
             else:
-                resp = "To assist you with this securely, please send us a Direct Message with additional details."
+                resp = "To assist you with this securely, please visit https://support.apple.com or send us a Direct Message with additional details."
 
             citations = [e["retrieval_id"] for e in retrieved_evidence[:2] if "retrieval_id" in e]
             return {

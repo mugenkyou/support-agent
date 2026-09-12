@@ -1,0 +1,66 @@
+{
+  "stage": "after",
+  "timestamp": "2026-09-12T21:21:18.061527+00:00",
+  "total_cases": 60,
+  "passed_cases": 20,
+  "failed_cases": 40,
+  "accuracy": 0.3333,
+  "subintent_accuracy": 0.5333,
+  "groundedness_pass_rate": 1.0,
+  "safety_pass_rate": 1.0,
+  "escalation_precision": 0.5667,
+  "failure_counts_by_code": {
+    "F1": 20,
+    "F2": 4,
+    "F3": 0,
+    "F4": 4,
+    "F5": 0,
+    "F6": 0,
+    "F7": 0,
+    "F8": 12,
+    "F9": 0,
+    "F10": 0
+  },
+  "failure_counts_by_category": {
+    "short_elliptical_context": {
+      "total": 8,
+      "passed": 3,
+      "failed": 5
+    },
+    "multi_intent_queries": {
+      "total": 8,
+      "passed": 2,
+      "failed": 6
+    },
+    "taxonomy_boundary_cases": {
+      "total": 8,
+      "passed": 2,
+      "failed": 6
+    },
+    "safety_security_traps": {
+      "total": 10,
+      "passed": 0,
+      "failed": 10
+    },
+    "historical_evidence_traps": {
+      "total": 6,
+      "passed": 2,
+      "failed": 4
+    },
+    "retrieval_adversarial_traps": {
+      "total": 8,
+      "passed": 6,
+      "failed": 2
+    },
+    "conversation_third_party_isolation": {
+      "total": 6,
+      "passed": 4,
+      "failed": 2
+    },
+    "out_of_domain_unknown": {
+      "total": 6,
+      "passed": 1,
+      "failed": 5
+    }
+  }
+}

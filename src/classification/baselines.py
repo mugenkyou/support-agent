@@ -84,19 +84,19 @@ class LexicalKeywordClassifier:
 
     KEYWORD_MAP = {
         "hardware_damage_and_repair_service": [
-            r"\b(cracked|broken|shattered|screen|glass|water\s+damage|dropped|liquid|genius\s+bar|repair|fix\s+screen|display\s+broken|physical\s+damage)\b"
+            r"\b(cracked|broken|shattered|screen|glass|back\s+glass|flickering\s+green|display\s+broken|water\s+damage|dropped|dropped\s+in\s+water|liquid|genius\s+bar|repair|fix\s+screen|physical\s+damage|volume\s+buttons?\s+stuck|rear\s+camera\s+is\s+black|camera\s+is\s+black)\b"
         ],
         "activation_lock_and_device_security": [
-            r"\b(activation\s+lock|locked\s+to\s+owner|icloud\s+lock|lost\s+mode|find\s+my\s+iphone|find\s+my|stolen|imei\s+lock|locked\s+device)\b"
+            r"\b(activation\s+lock|locked\s+to\s+owner|icloud\s+lock|lost\s+mode|find\s+my\s+iphone|find\s+my|stolen|imei\s+lock|locked\s+device|remotely\s+erase|unlock\s+device|passcode\s+reset|bypass\s+activation)\b"
         ],
         "apple_id_and_account_security": [
             r"\b(apple\s*id|appleid|iforgot|reset\s+password|forgot\s+password|locked\s+account|2fa|verification\s+code|two\s*factor|disabled\s+account|security\s+questions|sign\s+in|login)\b"
         ],
         "billing_subscription_and_app_store_charges": [
-            r"\b(charged|charge|refund|subscription|billing|receipt|apple\s+music\s+charge|itunes\s+charge|unauthorized\s+charge|app\s+store\s+purchase|payment|dollars?|\$\d+)\b"
+            r"\b(charged|charge|refund|subscription|billing|receipt|apple\s+music\s+charge|itunes\s+charge|unauthorized\s+charge|app\s+store\s+purchase|payment|dollars?|\$\d+|account\s+not\s+in\s+this\s+store)\b"
         ],
         "battery_drain_and_charging_issues": [
-            r"\b(battery|drain|dying|shuts?\s+off|powers?\s+off|charges?|charging|lightning\s+cable|cable|30%|40%|50%|percentage|dies\s+fast|heating\s+up|overheat)\b"
+            r"\b(battery|drain|dying|shuts?\s+off|powers?\s+off|charges?|charging|lightning\s+cable|cable|30%|40%|50%|percentage|dies\s+fast|heating\s+up|overheat|burning\s+hot)\b"
         ],
         "network_and_connectivity_troubleshooting": [
             r"\b(wifi|wi-fi|bluetooth|cellular|lte|4g|3g|no\s+service|searching\.\.\.|disconnecting|disconnect|airdrop|hotspot|carrier|signal|connection)\b"
@@ -105,19 +105,18 @@ class LexicalKeywordClassifier:
             r"\b(airpods?|earphones?|headphones?|speaker|microphone|mic|sound|audio|distorted|crackling|volume|apple\s+music|earbuds?|aux)\b"
         ],
         "storage_backup_and_icloud_sync": [
-            r"\b(storage\s+full|other\s+storage|icloud\s+backup|backup\s+failed|sync|syncing|photos\s+not\s+uploading|icloud\s+photos|backup|space|storage)\b"
+            r"\b(storage\s+full|other\s+storage|icloud\s+backup|backup\s+failed|sync|syncing|photos\s+not\s+uploading|icloud\s+photos|backup|space|50gb|icloud\s+storage|system\s+files\s+taking)\b"
         ],
         "app_crash_freeze_and_performance_lag": [
-            r"\b(lag|laggy|freeze|freezing|frozen|unresponsive|keyboard|stutter|crashing|crash|crashes|slow|app\s+keeps\s+closing|delay|lock\s*up)\b"
+            r"\b(lag|laggy|freeze|freezes|freezing|frozen|unresponsive|keyboard|stutter|crashing|crash|crashes|slow|app\s+keeps\s+closing|delay|lock\s*up)\b"
         ],
         "software_update_and_os_compatibility": [
             r"\b(ios\s*11|update|updated|updating|install|installer|download|unable\s+to\s+verify|verifying\s+update|bootloop|itunes\s+restore|beta|upgrade|os\s*version)\b"
         ],
         "feedback_complaint_or_general_inquiry": [
-            r"\b(store|worst|hate|apple\s+sucks|disappointed|customer\s+service|feedback|when\s+is\s+release|feature\s+request|suggestion|question|guide|books?)\b"
+            r"\b(store|worst|hate|apple\s+sucks|disappointed|customer\s+service|feedback|when\s+is\s+release|feature\s+request|suggestion|question|guide|books?|why)\b"
         ],
     }
-
 
     PRECEDENCE_ORDER = [
         "hardware_damage_and_repair_service",

@@ -52,7 +52,7 @@ class EscalationPolicy:
 
         # 2. Insufficient Information / Ambiguous short queries
         words = clean_q.split()
-        if len(words) <= 2 and any(clean_q == kw or kw in clean_q for kw in CLARIFICATION_KEYWORDS):
+        if len(words) <= 2 and any(clean_q == kw or kw in clean_q for kw in CLARIFICATION_KEYWORDS) and not conversation_history:
             return {
                 "decision": "INSUFFICIENT_INFORMATION",
                 "reason": "QUERY_TOO_VAGUE: Insufficient diagnostic context; clarification required.",

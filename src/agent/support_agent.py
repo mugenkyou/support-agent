@@ -4,6 +4,7 @@ Combines Intent Classification, Retrieval, Template Diversification, Escalation 
 Grounded Response Generation, and Grounding Verification.
 """
 
+import re
 from typing import Any, Dict, List, Optional
 
 from src.classification.baselines import (
@@ -48,12 +49,39 @@ class SupportAgent:
         query_meta["customer_message_raw"] = customer_message
         query_meta.setdefault("created_ts", float("inf"))
 
-        # 1. Intent Classification
-        pred_intent, intent_conf = self.classifier.predict_single(customer_message)
+        # Clean third-party handles from customer message
+        clean_msg = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "", customer_message).strip()
+        if not clean_msg:
+            clean_msg = customer_message.strip()
+
+        # 1. Intent Classification with Context Inheritance for Short Queries
+        words = clean_msg.split()
+        is_short = len(words) < 6 or any(
+            phrase in clean_msg.lower()
+            for phrase in [
+                "still not working", "same issue", "broken", "what about",
+                "link please", "can i get a refund", "who do i contact", "how much to repair",
+                "still broken", "not working", "help"
+            ]
+        )
+
+        effective_query_for_intent = clean_msg
+        if is_short and conversation_history:
+            prior_texts = []
+            for turn in reversed(conversation_history):
+                text = turn.get("text") or turn.get("customer_message") or turn.get("body") or ""
+                if text:
+                    clean_turn_text = re.sub(r"@(?!(AppleSupport|applesupport)\b)\w+", "", text).strip()
+                    if clean_turn_text:
+                        prior_texts.append(clean_turn_text)
+            if prior_texts:
+                effective_query_for_intent = " ".join(reversed(prior_texts)) + " " + clean_msg
+
+        pred_intent, intent_conf = self.classifier.predict_single(effective_query_for_intent)
 
         # 2. Escalation Policy Evaluation
         escalation_res = self.escalation_policy.evaluate(
-            customer_query=customer_message,
+            customer_query=clean_msg,
             conversation_history=conversation_history,
             predicted_intent=pred_intent,
             intent_confidence=intent_conf,

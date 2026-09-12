@@ -17,7 +17,7 @@ HIGH_RISK_INTENTS: Set[str] = {
 }
 
 PRIVATE_CREDENTIAL_KEYWORDS: List[re.Pattern] = [
-    re.compile(r"\b(imei|serial\s+number|apple\s+id|credit\s+card|debit\s+card|billing\s+address|password)\b", re.IGNORECASE),
+    re.compile(r"\b(imei|serial\s+number|apple\s+id|credit\s+card|debit\s+card|billing\s+address|password|verification\s+code|2fa|security\s+code)\b", re.IGNORECASE),
     re.compile(r"\b(send\s+dm|direct\s+message|private\s+message)\b", re.IGNORECASE),
 ]
 
@@ -33,4 +33,7 @@ CLARIFICATION_KEYWORDS: List[str] = [
     "please fix",
     "help me",
     "fix it",
+    "after updating",
+    "what now",
+    "still broken",
 ]

@@ -508,5 +508,67 @@ This document records the foundational architectural, analytical, and problem-fr
 - **Trade-off**: Explicitly acknowledges safety/redirection tradeoffs rather than claiming unilateral superiority.
 - **Confidence**: **HIGH**
 
+---
+
+# Phase 6 Decisions (Adversarial Testing, Root-Cause Attribution & System Hardening)
+
+## Decision 48: Construction and Freezing of Non-Golden Adversarial Benchmark (60 cases)
+- **Decision**: Construct and freeze a dedicated 60-case non-Golden adversarial evaluation set (`evaluations/adversarial_set/phase6_adversarial_cases.jsonl`) across 8 specific failure categories.
+- **Reason**: The 200 Golden examples are strictly frozen for evaluation. A non-Golden adversarial benchmark tests system robustness against edge cases without tuning or contaminating the Golden Set.
+- **Evidence**: Serialized in `evaluations/adversarial_set/phase6_adversarial_cases.jsonl` and verified by `scripts/build_phase6_adversarial_set.py`.
+- **Alternatives Considered**: Testing on synthetic variations of Golden Set examples (violates Golden Set isolation principles).
+- **Trade-off**: Requires dedicated synthetic generation script maintaining schema alignment.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 49: Standardized Root-Cause Failure Taxonomy (F1–F10) and Adversarial Evaluator
+- **Decision**: Implement `AdversarialEvaluator` in `src/evaluation/adversarial.py` to evaluate adversarial attack sets and categorize failures into 10 root-cause failure codes (F1: Taxonomy Error, F2: Context Inheritance Failure, F3: Retrieval Relevance/Grounding, F4: Multi-Intent Prioritization, F5: Security Policy Violation, F6: Untrusted Context Leakage, F7: Fact Conflict/Hallucination, F8: Escalation Decision Mismatch, F9: Over-Defensive Refusal, F10: System Exception).
+- **Reason**: Provides deterministic, rule-grounded root-cause attribution for adversarial failure cases to guide targeted engineering fixes.
+- **Evidence**: Executed pre/post-fix adversarial evaluations in `scripts/run_phase6_adversarial_eval.py` and generated `artifacts/evaluation/phase6_failures.jsonl`.
+- **Alternatives Considered**: Generic pass/fail logging without root-cause failure categorization.
+- **Trade-off**: Requires explicit criteria mapping for each failure mode.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 50: Context Inheritance Protocol for Short Elliptical Follow-Up Queries
+- **Decision**: Modify `SupportAgent.predict` to detect short/elliptical follow-up queries (<6 words or short follow-up phrases like "still not working", "same issue") and inherit intent context from previous customer turns in `conversation_history`.
+- **Reason**: Single-turn classifiers misinterpret short follow-up messages as generic or unclassified queries when context history is omitted.
+- **Evidence**: Context inheritance reduced F2 context failures and improved short elliptical query resolution rate.
+- **Alternatives Considered**: Mandating multi-turn LLM re-writing for every query (high latency and computational overhead).
+- **Trade-off**: Relies on preceding customer turns being present in conversation history array.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 51: Multi-Intent Primary Precedence and Hardware Hazard Override
+- **Decision**: Enforce strict primary intent precedence in `LexicalKeywordClassifier` (`hardware_damage_and_repair_service` > `activation_lock_and_device_security` > `apple_id_and_account_security` > `billing_subscription_and_app_store_charges` > `battery_drain_and_charging_issues` > `network_and_connectivity_troubleshooting` > ...).
+- **Reason**: When compound queries mention multiple symptoms (e.g. cracked screen + dying battery, swollen battery + locked account), physical hardware damage and thermal safety hazards must take operational precedence over generic software symptoms.
+- **Evidence**: Verified by multi-intent precedence unit tests in `tests/test_phase6_adversarial.py`.
+- **Alternatives Considered**: Returning multiple unranked intents (confuses response generator routing).
+- **Trade-off**: Secondary software symptoms are subordinated to the primary physical/security issue.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 52: Activation Lock, Security Boundary and Official Guidance Alignment
+- **Decision**: Update `GroundedResponseGenerator` and `EscalationPolicy` to strictly enforce official Apple guidance links (`https://iforgot.apple.com`, `https://support.apple.com`, `https://locate.apple.com`, `https://reportaproblem.apple.com`) and DM redirection boundaries for high-risk account, credential, and Activation Lock queries.
+- **Reason**: Customer support AI agents must never attempt unauthorized account actions or output fabricated credentials, but must direct users to official self-service tools.
+- **Evidence**: Verified by safety and credential boundary tests in `tests/test_phase6_adversarial.py` (0% safety policy violations).
+- **Alternatives Considered**: Generic DM redirection for all queries (obscures official self-service web resources).
+- **Trade-off**: Requires maintaining canonical guidance URL mappings.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 53: Third-Party Handle Isolation and Uncontaminated Thread Ingestion
+- **Decision**: Programmatically strip third-party Twitter handle mentions (`@(?!(AppleSupport)\b)\w+`) from input queries and conversation turns prior to intent classification and response synthesis.
+- **Reason**: Customer tweets in public threads frequently mention other Twitter users (`@AnotherUser`), which can contaminate classification and leak untrusted user content into generated responses.
+- **Evidence**: Verified by `test_third_party_mention_isolation` in `tests/test_phase6_adversarial.py`.
+- **Alternatives Considered**: Ingesting raw tweet text without mention cleaning (vulnerable to third-party instruction contamination).
+- **Trade-off**: Preserves `@AppleSupport` while filtering external user handles.
+- **Confidence**: **HIGH**
+
 
 
