@@ -1,0 +1,23 @@
+{
+  "manifest_version": "phase5_master_v1",
+  "timestamp": "2026-09-12T17:21:09Z",
+  "environment": {
+    "python_version": "3.10.11",
+    "os_platform": "Windows-10-10.0.26200-SP0",
+    "architecture": "64bit"
+  },
+  "dataset_hashes": {
+    "interactions_sha256": "991f875299207f6c",
+    "splits_sha256": "19fe23272b634164",
+    "golden_set_sha256": "d550d4998511c8fa"
+  },
+  "model_specifications": {
+    "generation_model": "Qwen/Qwen2.5-7B-Instruct",
+    "fallback_runtime": "deterministic_evidence_synthesizer",
+    "retrieval_fusion": "BM25 + Dense TruncatedSVD (RRF k=60)",
+    "reranker": "TemplateDiversifier (cosine threshold 0.75, max quota 2)",
+    "temperature": 0.1,
+    "top_p": 0.9,
+    "random_seed": 42
+  }
+}

@@ -395,3 +395,106 @@ This document records the foundational architectural, analytical, and problem-fr
 - **Alternatives Considered**: Iterative tuning on the golden set (destroys benchmark validity).
 - **Trade-off**: Final reported performance reflects true unseen generalization without iterative optimization.
 - **Confidence**: **HIGH**
+
+---
+
+# Phase 5 Decisions (Evaluation Harness, Baselines & LLM-Judge Validation)
+
+## Decision 37: 8-Level Baseline Hierarchy for Component Attribution
+- **Decision**: Evaluate an 8-level baseline hierarchy (Trivial -> Lexical -> Retrieval-Only -> Zero-Shot -> BM25 -> Dense -> Hybrid -> Diversified -> Full Agent) on identical evaluation queries.
+- **Reason**: Enables precise causal attribution of performance gains (e.g. Groundedness gain from dense/hybrid retrieval vs safety gain from guardrails).
+- **Evidence**: Groundedness increased from 1.00 (Zero-Shot) to 2.79 (Hybrid Evidence) to 2.81 (Full System) in `reports/phase5_results.md`.
+- **Alternatives Considered**: Evaluating only the final system against a single baseline (prevents component attribution).
+- **Trade-off**: Requires running 9 model passes across the evaluation dataset.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 38: Multi-Dimensional 0–3 Discrete Evaluation Rubric
+- **Decision**: Adopt a standardized 0 to 3 discrete scoring rubric across 6 distinct operational dimensions: Helpfulness, Relevance, Groundedness, Safety, Actionability, and Escalation Appropriateness.
+- **Reason**: Continuous 1–10 or 1–100 scales introduce arbitrary variance; 0–3 anchors map directly to clear operational states.
+- **Evidence**: Documented in `src/evaluation/judge.py` and verified by automated schema tests in `tests/test_phase5_evaluation.py`.
+- **Alternatives Considered**: Single composite score (obscures safety or grounding failures behind high fluency).
+- **Trade-off**: Requires computing dimensional averages independently.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 39: Independent Dual-Annotator Human Calibration Protocol
+- **Decision**: Implement independent dual annotation on a dedicated $N = 30$ sample to compute human inter-rater reliability (Cohen's $\kappa$) before evaluating the LLM Judge.
+- **Reason**: Establishes an empirical human baseline for evaluator reliability rather than assuming human raters are monolithic ground truth.
+- **Evidence**: Achieved raw agreement = 83.33% and Cohen's $\kappa = 0.7115$ on helpfulness ratings in `artifacts/evaluation/phase5_evaluation_results.json`.
+- **Alternatives Considered**: Single-annotator human evaluation (vulnerable to idiosyncratic rater bias).
+- **Trade-off**: Additional human labeling requirement.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 40: Calibration of LLM Judge Against Human Annotations
+- **Decision**: Validate the LLM Judge against human ratings on a separate 50-example dev validation set, reporting exact agreement (22.0%), Pearson correlation ($r = 0.3727$), and MAE ($0.820$).
+- **Reason**: Prevents presenting LLM-judge scores as unverified ground truth.
+- **Evidence**: Documented in `reports/phase5_results.md` and serialized in `artifacts/evaluation/phase5_evaluation_results.json`.
+- **Alternatives Considered**: Claiming LLM judge is equivalent to human ground truth (scientifically dishonest).
+- **Trade-off**: Formally labels judge metrics as "LLM-judge estimates with documented human correlation."
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 41: Empirical Length and Citation Bias Auditing for LLM Judge
+- **Decision**: Implement explicit paired bias test cases in `MultiDimensionalJudge.test_judge_bias()` to ensure concise grounded answers are not penalized against verbose unsupported answers.
+- **Reason**: LLM judges frequently exhibit length bias (rewarding verbosity over conciseness) and citation presence bias.
+- **Evidence**: Automated bias audit passed with concise grounded answer scoring higher than verbose unsupported answer (`test_judge_bias_execution`).
+- **Alternatives Considered**: Assuming off-the-shelf LLM prompt judges are unbiased.
+- **Trade-off**: Requires maintaining dedicated bias validation test cases.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 42: Bootstrap (95% CI) and Wilson Score Intervals for Statistical Uncertainty
+- **Decision**: Compute 95% empirical bootstrap confidence intervals ($B=1000$) for continuous metrics and Wilson score intervals for binomial proportions.
+- **Reason**: Point estimates on finite benchmarks ($N=200$) can overstate precision; confidence intervals provide statistically honest error bounds.
+- **Evidence**: Golden Accuracy reported as 62.00% [55.50%, 68.51%]; Safety reported as 100.00% [98.12%, 100.00%].
+- **Alternatives Considered**: Reporting single point estimates without uncertainty margins.
+- **Trade-off**: Requires running bootstrap resampling loops.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 43: Construction of Standardized 10-Class Error Taxonomy (E1–E10)
+- **Decision**: Standardize failure case logging under 10 root-cause error codes (E1 Intent Error to E10 Historical Staleness) in `artifacts/evaluation/phase5_failures.jsonl`.
+- **Reason**: Prevents vague descriptions of failure modes and provides structured data for targeted remediation.
+- **Evidence**: 88 failure records logged and attributed in `artifacts/evaluation/phase5_failures.jsonl` (76 E1 Intent Errors, 12 E5 Grounding Flaws).
+- **Alternatives Considered**: Unstructured error text notes.
+- **Trade-off**: Requires automated root-cause classification logic.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 44: Dedicated Subgroup Slicing for Multi-Intent and Out-of-Domain Boundaries
+- **Decision**: Implement dedicated subgroup evaluation for query length, dialogue turn depth, multi-intent queries, and Out-of-Domain (OOD) queries (Windows, Linux, competitor hardware).
+- **Reason**: Aggregated average metrics conceal performance degradation on challenging edge cases (e.g. multi-intent queries dropping to 46.43% accuracy).
+- **Evidence**: Documented in `reports/phase5_results.md` and verified in `tests/test_phase5_evaluation.py`.
+- **Alternatives Considered**: Reporting single global benchmark averages.
+- **Trade-off**: Requires maintaining metadata tags for slicing.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 45: Transparent Reporting of Benchmark Boundaries ("What it Proves / Does Not Prove")
+- **Decision**: Include explicit mandatory sections defining "What the Benchmark Actually Proves" and "What the Benchmark Does Not Prove" in all Phase 5 reports.
+- **Reason**: Clarifies that the system is an evidence-first historical prototype on 2017 Twitter data, not an autonomous human replacement or modern Apple policy engine.
+- **Evidence**: Documented in `reports/phase5_results.md` (Sections 18–20).
+- **Alternatives Considered**: Leaving benchmark domain interpretation open to reader assumption.
+- **Trade-off**: None. Essential for scientific integrity.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 46: Permanent Phase 5 Evaluation Freezing Protocol
+- **Decision**: Formally freeze all Phase 5 evaluation scripts, baseline definitions, manifest artifacts, and test runners.
+- **Reason**: Locks the evaluation harness against further modification, establishing a sound basis for reporting.
+- **Evidence**: Verified by full test runner `tests/run_all_tests.py` (65/65 passed).
+- **Alternatives Considered**: Continuing ad-hoc optimization loops.
+- **Trade-off**: Preserves scientific validity and prevents metric drift.
+- **Confidence**: **HIGH**
+
