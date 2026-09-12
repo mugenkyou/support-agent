@@ -25,8 +25,11 @@ An AI customer-support agent built from historical Twitter support interactions,
 * [Diagnostic & Held-Out Hardening](#diagnostic--held-out-hardening)
 * [Top Failure Modes](#top-failure-modes)
 * [What Is Misleading About My Headline Number?](#what-is-misleading-about-my-headline-number)
+* [What Good Means & What I Intentionally Did NOT Build](#what-good-means--what-i-intentionally-did-not-build)
+* [Live Demos](#live-demos)
 * [Reproduce the Results](#reproduce-the-results)
 * [Decision Log Highlights](#decision-log-highlights)
+* [One-Week Next Plan](#one-week-next-plan)
 * [Deep Dive & Provenance](#deep-dive--provenance)
 
 ---
@@ -41,7 +44,7 @@ An AI customer-support agent built from historical Twitter support interactions,
 | **Golden Intent Accuracy** | **62.0%** (F1: 0.598) | Lexical + Precedence Classifier vs 22.0% Majority / 58.5% LogReg |
 | **Hybrid Retrieval R@5** | **94.0%** (MRR: 0.812) | Unconditioned Reciprocal Rank Fusion (BM25 + Dense) vs 82.5% BM25 |
 | **Diagnostic Hardening** | **40.0% $\to$ 76.7%** | 24/60 $\to$ 46/60 (+36.7 pp) on 60-case Diagnostic Challenge Set |
-| **Held-Out Hardening Set** | **65.0%** (13/20 cases) | Independent 20-case held-out suite transferred without retraining |
+| **Held-Out Hardening Set** | **65.0%** (13/20 cases) | Independent 20-case held-out suite transferred without tuning |
 | **Escalation Precision** | **81.7% $\to$ 98.3%** | Eliminates false-positive DM deflections on public troubleshooting links |
 | **Safety Rubric Pass Rate** | **100.0%** | Zero prohibited action claims ("unlocked", "refunded") on evaluated cases |
 | **Automated Unit Tests** | **71 / 71 passing** | Complete regression suite (`python tests/run_all_tests.py`) |
@@ -52,7 +55,7 @@ An AI customer-support agent built from historical Twitter support interactions,
 
 Standard vector-search RAG pipelines collapse when applied to historical support conversations:
 
-| Naive RAG Approach | Production Failure Mode | Causal SupportAgent Solution |
+| Naive RAG Approach | Failure Mode | Causal SupportAgent Solution |
 | :--- | :--- | :--- |
 | **Similarity-only vector search** | Retrieves future resolutions ($T_c \ge T_q$), learning from the future. | **Causal Filter**: Strictly rejects candidates where $T_{\text{candidate}} \ge T_{\text{query}}$ (`src/retrieval/filter.py`). |
 | **Raw thread concatenation** | Bleeds unrelated customer context & private diagnostics across users. | **Partition Isolation**: Invariant customer & conversation split isolation (`data/processed/splits.json`). |
@@ -73,8 +76,8 @@ flowchart TD
     B --> C[Safety & Scope Policy Engine]
 
     C -->|Physical Safety Hazard| N[Escalate to Human / Service Provider]
-    C -->|Private Data Boundary| N
-    C -->|Out of Scope / Vague| O[Clarification / Domain Boundary Fallback]
+    C -->|Sensitive Data Boundary| N
+    C -->|Out of Scope / Vague| O[Clarification / Scope Boundary Fallback]
     C -->|Public Troubleshooting| D[Lexical Intent Classifier + Context Precedence]
 
     D --> E[Unconditioned Causal Hybrid Retrieval BM25 + Dense RRF]
@@ -124,7 +127,7 @@ The system operates over an **11-class operational taxonomy** derived empiricall
 | `billing_subscription_and_app_store_charges` | In-app billing errors, recurring subscriptions, refund requests | Billing Self-Service URL |
 | `storage_backup_and_icloud_sync` | iCloud storage full alerts, backup failures, photo sync errors | iCloud Settings Guide |
 | `hardware_damage_and_repair_service` | Cracked screens, water exposure, swelling/sparking batteries | High-Risk / Genius Bar Appointment |
-| `activation_lock_and_device_security` | Activation Lock, iCloud lock, stolen device ownership claims | Private Support Boundary |
+| `activation_lock_and_device_security` | Activation Lock, iCloud lock, stolen device ownership claims | Sensitive Data Boundary |
 | `audio_music_and_accessory_issues` | Muffled microphone, receiver crackle, AirPods audio drops | Audio Diagnostic Steps |
 | `feedback_complaint_or_general_inquiry` | Store hours, trade-in values, general product feedback | Public Documentation URL |
 
@@ -157,15 +160,17 @@ Evaluated across 200 Golden queries against 106,646 historical interactions unde
 
 ## Diagnostic & Held-Out Hardening
 
-The system was benchmarked against a **60-case Diagnostic Adversarial Suite** targeting 10 documented failure modes ($F_1$ to $F_{10}$), and validated on an independent **20-case Held-Out Suite** (`tests/phase6_5_heldout_cases.json`):
+Targeted adversarial hardening improved performance on the frozen **60-case Diagnostic Adversarial Challenge Set** from 40.0% to 76.7%. *This is a targeted diagnostic suite designed to target specific known failure modes, not an unbiased estimate of natural customer traffic or production robustness.*
 
-| Evaluation Metric | Phase 6 Baseline | Phase 6.5 Hardened | Delta | Technical Interpretation |
+A separate **20-case held-out suite** (`tests/phase6_5_heldout_cases.json`) reached **65.0% (13/20)**, providing evidence that some hardening changes transferred beyond the diagnostic cases.
+
+| Evaluation Metric | Phase 6 Baseline | Phase 6.5 Hardened | Delta | Operational Significance |
 | :--- | :---: | :---: | :---: | :--- |
 | **Diagnostic Adversarial Pass Rate** | 40.0% (24/60) | **76.7% (46/60)** | **+36.7 pp** | Major reduction in taxonomy & escalation mismatches |
 | **Held-Out Regression Pass Rate** | N/A | **65.0% (13/20)** | **+65.0 pp** | Independent 20-case suite transferred without tuning |
 | **F1: Taxonomy Sub-Intent Errors** | 18 | **7** | **-11** | Hardened hazard keywords & error code mappings |
 | **F2: Context Inheritance Failures** | 3 | **2** | **-1** | Prepending prior turn tokens for short queries |
-| **F8: Escalation Decision Mismatches**| 11 | **1** | **-10** | Differentiated public links from private data boundaries |
+| **F8: Escalation Decision Mismatches**| 11 | **1** | **-10** | Differentiated public links from sensitive data boundaries |
 | **Escalation Decision Precision** | 81.7% | **98.3%** | **+16.6 pp** | Eliminates over-defensive escalation on public FAQs |
 | **Automated Unit Test Suite** | 71/71 | **71/71** | **0** | Zero regression across core system functionality |
 
@@ -185,7 +190,7 @@ The system was benchmarked against a **60-case Diagnostic Adversarial Suite** ta
    * *Why it fails*: Thermal complaints trigger `HIGH_RISK_ESCALATE` (Genius Bar appointment) to err on the side of safety.
 4. **Historical URL & Software Ecosystem Drift**:
    * *Why it fails*: Historical 2017 Twitter data references legacy iTunes synchronization rather than modern macOS Finder steps.
-5. **Extreme Ellipsis Anaphora ($F_2$, 2 remaining)**:
+5. **Extreme Ellipsis / Long-Context Follow-Up ($F_2$, 2 remaining)**:
    * *Query*: Turn 1: *"AirPods sound crackling."* Turn 2: *"Left side."* Turn 3: *"Still broken."*
    * *Why it fails*: Turn 3 drops audio tokens and defaults to clarification across extended multi-turn chains.
 
@@ -197,27 +202,30 @@ The system was benchmarked against a **60-case Diagnostic Adversarial Suite** ta
 
 > ### Mandatory Evaluation Transparency
 >
-> * **The 76.7% Diagnostic Adversarial Pass Rate is NOT a general production accuracy estimate.** The 60-case challenge set is a targeted stress test designed to expose known failure boundaries, not an unbiased sample of natural customer traffic.
+> * **The 76.7% Diagnostic Adversarial Pass Rate is NOT a general production accuracy estimate.** The 60-case challenge set is a targeted stress test containing synthetic adversarial inputs and edge cases designed to target specific known failure modes; it is **not an unbiased sample** of natural customer traffic.
+> * **Some diagnostic cases were derived from previous failure analysis.** The score measures targeted improvement on previously identified failure categories.
 > * **94.0% Retrieval Recall@5 does NOT guarantee response correctness.** A historical tweet can be retrieved with high lexical similarity while referencing legacy 2017 software steps (such as iTunes on Mac) or dead URLs.
-> * **100% Guardrail Pass Rate is NOT 100% NLI factual proof.** It verifies the absence of prohibited action claims ("unlocked", "refunded") and presence of official URLs—it is a phrase guardrail, not a natural language theorem.
-> * **Evidence Convergence**: True engineering confidence stems from the combination of the frozen 200-example Golden Benchmark ($\kappa=0.967$), causal leakage controls ($T_c < T_q$), held-out transfer (65.0%), and 71 passing unit tests.
+> * **100.0% Safety Rubric Pass Rate is bounded to the evaluated rubric.** It verifies the absence of prohibited action claims ("unlocked", "refunded") and presence of official URLs—it is a phrase guardrail check, not a formal natural-language inference theorem. No unauthorized unlock, refund, or credential-disclosure claims were observed on the evaluated safety cases.
+> * **The 20-case held-out suite provides additional transfer evidence, but is small.** It demonstrates that fixes did not overfit diagnostic cases, but does not constitute an unconstrained statistical proof of universal generalization.
+> * **Evidence Convergence**: True engineering confidence stems from the combination of the frozen 200-example Golden Benchmark ($\kappa=0.967$), causal leakage controls ($T_c < T_q$), unconditioned retrieval gains, held-out transfer (65.0%), and 71 passing unit tests.
 
 ---
 
 ## What Good Means & What I Intentionally Did NOT Build
 
 ### What Good Means
-1. Correct intent routing based on underlying technical root cause.
-2. Factual support replies grounded in historical `@AppleSupport` resolutions.
+1. Correct intent routing according to underlying technical root cause.
+2. Factual, empathetic support replies grounded strictly in historical `@AppleSupport` resolutions.
 3. Zero temporal lookahead ($T_c < T_q$) and zero cross-customer data leakage.
 4. Immediate physical safety tripwires routing swollen/burning devices to authorized repair.
 5. Frictionless private DM redirection for sensitive identifiers and authentication data.
+6. Transparent operational reasons accompanying every escalation decision.
 
 ### What I Intentionally Did NOT Build
 * **Live Apple ID / iCloud Profile Inspection**: The agent does not authenticate into customer accounts or inspect device telemetry.
-* **Direct Database Account Actions**: The agent never resets passwords, issues Apple Pay refunds, or clears Activation Locks.
+* **Backend Password Resets & Account Actions**: The agent never resets passwords, issues Apple Pay refunds, or clears Activation Locks.
 * **Hardware Warranty Adjudication**: The agent does not authorize free warranty repairs or override Genius Bar technicians.
-* **Unrestricted Closed-Book Generation**: The agent is forbidden from answering technical queries purely from parametric weights without retrieved evidence.
+* **Unrestricted Closed-Book Technical Answering**: The agent is forbidden from answering technical queries purely from parametric weights without retrieved evidence.
 
 ---
 
@@ -230,7 +238,7 @@ Run interactive demonstrator: `python scripts/demo.py`
 * **Intent**: `battery_drain_and_charging_issues` | **State**: `PUBLIC_TROUBLESHOOTING`
 * **Response**: *"We'd like to help get this resolved. Have you tried restarting your device or checking Settings > Battery?"*
 
-### Scenario 2: Short Elliptical Follow-up (Context Inheritance)
+### Scenario 2: Short Contextual Follow-up (Context Inheritance)
 * **Prior Turn**: `[Customer]: My iPhone 7 speaker sound is crackling whenever I receive a call.`
 * **Customer Input**: `"Still not working."` (3 words, zero standalone diagnostic tokens)
 * **Intent**: `audio_music_and_accessory_issues` (Inherited from dialogue context) | **State**: `PUBLIC_TROUBLESHOOTING`
@@ -245,7 +253,7 @@ Run interactive demonstrator: `python scripts/demo.py`
 
 ## Reproduce the Results
 
-Headline reproduction executes in **< 0.1 seconds** by evaluating the live support agent pipeline over the 60 diagnostic + 20 held-out cases and verifying Golden Benchmark immutability.
+The script `scripts/evaluate_phase6_5.py` instantiates the live `SupportAgent` pipeline, verifies the Golden set SHA-256 fingerprint, and runs the `AdversarialEvaluator` live over all 60 diagnostic cases and 20 held-out cases in < 1 second.
 
 ### 1. Setup Environment (< 1 minute)
 ```bash
@@ -259,7 +267,7 @@ source .venv/bin/activate        # Linux/macOS
 pip install -r requirements.txt
 ```
 
-### 2. Run Headline Evaluation (< 0.1s runtime)
+### 2. Run Live Evaluation & Artifact Verification (< 1s runtime)
 ```bash
 python scripts/evaluate_phase6_5.py
 ```
@@ -276,18 +284,18 @@ python tests/run_all_tests.py
 ## Decision Log Highlights
 
 The repository maintains an unbroken 57-entry decision log ([`DECISION_LOG.md`](DECISION_LOG.md)). Key decisions include:
-1. **Decision 1: Selection of `@AppleSupport`**: Selected over retail/airline accounts due to 84.56% response coverage and 29.40% multi-turn depth.
-2. **Decision 11: Causal Timestamp Filtering ($T_c < T_q$)**: Prohibited lookahead retrieval by strictly filtering candidate timestamps prior to query creation.
-3. **Decision 22: Unconditioned Hybrid Retrieval**: Proved empirically that unconditioned hybrid retrieval achieved 94.0% R@5 vs 86.5% for intent-conditioned retrieval, eliminating error cascading.
-4. **Decision 54: Risk-Aware 4-Tier Escalation Hierarchy**: Separated physical hazards, sensitive identifiers, and public FAQ links to eliminate false-positive DM deflections.
-5. **Decision 56: Independent Held-Out Generalization Suite**: Created a 20-case held-out suite to verify that Phase 6.5 hardening transferred beyond diagnostic challenge cases.
+1. **Selection of `@AppleSupport` over Retail/Airlines** (Decision 1): Selected due to 84.56% response coverage and 29.40% multi-turn depth.
+2. **Causal Timestamp Filtering ($T_c < T_q$)** (Decision 11): Prohibited lookahead retrieval by strictly filtering candidate timestamps prior to query creation.
+3. **Unconditioned Hybrid Retrieval** (Decision 22): Proved empirically that unconditioned hybrid retrieval achieved 94.0% R@5 vs 86.5% for intent-conditioned retrieval, eliminating error cascading.
+4. **Risk-Aware 4-Tier Escalation Hierarchy** (Decision 54): Separated physical hazards, sensitive identifiers, and public FAQ links to eliminate false-positive DM deflections.
+5. **Independent Held-Out Transfer Check** (Decision 56): Created a 20-case held-out suite to verify that Phase 6.5 hardening transferred beyond diagnostic challenge cases.
 
 ---
 
 ## One-Week Next Plan
 
-1. **Dynamic Support URL Refresh Engine**: Build an automated link verification pipeline mapping historical 2017 `support.apple.com` paths to modern documentation.
-2. **Conformal Prediction Classification Layer**: Evaluate conformal selective prediction under explicit calibration assumptions to output prediction sets with guaranteed error coverage.
+1. **Dynamic Historical-Support URL Refresh Engine**: Build an automated link verification pipeline mapping historical 2017 `support.apple.com` paths to modern documentation.
+2. **Conformal/Selective Classification**: Evaluate conformal selective prediction under explicit calibration assumptions to output prediction sets with empirically measured coverage.
 3. **Dialogue State Tracker (DST)**: Replace windowed context prepending with a formal dialogue state tracker for multi-turn interactions (>5 turns).
 
 ---
@@ -301,6 +309,23 @@ The repository maintains an unbroken 57-entry decision log ([`DECISION_LOG.md`](
 * [**Golden Evaluation Set**](evaluations/golden_set/) — Frozen 200-example Golden Benchmark & annotation guides.
 * [**Adversarial Challenge Set**](evaluations/adversarial_set/) — 60-case Diagnostic Adversarial Suite.
 * [**Automated Test Suite**](tests/) — 71 regression and integrity unit tests.
+
+---
+
+## Repository Structure
+
+```text
+├── README.md
+├── DECISION_LOG.md
+├── requirements.txt
+├── src/
+├── scripts/
+├── tests/
+├── evaluations/
+├── artifacts/
+└── reports/
+    └── final_report.md
+```
 
 ---
 
