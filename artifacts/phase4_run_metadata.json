@@ -1,0 +1,20 @@
+{
+  "execution_duration_seconds": 217.36,
+  "train_pool_size": 85316,
+  "dev_pool_size": 10664,
+  "test_pool_size": 10666,
+  "golden_pool_size": 200,
+  "models_evaluated": [
+    "majority",
+    "tfidf_logreg",
+    "lexical_keyword",
+    "semantic_taxonomy",
+    "bm25",
+    "dense",
+    "hybrid",
+    "diversified"
+  ],
+  "golden_benchmark_accuracy": 0.62,
+  "golden_groundedness": 0.88,
+  "golden_safety": 1.0
+}

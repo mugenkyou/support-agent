@@ -284,3 +284,114 @@ This document records the foundational architectural, analytical, and problem-fr
 - **Trade-off**: Downstream classifier accuracy will be bounded by genuine customer ambiguity (~2-3%).
 - **Confidence**: **HIGH**
 
+---
+
+# Phase 4 Decisions (Architecture, Retrieval, Generation & Escalation)
+
+## Decision 26: Selection of Contextualized Turn (Unit B) as the Canonical Retrieval Unit
+- **Decision**: Adopt Unit B: $(\mathcal{H}_k + \mathcal{C}_k) \rightarrow \mathcal{S}_k$ as the primary retrieval indexing unit over single-turn (Unit A), full thread (Unit C), or extracted snippets (Unit D).
+- **Reason**: Unit B preserves causal conversation context required to disambiguate elliptical follow-up queries (e.g., "tried that already") without introducing thread-level noise.
+- **Evidence**: Unit B achieved 88.6% Recall@3 vs 58.2% for Unit A on multi-turn queries.
+- **Alternatives Considered**: Unit A (lost context), Unit C (excessive noise), Unit D (loss of natural conversational phrasing).
+- **Trade-off**: Modest 15% increase in index payload size.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 27: Programmatic Central Retrieval Eligibility Filter
+- **Decision**: Implement `RetrievalFilter.is_retrieval_eligible` to strictly enforce: non-self interaction, non-golden record, non-future candidate ($T_{cand} \le T_{query}$), non-identical target response within conversation, and training-split restriction.
+- **Reason**: Guarantees zero data leakage and non-lookahead causality across all sparse, dense, and hybrid retrieval operations.
+- **Evidence**: Verified by automated test suites in `tests/test_retrieval_filter.py` and `tests/test_phase4_integrity.py`.
+- **Alternatives Considered**: Ad-hoc post-filtering in individual model scripts (high risk of accidental contamination).
+- **Trade-off**: None. Mandatory for scientific integrity.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 28: Rejection of Intent-Conditioned Retrieval for Live Deployment
+- **Decision**: Reject hard intent-partitioned candidate filtering in production retrieval in favor of unconditioned global retrieval with post-ranking diversification.
+- **Reason**: In empirical testing, intent conditioning suffered a 10.6% drop in Recall@3 due to classifier misclassification cascading into candidate pool starvation (error propagation).
+- **Evidence**: Documented in `reports/retrieval_analysis.md` (Unconditioned: 89.0% Recall@3 vs Predicted-Conditioned: 78.4%).
+- **Alternatives Considered**: Hard intent pre-filtering (causes severe error propagation).
+- **Trade-off**: Unconditioned retrieval searches a larger candidate space, requiring efficient inverted indexing.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 29: Hybrid Lexical + Dense Fusion Architecture
+- **Decision**: Combine sparse BM25 / TF-IDF retrieval with dense semantic vector retrieval via Reciprocal Rank Fusion (RRF, $k=60$).
+- **Reason**: Lexical retrieval handles exact technical identifiers (e.g., error codes, iOS version numbers, device models), while dense retrieval captures semantic intent paraphrasing.
+- **Evidence**: Hybrid fusion achieved 89.0% Recall@3 and 0.8120 MRR, outperforming pure sparse (85.0%) and pure dense (82.0%).
+- **Alternatives Considered**: Pure dense retrieval (poor exact match on specific error codes), Pure sparse retrieval (misses semantic synonyms).
+- **Trade-off**: Requires maintaining both inverted term indices and dense embedding matrices.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 30: Template Collapse Mitigation via Diversification Reranking
+- **Decision**: Implement `TemplateDiversifier` enforcing a maximum quota per template family in top-k candidate results.
+- **Reason**: Historical AppleSupport responses frequently repeat identical boilerplate URL redirections (e.g., `locate.apple.com`), causing dense retrieval to return 5 redundant copies.
+- **Evidence**: Diversification improved unique response rate from 44.2% to 92.4% and semantic diversity from 0.491 to 0.884 without degrading Recall@k.
+- **Alternatives Considered**: Raw top-k rank order without diversity checks.
+- **Trade-off**: Minor 0.1ms reranking computational overhead.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 31: Four-Tier Operational Escalation State Policy
+- **Decision**: Replace binary escalation flags with a 4-state operational policy: `PUBLIC_TROUBLESHOOTING`, `PRIVATE_SUPPORT_REQUIRED`, `INSUFFICIENT_INFORMATION`, and `HIGH_RISK_ESCALATE`.
+- **Reason**: Real customer support workflows distinguish safe public software steps, DM credential handoffs, clarification requests, and hazardous safety escalations.
+- **Evidence**: 100% of adversarial security traps successfully routed in `src/evaluation/adversarial.py`.
+- **Alternatives Considered**: Single binary `is_escalated` flag (lacks operational fidelity).
+- **Trade-off**: Requires structured downstream response routing for each state.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 32: Direct Message (DM) Redirection as Private-Channel Boundary
+- **Decision**: Treat historical support replies instructing customers to DM as evidence of a **Private-Channel Security Boundary** rather than automation failure.
+- **Reason**: Apple's customer support protocol mandates moving to private channels when collecting serial numbers, IMEIs, or Apple ID account details.
+- **Evidence**: Documented in `reports/escalation_analysis.md`.
+- **Alternatives Considered**: Treating all DM tweets as human escalation failures (conflates privacy policy with diagnostic incapability).
+- **Trade-off**: Requires distinct evaluation of privacy compliance vs resolution accuracy.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 33: Hard Guardrails on Prohibited Account Claims
+- **Decision**: Strictly prohibit the agent from generating claims of performing account-level actions (e.g., "I unlocked your account", "Refund issued").
+- **Reason**: AI agents in public channels cannot perform authenticated private account modifications; hallucinating these actions creates severe customer confusion and security liability.
+- **Evidence**: Verified by `GroundingEvaluator` across 15 adversarial attack scenarios (100% safety pass rate).
+- **Alternatives Considered**: Relying on unconstrained LLM zero-shot generation (demonstrated vulnerability to prompt injections).
+- **Trade-off**: None. Mandatory security guardrail.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 34: Multi-Dimensional Independent Grounding Evaluator
+- **Decision**: Implement `GroundingEvaluator` to independently score evidence overlap, unsupported claims, procedural faithfulness, and policy safety.
+- **Reason**: Generation fluency is decoupled from factual correctness; fluent responses can contain subtle procedural hallucinations.
+- **Evidence**: Verified in `src/generation/grounding.py` and `reports/generation_analysis.md`.
+- **Alternatives Considered**: Relying purely on BLEU/ROUGE against target response (penalizes valid alternative wordings).
+- **Trade-off**: Requires dedicated evaluation parsing.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 35: Adoption of Standardized Failure Taxonomy (F1–F15)
+- **Decision**: Categorize all system failures under a 15-class standardized failure taxonomy (F1: Wrong Intent to F15: Security Failure).
+- **Reason**: Enables fine-grained diagnostic error tracking and targeted mitigation engineering.
+- **Evidence**: Documented in `reports/phase4_failure_analysis.md`.
+- **Alternatives Considered**: Informal ad-hoc error notes.
+- **Trade-off**: Requires annotating error cases with standardized codes.
+- **Confidence**: **HIGH**
+
+---
+
+## Decision 36: Final Protected Golden Evaluation Freezing Protocol
+- **Decision**: Execute the evaluation on the 200-example golden set strictly **ONCE** after all model architectures, parameters, retrieval indices, and prompts are frozen.
+- **Reason**: Prevents benchmark overfitting, hyperparameter snooping, and artificial score inflation.
+- **Evidence**: Enforced in `scripts/run_phase4_pipeline.py` and saved to immutable artifact `artifacts/golden_evaluation/phase4_results.json`.
+- **Alternatives Considered**: Iterative tuning on the golden set (destroys benchmark validity).
+- **Trade-off**: Final reported performance reflects true unseen generalization without iterative optimization.
+- **Confidence**: **HIGH**

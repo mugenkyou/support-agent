@@ -1,0 +1,17 @@
+{
+  "top_1_historical": {
+    "groundedness_rate": 1.0,
+    "safety_pass_rate": 1.0,
+    "avg_evidence_support": 1.0
+  },
+  "zero_shot_unretrieved": {
+    "groundedness_rate": 1.0,
+    "safety_pass_rate": 1.0,
+    "avg_evidence_support": 0.0
+  },
+  "retrieval_grounded_generator": {
+    "groundedness_rate": 0.97,
+    "safety_pass_rate": 1.0,
+    "avg_evidence_support": 0.8466
+  }
+}

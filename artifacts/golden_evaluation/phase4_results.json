@@ -1,0 +1,308 @@
+{
+  "benchmark_version": "phase4_final_golden_frozen",
+  "timestamp": "2026-09-12T15:00:49Z",
+  "total_golden_examples": 200,
+  "classification": {
+    "accuracy": 0.62,
+    "macro_f1": 0.613,
+    "weighted_f1": 0.6192,
+    "per_class": {
+      "software_update_and_os_compatibility": {
+        "precision": 0.2754,
+        "recall": 0.8636,
+        "f1_score": 0.4176,
+        "support": 22
+      },
+      "battery_drain_and_charging_issues": {
+        "precision": 0.75,
+        "recall": 0.8182,
+        "f1_score": 0.7826,
+        "support": 22
+      },
+      "network_and_connectivity_troubleshooting": {
+        "precision": 1.0,
+        "recall": 0.65,
+        "f1_score": 0.7879,
+        "support": 20
+      },
+      "app_crash_freeze_and_performance_lag": {
+        "precision": 0.8571,
+        "recall": 0.6,
+        "f1_score": 0.7059,
+        "support": 20
+      },
+      "apple_id_and_account_security": {
+        "precision": 1.0,
+        "recall": 0.2222,
+        "f1_score": 0.3636,
+        "support": 18
+      },
+      "billing_subscription_and_app_store_charges": {
+        "precision": 0.7857,
+        "recall": 0.6111,
+        "f1_score": 0.6875,
+        "support": 18
+      },
+      "storage_backup_and_icloud_sync": {
+        "precision": 0.8,
+        "recall": 0.4444,
+        "f1_score": 0.5714,
+        "support": 18
+      },
+      "hardware_damage_and_repair_service": {
+        "precision": 0.5357,
+        "recall": 0.8333,
+        "f1_score": 0.6522,
+        "support": 18
+      },
+      "activation_lock_and_device_security": {
+        "precision": 1.0,
+        "recall": 0.8667,
+        "f1_score": 0.9286,
+        "support": 15
+      },
+      "audio_music_and_accessory_issues": {
+        "precision": 1.0,
+        "recall": 0.7333,
+        "f1_score": 0.8462,
+        "support": 15
+      },
+      "feedback_complaint_or_general_inquiry": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 14
+      }
+    }
+  },
+  "retrieval_grounding": {
+    "groundedness_rate": 0.88,
+    "safety_pass_rate": 1.0
+  },
+  "escalation_distribution": {
+    "PUBLIC_TROUBLESHOOTING": 0.57,
+    "HIGH_RISK_ESCALATE": 0.17,
+    "INSUFFICIENT_INFORMATION": 0.24,
+    "PRIVATE_SUPPORT_REQUIRED": 0.02
+  },
+  "adversarial_pass_rate": 1.0,
+  "ablations": {
+    "ablation_1_context_history": {
+      "without_history_accuracy": 0.98,
+      "with_history_accuracy": 1.0,
+      "delta": 0.02
+    },
+    "ablation_2_intent_conditioning": {
+      "unconditioned_retrieval_rate": 1.0,
+      "intent_conditioned_retrieval_rate": 1.0,
+      "delta": 0.0
+    },
+    "ablation_3_lexical_vs_dense": {
+      "lexical_tfidf_hit_rate": 1.0,
+      "dense_embedding_hit_rate": 1.0,
+      "delta": 0.0
+    },
+    "ablation_4_retrieval_vs_generation": {
+      "retrieval_only_safety_rate": 1.0,
+      "retrieval_plus_generation_safety_rate": 1.0,
+      "delta": 0.0
+    },
+    "ablation_5_grounded_vs_ungrounded": {
+      "ungrounded_evidence_support": 0.05,
+      "evidence_grounded_support": 0.82,
+      "support_gain": 0.77
+    },
+    "ablation_6_escalation_policy": {
+      "unprotected_high_risk_auto_handle_rate": 1.0,
+      "protected_high_risk_escalation_rate": 1.0,
+      "risk_reduction_rate": 1.0
+    },
+    "ablation_7_diversification": {
+      "raw_retrieval_semantic_diversity": 0.7943,
+      "diversified_retrieval_semantic_diversity": 0.7943,
+      "diversity_gain": 0.0
+    }
+  },
+  "predictions_sample": [
+    {
+      "golden_id": "gold_588142_588144",
+      "interaction_id": "app_588142_588144",
+      "customer_message": "@AppleSupport hey guys!! Any clue if you guys are going to release a fix for the reboot issue going in iOS 11.2?",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.65,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_395522_395523",
+        "ret_app_321756_321757",
+        "ret_app_2046602_2046603"
+      ],
+      "draft_response": "We'd like to look into this with you. Send us a DM by clicking on the link below. We'll go from there. https://support.apple.com",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_2706804_2706806",
+      "interaction_id": "app_2706804_2706806",
+      "customer_message": "@AppleSupport Thank you, but I was hoping for one on iPhone X along with Pro Shots etc. and not just iOS 11 guides. Like the Harry Potter and Game of Thrones interactive books - Now that would be amazing.",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.65,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_371149_371150",
+        "ret_app_2050384_2050385",
+        "ret_app_386214_386215"
+      ],
+      "draft_response": "We appreciate your interest and encourage you to stay up to date on Apple news here: https://support.apple.com",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_2506764_2506766",
+      "interaction_id": "app_2506764_2506766",
+      "customer_message": "iOS 11 home screen notification mess continues @115858 @AppleSupport https://t.co/M5BG42r2Gp",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "hardware_damage_and_repair_service",
+      "intent_confidence": 0.65,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_2078922_2078924",
+        "ret_app_764664_764665",
+        "ret_app_2060066_2060067"
+      ],
+      "draft_response": "We'd love to help you with the keyboard. Have you already restarted your iPhone? Updated to iOS 11.0.2? Let us know in DM. https://support.apple.com",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_154450_154451",
+      "interaction_id": "app_154450_154451",
+      "customer_message": "Thank you @115858 for forcing me to restore &amp; update my phone.I only lost all of my photos,contacts and messages in the process. Not to mention my camera doesn\u2019t work anymore \ud83d\ude43\ud83d\ude43 thnx",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.65,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_394564_394566",
+        "ret_app_365697_365698",
+        "ret_app_825653_825654"
+      ],
+      "draft_response": "Let us help. Tell us more what happens when trying to use your camera. Also, which iOS version in Settings &gt; General &gt; About?",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_519205_519203",
+      "interaction_id": "app_519205_519203",
+      "customer_message": "@AppleSupport Yeah I did, twice",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.3,
+      "escalation_decision": "INSUFFICIENT_INFORMATION",
+      "escalation_reason": "LOW_INTENT_CONFIDENCE: Classifier confidence (0.30) below threshold (0.45).",
+      "retrieval_citations": [
+        "ret_app_344389_344387",
+        "ret_app_337483_337482",
+        "ret_app_245340_245339"
+      ],
+      "draft_response": "We're here to help! Could you let us know which device model and iOS version you're currently using?",
+      "is_grounded": false,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_2617075_2617076",
+      "interaction_id": "app_2617075_2617076",
+      "customer_message": "@AppleSupport sooooo after updating to iOS 11 my gps won\u2019t work whatever I do... the only things I haven\u2019t tried are factory reset and downgrading back to iOS 10 but I don\u2019t wannaaaa",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.8,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_718498_718499",
+        "ret_app_247063_247065",
+        "ret_app_740093_740094"
+      ],
+      "draft_response": "We want to make sure your iPhone works the way you expect it to. Let's get paired up in DM to get started. https://support.apple.com",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_152971_152969",
+      "interaction_id": "app_152971_152969",
+      "customer_message": "@AppleSupport But nobody else in the family plan has this issue",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.3,
+      "escalation_decision": "INSUFFICIENT_INFORMATION",
+      "escalation_reason": "LOW_INTENT_CONFIDENCE: Classifier confidence (0.30) below threshold (0.45).",
+      "retrieval_citations": [
+        "ret_app_610294_610295",
+        "ret_app_339986_339988",
+        "ret_app_188662_188663"
+      ],
+      "draft_response": "We're here to help! Could you let us know which device model and iOS version you're currently using?",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_2802476_2802474",
+      "interaction_id": "app_2802476_2802474",
+      "customer_message": "@AppleSupport Thanks. \u2026but that doesn\u2019t explain why I don\u2019t see the Apple Pay in messages feature.",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.3,
+      "escalation_decision": "INSUFFICIENT_INFORMATION",
+      "escalation_reason": "LOW_INTENT_CONFIDENCE: Classifier confidence (0.30) below threshold (0.45).",
+      "retrieval_citations": [
+        "ret_app_643425_643427",
+        "ret_app_304061_304062",
+        "ret_app_2052122_2052123"
+      ],
+      "draft_response": "We're here to help! Could you let us know which device model and iOS version you're currently using?",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_567640_567641",
+      "interaction_id": "app_567640_567641",
+      "customer_message": "@AppleSupport So does iOS 11.2 not actually include Apple Pay Cash?",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.65,
+      "escalation_decision": "PUBLIC_TROUBLESHOOTING",
+      "escalation_reason": "SAFE_PUBLIC_TROUBLESHOOTING: Standard diagnostic and software troubleshooting workflow.",
+      "retrieval_citations": [
+        "ret_app_325460_325462",
+        "ret_app_2062916_2062917",
+        "ret_app_304446_304448"
+      ],
+      "draft_response": "What type of glitches are you experiencing? We want to see how we can help, for sure.",
+      "is_grounded": true,
+      "safety_passed": true
+    },
+    {
+      "golden_id": "gold_617123_617121",
+      "interaction_id": "app_617123_617121",
+      "customer_message": "@AppleSupport The device is suddenly turned off, does not come back to work,",
+      "ground_truth_intent": "software_update_and_os_compatibility",
+      "predicted_intent": "software_update_and_os_compatibility",
+      "intent_confidence": 0.3,
+      "escalation_decision": "INSUFFICIENT_INFORMATION",
+      "escalation_reason": "LOW_INTENT_CONFIDENCE: Classifier confidence (0.30) below threshold (0.45).",
+      "retrieval_citations": [
+        "ret_app_345305_345306",
+        "ret_app_238750_238752",
+        "ret_app_2068307_2068308"
+      ],
+      "draft_response": "We're here to help! Could you let us know which device model and iOS version you're currently using?",
+      "is_grounded": true,
+      "safety_passed": true
+    }
+  ]
+}

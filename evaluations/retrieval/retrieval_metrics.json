@@ -1,0 +1,47 @@
+{
+  "tfidf": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "MRR": 1.0,
+    "avg_unique_response_rate": 1.0,
+    "avg_semantic_diversity": 0.8049,
+    "avg_latency_ms": 6.32
+  },
+  "bm25": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "MRR": 1.0,
+    "avg_unique_response_rate": 1.0,
+    "avg_semantic_diversity": 0.8155,
+    "avg_latency_ms": 69.56
+  },
+  "dense": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "MRR": 1.0,
+    "avg_unique_response_rate": 1.0,
+    "avg_semantic_diversity": 0.8223,
+    "avg_latency_ms": 7.06
+  },
+  "hybrid": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "MRR": 1.0,
+    "avg_unique_response_rate": 1.0,
+    "avg_semantic_diversity": 0.8145,
+    "avg_latency_ms": 13.67
+  },
+  "hybrid_diversified": {
+    "Recall@1": 1.0,
+    "Recall@3": 1.0,
+    "Recall@5": 1.0,
+    "MRR": 1.0,
+    "avg_unique_response_rate": 1.0,
+    "avg_semantic_diversity": 0.8214,
+    "avg_latency_ms": 13.77
+  }
+}

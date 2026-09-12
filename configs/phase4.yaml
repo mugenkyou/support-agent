@@ -1,0 +1,79 @@
+# Phase 4 Configuration: Support Agent Architecture, Retrieval, Response Generation & Escalation
+version: "phase4_v1"
+random_seed: 42
+
+environment:
+  python_executable: "C:\\Users\\Sachi\\AppData\\Local\\Programs\\Python\\Python310\\python.exe"
+  device: "cpu"
+  torch_deterministic: true
+
+taxonomy:
+  version: "taxonomy_v1"
+  path: "src/taxonomy/taxonomy.yaml"
+  json_cache: "src/taxonomy/taxonomy.json"
+  num_classes: 11
+
+data:
+  interactions_path: "data/processed/interactions.jsonl"
+  splits_path: "data/processed/splits.json"
+  golden_set_path: "evaluations/golden_set/golden_set.jsonl"
+  primary_split: "temporal_split"
+
+retrieval:
+  top_k: 5
+  similarity_metric: "cosine"
+  bm25:
+    k1: 1.5
+    b: 0.75
+  tfidf:
+    max_features: 10000
+    ngram_range: [1, 2]
+    min_df: 2
+  dense:
+    model_name: "sentence-transformers/all-MiniLM-L6-v2"
+    dimension: 384
+    normalize_embeddings: true
+    batch_size: 64
+  hybrid:
+    rrf_k: 60
+    dense_weight: 0.5
+    sparse_weight: 0.5
+  diversification:
+    enabled: true
+    similarity_threshold: 0.85
+    max_per_template_family: 1
+
+classification:
+  baselines:
+    majority:
+      default_intent: "software_update_and_os_compatibility"
+    tfidf_logreg:
+      C: 1.0
+      max_iter: 500
+      class_weight: "balanced"
+    keyword:
+      confidence_threshold: 0.4
+    semantic:
+      temperature: 0.0
+
+generation:
+  model_type: "grounded_historical_synthesis"
+  max_output_tokens: 150
+  temperature: 0.2
+  grounding:
+    min_evidence_overlap: 0.35
+    prohibit_account_modifications: true
+    prohibit_unsupported_refunds: true
+
+escalation:
+  policy_version: "policy_v1"
+  high_risk_intents:
+    - "apple_id_and_account_security"
+    - "billing_subscription_and_app_store_charges"
+    - "activation_lock_and_device_security"
+  clarification_keywords:
+    - "help"
+    - "not working"
+    - "why"
+    - "broken"
+    - "please fix"

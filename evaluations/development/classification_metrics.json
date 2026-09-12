@@ -1,0 +1,1058 @@
+{
+  "majority": {
+    "accuracy": 0.63,
+    "macro_precision": 0.0573,
+    "macro_recall": 0.0909,
+    "macro_f1": 0.0703,
+    "weighted_precision": 0.3969,
+    "weighted_recall": 0.63,
+    "weighted_f1": 0.487,
+    "total_samples": 500,
+    "per_class": {
+      "software_update_and_os_compatibility": {
+        "precision": 0.63,
+        "recall": 1.0,
+        "f1_score": 0.773,
+        "support": 315
+      },
+      "battery_drain_and_charging_issues": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 25
+      },
+      "network_and_connectivity_troubleshooting": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 23
+      },
+      "app_crash_freeze_and_performance_lag": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 22
+      },
+      "apple_id_and_account_security": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 6
+      },
+      "billing_subscription_and_app_store_charges": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 10
+      },
+      "storage_backup_and_icloud_sync": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 14
+      },
+      "hardware_damage_and_repair_service": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 38
+      },
+      "activation_lock_and_device_security": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 2
+      },
+      "audio_music_and_accessory_issues": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 23
+      },
+      "feedback_complaint_or_general_inquiry": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 22
+      }
+    },
+    "confusion_matrix": [
+      [
+        315,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        23,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        22,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        14,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        38,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        23,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        22,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    ],
+    "classes": [
+      "software_update_and_os_compatibility",
+      "battery_drain_and_charging_issues",
+      "network_and_connectivity_troubleshooting",
+      "app_crash_freeze_and_performance_lag",
+      "apple_id_and_account_security",
+      "billing_subscription_and_app_store_charges",
+      "storage_backup_and_icloud_sync",
+      "hardware_damage_and_repair_service",
+      "activation_lock_and_device_security",
+      "audio_music_and_accessory_issues",
+      "feedback_complaint_or_general_inquiry"
+    ],
+    "slices": {
+      "by_length": {
+        "short (<50 chars)": {
+          "accuracy": 0.9273,
+          "count": 55
+        },
+        "medium (50-150 chars)": {
+          "accuracy": 0.6772,
+          "count": 285
+        },
+        "long (>150 chars)": {
+          "accuracy": 0.4437,
+          "count": 160
+        }
+      },
+      "by_ambiguity": {
+        "none": {
+          "accuracy": 0.63,
+          "count": 500
+        }
+      },
+      "by_multi_intent": {
+        "single_intent": {
+          "accuracy": 0.63,
+          "count": 500
+        }
+      }
+    }
+  },
+  "tfidf_logreg": {
+    "accuracy": 0.89,
+    "macro_precision": 0.7351,
+    "macro_recall": 0.7608,
+    "macro_f1": 0.7407,
+    "weighted_precision": 0.902,
+    "weighted_recall": 0.89,
+    "weighted_f1": 0.8927,
+    "total_samples": 500,
+    "per_class": {
+      "software_update_and_os_compatibility": {
+        "precision": 0.9508,
+        "recall": 0.9206,
+        "f1_score": 0.9355,
+        "support": 315
+      },
+      "battery_drain_and_charging_issues": {
+        "precision": 0.9524,
+        "recall": 0.8,
+        "f1_score": 0.8696,
+        "support": 25
+      },
+      "network_and_connectivity_troubleshooting": {
+        "precision": 0.9524,
+        "recall": 0.8696,
+        "f1_score": 0.9091,
+        "support": 23
+      },
+      "app_crash_freeze_and_performance_lag": {
+        "precision": 0.8636,
+        "recall": 0.8636,
+        "f1_score": 0.8636,
+        "support": 22
+      },
+      "apple_id_and_account_security": {
+        "precision": 0.625,
+        "recall": 0.8333,
+        "f1_score": 0.7143,
+        "support": 6
+      },
+      "billing_subscription_and_app_store_charges": {
+        "precision": 0.7778,
+        "recall": 0.7,
+        "f1_score": 0.7368,
+        "support": 10
+      },
+      "storage_backup_and_icloud_sync": {
+        "precision": 0.7692,
+        "recall": 0.7143,
+        "f1_score": 0.7407,
+        "support": 14
+      },
+      "hardware_damage_and_repair_service": {
+        "precision": 0.9714,
+        "recall": 0.8947,
+        "f1_score": 0.9315,
+        "support": 38
+      },
+      "activation_lock_and_device_security": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1_score": 0.0,
+        "support": 2
+      },
+      "audio_music_and_accessory_issues": {
+        "precision": 0.6571,
+        "recall": 1.0,
+        "f1_score": 0.7931,
+        "support": 23
+      },
+      "feedback_complaint_or_general_inquiry": {
+        "precision": 0.5667,
+        "recall": 0.7727,
+        "f1_score": 0.6538,
+        "support": 22
+      }
+    },
+    "confusion_matrix": [
+      [
+        290,
+        0,
+        1,
+        2,
+        1,
+        0,
+        2,
+        0,
+        1,
+        7,
+        11
+      ],
+      [
+        1,
+        20,
+        0,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        0,
+        20,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        19,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        10,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        34,
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        23,
+        0
+      ],
+      [
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17
+      ]
+    ],
+    "classes": [
+      "software_update_and_os_compatibility",
+      "battery_drain_and_charging_issues",
+      "network_and_connectivity_troubleshooting",
+      "app_crash_freeze_and_performance_lag",
+      "apple_id_and_account_security",
+      "billing_subscription_and_app_store_charges",
+      "storage_backup_and_icloud_sync",
+      "hardware_damage_and_repair_service",
+      "activation_lock_and_device_security",
+      "audio_music_and_accessory_issues",
+      "feedback_complaint_or_general_inquiry"
+    ],
+    "slices": {
+      "by_length": {
+        "short (<50 chars)": {
+          "accuracy": 0.9636,
+          "count": 55
+        },
+        "medium (50-150 chars)": {
+          "accuracy": 0.9088,
+          "count": 285
+        },
+        "long (>150 chars)": {
+          "accuracy": 0.8313,
+          "count": 160
+        }
+      },
+      "by_ambiguity": {
+        "none": {
+          "accuracy": 0.89,
+          "count": 500
+        }
+      },
+      "by_multi_intent": {
+        "single_intent": {
+          "accuracy": 0.89,
+          "count": 500
+        }
+      }
+    }
+  },
+  "lexical_keyword": {
+    "accuracy": 1.0,
+    "macro_precision": 1.0,
+    "macro_recall": 1.0,
+    "macro_f1": 1.0,
+    "weighted_precision": 1.0,
+    "weighted_recall": 1.0,
+    "weighted_f1": 1.0,
+    "total_samples": 500,
+    "per_class": {
+      "software_update_and_os_compatibility": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 315
+      },
+      "battery_drain_and_charging_issues": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 25
+      },
+      "network_and_connectivity_troubleshooting": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 23
+      },
+      "app_crash_freeze_and_performance_lag": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 22
+      },
+      "apple_id_and_account_security": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 6
+      },
+      "billing_subscription_and_app_store_charges": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 10
+      },
+      "storage_backup_and_icloud_sync": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 14
+      },
+      "hardware_damage_and_repair_service": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 38
+      },
+      "activation_lock_and_device_security": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 2
+      },
+      "audio_music_and_accessory_issues": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 23
+      },
+      "feedback_complaint_or_general_inquiry": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1_score": 1.0,
+        "support": 22
+      }
+    },
+    "confusion_matrix": [
+      [
+        315,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        25,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        23,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        22,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        38,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        23,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        22
+      ]
+    ],
+    "classes": [
+      "software_update_and_os_compatibility",
+      "battery_drain_and_charging_issues",
+      "network_and_connectivity_troubleshooting",
+      "app_crash_freeze_and_performance_lag",
+      "apple_id_and_account_security",
+      "billing_subscription_and_app_store_charges",
+      "storage_backup_and_icloud_sync",
+      "hardware_damage_and_repair_service",
+      "activation_lock_and_device_security",
+      "audio_music_and_accessory_issues",
+      "feedback_complaint_or_general_inquiry"
+    ],
+    "slices": {
+      "by_length": {
+        "short (<50 chars)": {
+          "accuracy": 1.0,
+          "count": 55
+        },
+        "medium (50-150 chars)": {
+          "accuracy": 1.0,
+          "count": 285
+        },
+        "long (>150 chars)": {
+          "accuracy": 1.0,
+          "count": 160
+        }
+      },
+      "by_ambiguity": {
+        "none": {
+          "accuracy": 1.0,
+          "count": 500
+        }
+      },
+      "by_multi_intent": {
+        "single_intent": {
+          "accuracy": 1.0,
+          "count": 500
+        }
+      }
+    }
+  },
+  "semantic_taxonomy": {
+    "accuracy": 0.306,
+    "macro_precision": 0.2522,
+    "macro_recall": 0.4508,
+    "macro_f1": 0.2613,
+    "weighted_precision": 0.5704,
+    "weighted_recall": 0.306,
+    "weighted_f1": 0.3383,
+    "total_samples": 500,
+    "per_class": {
+      "software_update_and_os_compatibility": {
+        "precision": 0.76,
+        "recall": 0.2413,
+        "f1_score": 0.3663,
+        "support": 315
+      },
+      "battery_drain_and_charging_issues": {
+        "precision": 0.3878,
+        "recall": 0.76,
+        "f1_score": 0.5135,
+        "support": 25
+      },
+      "network_and_connectivity_troubleshooting": {
+        "precision": 0.2973,
+        "recall": 0.4783,
+        "f1_score": 0.3667,
+        "support": 23
+      },
+      "app_crash_freeze_and_performance_lag": {
+        "precision": 0.36,
+        "recall": 0.4091,
+        "f1_score": 0.383,
+        "support": 22
+      },
+      "apple_id_and_account_security": {
+        "precision": 0.12,
+        "recall": 1.0,
+        "f1_score": 0.2143,
+        "support": 6
+      },
+      "billing_subscription_and_app_store_charges": {
+        "precision": 0.0435,
+        "recall": 0.2,
+        "f1_score": 0.0714,
+        "support": 10
+      },
+      "storage_backup_and_icloud_sync": {
+        "precision": 0.1356,
+        "recall": 0.5714,
+        "f1_score": 0.2192,
+        "support": 14
+      },
+      "hardware_damage_and_repair_service": {
+        "precision": 0.2333,
+        "recall": 0.1842,
+        "f1_score": 0.2059,
+        "support": 38
+      },
+      "activation_lock_and_device_security": {
+        "precision": 0.0238,
+        "recall": 0.5,
+        "f1_score": 0.0455,
+        "support": 2
+      },
+      "audio_music_and_accessory_issues": {
+        "precision": 0.2821,
+        "recall": 0.4783,
+        "f1_score": 0.3548,
+        "support": 23
+      },
+      "feedback_complaint_or_general_inquiry": {
+        "precision": 0.1304,
+        "recall": 0.1364,
+        "f1_score": 0.1333,
+        "support": 22
+      }
+    },
+    "confusion_matrix": [
+      [
+        76,
+        19,
+        21,
+        7,
+        34,
+        36,
+        43,
+        14,
+        27,
+        20,
+        18
+      ],
+      [
+        4,
+        19,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        1,
+        11,
+        1,
+        1,
+        1,
+        0,
+        1,
+        2,
+        0,
+        1
+      ],
+      [
+        2,
+        3,
+        2,
+        9,
+        1,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        3,
+        0,
+        0,
+        1,
+        2,
+        0,
+        0,
+        3,
+        1,
+        0
+      ],
+      [
+        2,
+        0,
+        1,
+        0,
+        0,
+        1,
+        8,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        10,
+        1,
+        1,
+        8,
+        2,
+        0,
+        2,
+        7,
+        6,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        2,
+        1,
+        0,
+        1,
+        3,
+        2,
+        2,
+        0,
+        11,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        3,
+        2,
+        3,
+        2,
+        3,
+        4,
+        3
+      ]
+    ],
+    "classes": [
+      "software_update_and_os_compatibility",
+      "battery_drain_and_charging_issues",
+      "network_and_connectivity_troubleshooting",
+      "app_crash_freeze_and_performance_lag",
+      "apple_id_and_account_security",
+      "billing_subscription_and_app_store_charges",
+      "storage_backup_and_icloud_sync",
+      "hardware_damage_and_repair_service",
+      "activation_lock_and_device_security",
+      "audio_music_and_accessory_issues",
+      "feedback_complaint_or_general_inquiry"
+    ],
+    "slices": {
+      "by_length": {
+        "short (<50 chars)": {
+          "accuracy": 0.2545,
+          "count": 55
+        },
+        "medium (50-150 chars)": {
+          "accuracy": 0.3018,
+          "count": 285
+        },
+        "long (>150 chars)": {
+          "accuracy": 0.3312,
+          "count": 160
+        }
+      },
+      "by_ambiguity": {
+        "none": {
+          "accuracy": 0.306,
+          "count": 500
+        }
+      },
+      "by_multi_intent": {
+        "single_intent": {
+          "accuracy": 0.306,
+          "count": 500
+        }
+      }
+    }
+  }
+}
