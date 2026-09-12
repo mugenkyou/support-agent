@@ -93,7 +93,7 @@ The submission is evaluated against 14 strict engineering and methodological cri
 3. **Can I reproduce the main result?**
    Yes. Running `python scripts/evaluate_phase6_5.py` executes in under a second and prints the complete evaluation table.
 4. **Do I trust the evaluation?**
-   Yes. The Golden set hash is cryptographically frozen (`d550d4998511c8fa`), leakage tests explicitly test for lookahead contamination, and the held-out set confirms generalization beyond the diagnostic suite.
+   Mostly yes. The held-out suite provides additional evidence beyond the diagnostic suite, although its 20-case size means it should not be treated as proof of generalization. The Golden set hash is cryptographically frozen (`d550d4998511c8fa`), and leakage tests explicitly test for lookahead contamination.
 5. **Can I see real failure analysis?**
    Yes. Section *"Where It Still Breaks"* explicitly details 4 persistent failure modes with real query examples.
 6. **Does the author understand their limitations?**

@@ -145,7 +145,7 @@ Evaluated across 200 Golden queries against the 106,646 historical interaction i
 
 The system was evaluated against a **60-case Diagnostic Adversarial Challenge Set** (synthesized across 8 attack categories: short elliptical context, multi-intent compound queries, taxonomy boundaries, prompt injection, historical traps, retrieval leakage, third-party contamination, and OOD queries). 
 
-To ensure interventions did not overfit diagnostic cases, a separate **20-case Held-Out Regression Suite** (`tests/phase6_5_heldout_cases.json`) was authored independently and evaluated.
+To ensure interventions did not overfit diagnostic cases, a separate **20-case Held-Out Regression Suite** (`tests/phase6_5_heldout_cases.json`) was authored independently and evaluated. The held-out set provides evidence that some hardening improvements transfer beyond the diagnostic suite.
 
 ```
 Phase 6 Baseline:       24 / 60 passed (40.0%)
@@ -156,7 +156,7 @@ Phase 6.5 Challenger:   46 / 60 passed (76.7%)  [+36.7 percentage points]
 | Evaluation Metric | Champion (Phase 6 Baseline) | Challenger (Phase 6.5 Hardened) | Delta | Technical Interpretation |
 | :--- | :---: | :---: | :---: | :--- |
 | **Diagnostic Adversarial Pass Rate** | 40.0% (24/60) | **76.7% (46/60)** | **+36.7%** | Major reduction in taxonomy & escalation mismatches |
-| **Held-Out Regression Pass Rate** | N/A | **65.0% (13/20)** | **+65.0%** | Validates technical generalization beyond observed cases |
+| **Held-Out Regression Pass Rate** | N/A | **65.0% (13/20)** | **+65.0%** | The held-out set provides evidence that some hardening improvements transfer beyond the diagnostic suite |
 | **F1: Taxonomy Sub-Intent Errors** | 18 | **7** | **-11** | Hardened hazard keywords & iOS feature mappings |
 | **F2: Context Inheritance Failures**| 3 | **2** | **-1** | Context window expansion for elliptical turns |
 | **F4: Multi-Intent Prioritizations**| 4 | **4** | **0** | Fundamental limitation of single-label classification |

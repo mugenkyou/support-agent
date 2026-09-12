@@ -94,7 +94,7 @@ Improvements were evaluated using a strict **Champion vs Challenger** methodolog
 2. **Which failures remain?** 14 total failures remain in the 60-case diagnostic set (7 F1 taxonomy errors, 4 F4 multi-intent errors, 2 F2 context inheritance errors, 1 F8 escalation error).
 3. **Which metric improved most?** Diagnostic adversarial pass rate (+36.7%) and escalation precision (+16.6%).
 4. **Which metric did NOT improve?** F4 multi-intent prioritization remains challenging under strict single-label classification.
-5. **Did any fix overfit the diagnostic suite?** No. The held-out regression suite achieved 65.0% pass rate, validating genuine generalization.
+5. **Did any fix overfit the diagnostic suite?** No. The held-out set provides evidence that some hardening improvements transfer beyond the diagnostic suite, although its 20-case size means it should not be treated as proof of generalization.
 6. **Did any safety behavior regress?** No. 100% safety pass rate was maintained across all evaluations.
 7. **Single biggest remaining weakness**: Lexical keyword matching lacks deep semantic embedding representation for complex multi-intent queries where root cause must be inferred over surface symptoms.
 
@@ -102,4 +102,4 @@ Improvements were evaluated using a strict **Champion vs Challenger** methodolog
 
 ## Conclusion & Evidence Statement
 
-The final hardening pass produced targeted improvements in intent classification, escalation policy precision, out-of-scope detection, third-party handle authority control, and context inheritance, while remaining multi-intent ambiguities remained partially unresolved. Improvements were validated on both the diagnostic adversarial suite and held-out regression cases. The system therefore demonstrates improved resilience to the tested failure modes, not general robustness against arbitrary support inputs.
+The final hardening pass produced targeted improvements in intent classification, escalation policy precision, out-of-scope detection, third-party handle authority control, and context inheritance, while remaining multi-intent ambiguities remained partially unresolved. The held-out set provides evidence that some hardening improvements transfer beyond the diagnostic suite, demonstrating improved resilience to the tested failure modes rather than general robustness against arbitrary support inputs.

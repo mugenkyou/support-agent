@@ -592,8 +592,8 @@ This document records the foundational architectural, analytical, and problem-fr
 
 ## Decision 56: Champion vs Challenger Validation via Independent Held-Out Suite
 - **Decision**: Author an independent 20-case held-out regression suite (`tests/phase6_5_heldout_cases.json`) and evaluate Challenger vs Champion on both the 60-case diagnostic set and the 20-case held-out set.
-- **Reason**: Prevents overfitting to the 60 diagnostic challenge cases and proves technical generalization of hardening interventions.
-- **Evidence**: Challenger achieved 76.7% (46/60) on the diagnostic set (up from 40.0%) and 65.0% (13/20) on the held-out set, with 100% safety pass rate and 71/71 unit tests passing.
+- **Reason**: Evaluates whether hardening interventions transfer beyond observed diagnostic cases without treating a 20-case suite as proof of universal generalization.
+- **Evidence**: Challenger achieved 76.7% (46/60) on the diagnostic set (up from 40.0%) and 65.0% (13/20) on the held-out set, with 100% safety pass rate and 71/71 unit tests passing. The held-out set provides evidence that some hardening improvements transfer beyond the diagnostic suite.
 - **Alternatives Considered**: Evaluating only on the diagnostic set (risk of benchmark overfitting).
 - **Trade-off**: Requires maintaining held-out evaluation datasets.
 - **Confidence**: **HIGH**
