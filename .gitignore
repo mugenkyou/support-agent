@@ -41,8 +41,13 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
-# Reports & Temporary Analysis Markdowns
-reports/*.md
+# Reports & Documentation Artifacts
+reports/
+reports/*
+
+# Phase 1 Test Artifacts
+artifacts/phase1_*
+scripts/run_phase1_tests.py
 
 # IDE & OS Metadata
 .vscode/
