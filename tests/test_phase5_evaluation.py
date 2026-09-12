@@ -134,7 +134,7 @@ class TestPhase5Evaluation(unittest.TestCase):
                 self.assertEqual(m_data["sample_size"], 200)
                 self.assertTrue(m_data["ci_95_lower"] <= m_data["ci_95_upper"])
 
-        # Results artifact alignment
+        # Results artifact alignment & mathematical consistency assertion
         res_path = "artifacts/evaluation/phase5_evaluation_results.json"
         self.assertTrue(os.path.exists(res_path))
         with open(res_path, "r", encoding="utf-8") as f:
@@ -143,7 +143,21 @@ class TestPhase5Evaluation(unittest.TestCase):
         self.assertIn("paired_comparisons", results_data)
         self.assertEqual(results_data["paired_comparisons"]["metadata"]["n_examples"], 200)
 
+        # Assert report/table values correspond mathematically to paired differences
+        full_g = results_data["baselines_hierarchy"]["full_system"]["groundedness"]
+        dense_g = results_data["baselines_hierarchy"]["baseline_5_dense_evidence"]["groundedness"]
+        paired_g_diff = paired_data["full_vs_dense"]["groundedness"]["mean_difference"]
+
+        self.assertAlmostEqual(full_g - dense_g, paired_g_diff, places=3)
+
+        full_h = results_data["baselines_hierarchy"]["full_system"]["helpfulness"]
+        dense_h = results_data["baselines_hierarchy"]["baseline_5_dense_evidence"]["helpfulness"]
+        paired_h_diff = paired_data["full_vs_dense"]["helpfulness"]["mean_difference"]
+
+        self.assertAlmostEqual(full_h - dense_h, paired_h_diff, places=3)
+
 
 if __name__ == "__main__":
     unittest.main()
+
 

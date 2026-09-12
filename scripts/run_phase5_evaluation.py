@@ -173,7 +173,7 @@ def run_phase5():
     # 6. Execute Full SupportAgent Pipeline for Predictions
     print("\n--- 6. RUNNING FULL SYSTEM PREDICTIONS & SUBGROUP SLICES ---")
     clf = LexicalKeywordClassifier()
-    retriever = TFIDFRetriever(candidates, RetrievalFilter())
+    retriever = evaluator.hybrid
     policy = EscalationPolicy()
     agent = SupportAgent(clf, retriever, policy)
 
@@ -249,38 +249,23 @@ def run_phase5():
         "helpfulness_rate": {"mean": help_mean, "ci_95_lower": help_low, "ci_95_upper": help_high, "method": "bootstrap_10000"},
     }
 
-    # Extract paired per-example arrays for Full System vs Baselines 5, 6, 7
-    full_help = [p["helpfulness"] for p in evaluated_predictions]
-    full_rel = [p["relevance"] for p in evaluated_predictions]
-    full_ground = [p["groundedness"] for p in evaluated_predictions]
+    # Extract paired per-example arrays directly from canonical baseline results
+    full_item_scores = baseline_results["full_system"]["per_example_scores"]
+    dense_item_scores = baseline_results["baseline_5_dense_evidence"]["per_example_scores"]
+    hybrid_item_scores = baseline_results["baseline_6_hybrid_evidence"]["per_example_scores"]
+    div_item_scores = baseline_results["baseline_7_hybrid_diversified"]["per_example_scores"]
 
-    # Run baseline prediction iterations to get paired arrays
-    dense_preds = []
-    hybrid_preds = []
-    div_preds = []
+    def extract_metrics(scores_list):
+        return {
+            "helpfulness": [x["helpfulness"] for x in scores_list],
+            "relevance": [x["relevance"] for x in scores_list],
+            "groundedness": [x["groundedness"] for x in scores_list],
+        }
 
-    for gold in golden_data:
-        q = gold.get("customer_message", gold.get("customer_message_raw", ""))
-        intent, _ = clf.predict_single(q)
-        
-        # Dense
-        ev_dense = evaluator.dense.retrieve(gold, top_k=3)
-        gen_d = evaluator.generator.generate_response(q, [], intent, ev_dense)["draft_response"]
-        j_d = judge.evaluate_single(q, gen_d, ev_dense, intent, "PUBLIC_TROUBLESHOOTING")
-        dense_preds.append(j_d)
-
-        # Hybrid
-        ev_hyb = evaluator.hybrid.retrieve(gold, top_k=3)
-        gen_h = evaluator.generator.generate_response(q, [], intent, ev_hyb)["draft_response"]
-        j_h = judge.evaluate_single(q, gen_h, ev_hyb, intent, "PUBLIC_TROUBLESHOOTING")
-        hybrid_preds.append(j_h)
-
-        # Diversified
-        raw_div = evaluator.hybrid.retrieve(gold, top_k=6)
-        ev_div = evaluator.diversifier.diversify(raw_div, top_k=3)
-        gen_div = evaluator.generator.generate_response(q, [], intent, ev_div)["draft_response"]
-        j_div = judge.evaluate_single(q, gen_div, ev_div, intent, "PUBLIC_TROUBLESHOOTING")
-        div_preds.append(j_div)
+    full_metrics = extract_metrics(full_item_scores)
+    dense_metrics = extract_metrics(dense_item_scores)
+    hybrid_metrics = extract_metrics(hybrid_item_scores)
+    div_metrics = extract_metrics(div_item_scores)
 
     paired_comparisons = {
         "metadata": {
@@ -290,21 +275,22 @@ def run_phase5():
             "formula": "Full_System - Baseline",
         },
         "full_vs_dense": {
-            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in dense_preds], n_bootstrap=10000),
-            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in dense_preds], n_bootstrap=10000),
-            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in dense_preds], n_bootstrap=10000),
+            "helpfulness": compute_paired_bootstrap_ci(full_metrics["helpfulness"], dense_metrics["helpfulness"], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_metrics["relevance"], dense_metrics["relevance"], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_metrics["groundedness"], dense_metrics["groundedness"], n_bootstrap=10000),
         },
         "full_vs_hybrid": {
-            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in hybrid_preds], n_bootstrap=10000),
-            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in hybrid_preds], n_bootstrap=10000),
-            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in hybrid_preds], n_bootstrap=10000),
+            "helpfulness": compute_paired_bootstrap_ci(full_metrics["helpfulness"], hybrid_metrics["helpfulness"], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_metrics["relevance"], hybrid_metrics["relevance"], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_metrics["groundedness"], hybrid_metrics["groundedness"], n_bootstrap=10000),
         },
         "full_vs_diversified": {
-            "helpfulness": compute_paired_bootstrap_ci(full_help, [x["helpfulness"] for x in div_preds], n_bootstrap=10000),
-            "relevance": compute_paired_bootstrap_ci(full_rel, [x["relevance"] for x in div_preds], n_bootstrap=10000),
-            "groundedness": compute_paired_bootstrap_ci(full_ground, [x["groundedness"] for x in div_preds], n_bootstrap=10000),
+            "helpfulness": compute_paired_bootstrap_ci(full_metrics["helpfulness"], div_metrics["helpfulness"], n_bootstrap=10000),
+            "relevance": compute_paired_bootstrap_ci(full_metrics["relevance"], div_metrics["relevance"], n_bootstrap=10000),
+            "groundedness": compute_paired_bootstrap_ci(full_metrics["groundedness"], div_metrics["groundedness"], n_bootstrap=10000),
         },
     }
+
 
     paired_file = "artifacts/evaluation/phase5_paired_comparisons.json"
     with open(paired_file, "w", encoding="utf-8") as f:

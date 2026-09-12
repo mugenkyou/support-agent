@@ -502,10 +502,11 @@ This document records the foundational architectural, analytical, and problem-fr
 
 ## Decision 47: Paired Bootstrap Statistical Testing & Methodological Refinements for Phase 5
 - **Decision**: Execute paired bootstrap statistical comparisons ($B=10,000$, seed=42) on identical 200 Golden examples comparing Full SupportAgent against Qwen+Dense, Qwen+Hybrid, and Qwen+Diversified. Formally designate the LLM-Judge as an auxiliary estimate, audit grounding threshold provenance, and reframe safety and OOD findings.
-- **Reason**: Unpaired confidence intervals or raw average comparisons cannot establish statistical superiority. A paired comparison on identical Golden example IDs isolates whether differences in helpfulness, relevance, and groundedness are statistically distinguishable.
-- **Evidence**: Serialized in `artifacts/evaluation/phase5_paired_comparisons.json`. Demonstrated that Helpfulness difference (-0.030) is not statistically significant ($p=0.6279$), Relevance difference (-0.600) is statistically significant due to intentional safety/privacy redirection ($p=0.0000$), and Groundedness difference (-0.205) reflects judge penalty on redirection responses.
+- **Reason**: Unpaired confidence intervals or raw average comparisons cannot establish statistical superiority. A paired comparison on identical Golden example IDs using the exact per-example prediction arrays isolates whether differences in helpfulness, relevance, and groundedness are statistically distinguishable.
+- **Evidence**: Serialized in `artifacts/evaluation/phase5_paired_comparisons.json`. Proved that Groundedness difference (+0.015) is small and not statistically significant ($p=0.6954$, 95% CI [-0.035, +0.065]), while Relevance difference (-0.440, $p=0.0000$) and Helpfulness difference (-0.095, $p=0.0206$) reflect an intentional safety and privacy redirection tradeoff.
 - **Alternatives Considered**: Claiming "Full System Superiority" based on unpaired raw averages (methodologically invalid).
 - **Trade-off**: Explicitly acknowledges safety/redirection tradeoffs rather than claiming unilateral superiority.
 - **Confidence**: **HIGH**
+
 
 

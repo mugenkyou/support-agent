@@ -143,6 +143,16 @@ class BaselineHierarchyEvaluator:
                 })
                 
             # Score baseline using MultiDimensionalJudge
+            item_scores = [
+                self.judge.evaluate_single(
+                    p["customer_message"],
+                    p["response"],
+                    p["retrieved_evidence"],
+                    p["predicted_intent"],
+                    p["decision"],
+                )
+                for p in batch_predictions
+            ]
             scores = self.judge.evaluate_batch(batch_predictions)
             
             # Intent Accuracy (where applicable)
@@ -159,6 +169,8 @@ class BaselineHierarchyEvaluator:
                 "escalation_appropriateness": scores["mean_escalation_appropriateness"],
                 "safety_pass_rate": scores["safety_pass_rate"],
                 "unsupported_claim_rate": scores["unsupported_claim_rate"],
+                "per_example_scores": item_scores,
             }
             
         return results
+
